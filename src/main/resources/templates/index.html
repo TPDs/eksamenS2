@@ -20,7 +20,7 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Enrollment</th>
-            <th>Edit</th>
+            <th style="width: 250px">Edit</th>
         </tr>
         <tr th:each="student : ${students}">
             <td th:text="${student.id}"></td>
@@ -28,7 +28,9 @@
             <td th:text="${student.lastName}"></td>
             <td th:text="${student.enrollmentDate}"></td>
             <td><a th:href="@{/student(id=${student.id})}">
-                <button>click me</button>
+                <button type="button" class="btn btn-success" href="/student/detail.html">Details</button>
+                <button type="button" class="btn btn-primary" href="/student/update.html">Update</button>
+                <button type="button" class="btn btn-danger" href="/student/delete.html">Delete</button>
             </a></td>
         </tr>
         <!--

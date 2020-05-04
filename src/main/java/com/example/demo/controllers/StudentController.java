@@ -32,22 +32,22 @@ public class StudentController {
         return "topbanner";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/student/create")
     public String create() {
         return "create";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/student/delete")
     public String delete() {
         return "delete";
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/student/detail")
     public String detail() {
         return "detail";
     }
 
-    @GetMapping("/update")
+    @GetMapping("/student/update")
     public String update(){
         return "update";
     }

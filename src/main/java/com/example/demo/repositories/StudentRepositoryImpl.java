@@ -26,7 +26,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
     public Student read(int id) {
         Student studentToReturn = new Student();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE students_id=?");
+            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE id="+id);
             ResultSet rs = getSingleStudent.executeQuery();
             while(rs.next()){
                 studentToReturn = new Student();

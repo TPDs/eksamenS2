@@ -25,6 +25,11 @@ public class StudentController {
         return "index";
     }
 
+    @GetMapping("/topbanner")
+    public String index() {
+        return "topbanner";
+    }
+
 
     //Very simple prototype of GET-request with parameter
     //https://www.baeldung.com/spring-request-param

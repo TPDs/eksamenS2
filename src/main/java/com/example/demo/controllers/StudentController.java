@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Student;
 import com.example.demo.repositories.IStudentRepository;
-import com.example.demo.repositories.InMemoryStudentRepositoryImpl;
 import com.example.demo.repositories.StudentRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,21 +14,25 @@ public class StudentController {
 
     private IStudentRepository studentRepository;
 
+    // InMemoryStudentRepositoryImpl eller StudentRepositoryImpl
     public StudentController() {
-        studentRepository = new InMemoryStudentRepositoryImpl();
+        studentRepository = new StudentRepositoryImpl();
     }
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
+        model.addAttribute("students", studentRepository.readAll());
         return "index";
     }
+
 
     //Very simple prototype of GET-request with parameter
     //https://www.baeldung.com/spring-request-param
     //TODO Direct to detailed view of student
     @GetMapping("/student")
     @ResponseBody
-    public String getStudentByParameter(@RequestParam String id) {
-        return "Just a string in the body";
+    public String getStudentByParameter(@RequestParam int id) {
+        Student stu = studentRepository.read(id);
+        return "ID: " + id + " Name: " + stu.firstName;
     }
 }

@@ -32,9 +32,9 @@ public class StudentController {
         return "topbanner";
     }
 
-    @GetMapping("/student/create")
+    @GetMapping("create")
     public String create() {
-        return "create";
+        return "student/create";
     }
 
     @GetMapping("/student/delete")

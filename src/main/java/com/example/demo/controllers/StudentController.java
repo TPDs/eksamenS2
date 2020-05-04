@@ -30,6 +30,26 @@ public class StudentController {
         return "topbanner";
     }
 
+    @GetMapping("/create")
+    public String create() {
+        return "create";
+    }
+
+    @GetMapping("/delete")
+    public String delete() {
+        return "delete";
+    }
+
+    @GetMapping("/detail")
+    public String detail() {
+        return "detail";
+    }
+
+    @GetMapping("/update")
+    public String update(){
+        return "update";
+    }
+
 
     //Very simple prototype of GET-request with parameter
     //https://www.baeldung.com/spring-request-param
@@ -38,6 +58,6 @@ public class StudentController {
     @ResponseBody
     public String getStudentByParameter(@RequestParam int id) {
         Student stu = studentRepository.read(id);
-        return "ID: " + id + " Name: " + stu.firstName;
+        return "ID: " + id + " Name: " + stu.firstName + "";
     }
 }

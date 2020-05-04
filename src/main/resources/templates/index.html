@@ -27,10 +27,11 @@
             <td th:text="${student.firstName}"></td>
             <td th:text="${student.lastName}"></td>
             <td th:text="${student.enrollmentDate}"></td>
-            <td><a th:href="@{/student(id=${student.id})}">
-                <button type="button" class="btn btn-success" href="/student/detail.html">Details</button>
+            <td><!--<a th:href="@{/student(id=${student.id})}">-->
+                <a th:href="@{/student/detail(id=${student.id})}" class="btn btn-success" role="button"></a>
+                <!--<button type="button" class="btn btn-success" href="detail">Details</button>
                 <button type="button" class="btn btn-primary" href="/student/update.html">Update</button>
-                <button type="button" class="btn btn-danger" href="/student/delete.html">Delete</button>
+                <button type="button" class="btn btn-danger" href="/student/delete.html">Delete</button>-->
             </a></td>
         </tr>
         <!--

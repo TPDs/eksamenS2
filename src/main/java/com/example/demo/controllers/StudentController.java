@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class StudentController {
 
+
     private IStudentRepository studentRepository;
 
     // InMemoryStudentRepositoryImpl eller StudentRepositoryImpl
@@ -26,7 +27,8 @@ public class StudentController {
     }
 
     @GetMapping("/topbanner")
-    public String index() {
+    public String topBanner(Model model) {
+        model.addAttribute("students", studentRepository.readAll());
         return "topbanner";
     }
 

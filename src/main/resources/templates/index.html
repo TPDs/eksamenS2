@@ -13,8 +13,10 @@
 <!-- TODO: MENU -->
 <!-- TODO: Table of students -->
 <div class="container">
-    <h1>Student administration</h1>
+    <h1>Students</h1>
+    <p>Enrolled Students at KEA</p>
 
+    <button type="button" class="btn btn-primary" href="/student/create.html"></button>
     <table>
         <tr>
             <th>ID</th>
@@ -29,7 +31,9 @@
             <td th:text="${student.lastName}"></td>
             <td th:text="${student.enrollmentDate}"></td>
             <td><!--<a th:href="@{/student(id=${student.id})}">-->
-                <a th:href="@{/student/detail(id=${student.id})}" class="btn btn-success" role="button"></a>
+                <a th:href="@{/student/detail(id=${student.id})}" class="btn btn-success" role="button">Detail</a>
+                <a th:href="@{/student/edit(id=${student.id})}" class="btn btn-primary" role="button">Edit</a>
+                <a th:href="@{/student/delete(id=${student.id})}" class="btn btn-danger" role="button">Delete</a>
                 <!--<button type="button" class="btn btn-success" href="detail">Details</button>
                 <button type="button" class="btn btn-primary" href="/student/update.html">Update</button>
                 <button type="button" class="btn btn-danger" href="/student/delete.html">Delete</button>-->

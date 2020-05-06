@@ -17,14 +17,13 @@ public class StudentRepositoryImpl implements IStudentRepository {
     @Override
     public boolean create(Student student) {
         Student studentToCreate = new Student();
-        String sql = "INSERT INTO students(id,firstName, lastName, enrollmentDate,cpr) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO students(FirstName, LastName, EnrollmentDate,Cpr) VALUES (?,?,?,?)";
         try {
             PreparedStatement createStudent = conn.prepareStatement(sql);
             for (int i = 0; i < readAll().size(); i++)
                 if (studentToCreate.cpr.equals(readAll().get(i).cpr)) {
                     return false;
                 } else {
-                    createStudent.setInt(1, student.id);
                     createStudent.setString(1, student.firstName);
                     createStudent.setString(2, student.lastName);
                     createStudent.setDate(3, (Date) student.enrollmentDate);
@@ -47,7 +46,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
     public Student read(int id) {
         Student studentToReturn = new Student();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE id="+id);
+            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE id=" + id);
             ResultSet rs = getSingleStudent.executeQuery();
             while(rs.next()){
                 studentToReturn = new Student();

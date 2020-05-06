@@ -21,7 +21,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
         try {
             PreparedStatement createStudent = conn.prepareStatement(sql);
             for (int i = 0; i < readAll().size(); i++)
-                if (studentToCreate.cpr.equals(readAll().get(i).cpr)) {
+                if (student.cpr.equals(readAll().get(i).cpr)) {
                     return false;
                 } else {
                     createStudent.setString(1, student.firstName);

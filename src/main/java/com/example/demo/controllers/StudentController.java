@@ -6,6 +6,7 @@ import com.example.demo.repositories.StudentRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,17 +38,17 @@ public class StudentController {
         return "student/create";
     }
 
-    @GetMapping("delete")
+    @GetMapping("/student/delete")
     public String delete() {
         return "student/delete";
     }
 
-    @GetMapping("detail")
+    @GetMapping("/student/detail")
     public String detail() {
         return "student/detail";
     }
 
-    @GetMapping("update")
+    @GetMapping("/student/update")
     public String update(){
         return "student/update";
     }

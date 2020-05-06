@@ -100,7 +100,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("An existing user was updated successfully!");
+                System.out.println("An existing student was updated successfully!");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -120,12 +120,11 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                System.out.println("A user was deleted successfully!");
+                System.out.println("A student was deleted successfully!");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
 
         return false;
     }

@@ -3,10 +3,7 @@ package com.example.demo.repositories;
 import com.example.demo.models.Student;
 import com.example.demo.util.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,31 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public boolean create(Student student) {
-        return false;
+        Student studentToCreate = new Student();
+        String sql = "INSERT INTO students(id,firstName, lastName, enrollmentDate,cpr) VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement createStudent = conn.prepareStatement(sql);
+            for (int i = 0; i < readAll().size(); i++)
+                if (studentToCreate.cpr.equals(readAll().get(i).cpr)) {
+                    return false;
+                } else {
+                    createStudent.setInt(1, student.id);
+                    createStudent.setString(1, student.firstName);
+                    createStudent.setString(2, student.lastName);
+                    createStudent.setDate(3, (Date) student.enrollmentDate);
+                    createStudent.setString(4, student.cpr);
+                    int rowsInserted = createStudent.executeUpdate();
+                    if (rowsInserted > 0) {
+                        System.out.println("Successfully!");
+                    }
+                }
+            return true;
+        } catch (SQLException s) {
+            s.printStackTrace();
+            System.out.println("Fejlet");
+        }
+        System.out.println("Successfully!2");
+        return true;
     }
 
     @Override

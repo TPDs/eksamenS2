@@ -20,7 +20,15 @@ public class Student{
         this.cpr = cpr;
     }
 
-    public Student() {}
+    public Student(String firstName, String lastName, Date enrollmentDate, String cpr) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enrollmentDate = enrollmentDate;
+        this.cpr = cpr;
+    }
+
+    public Student() {
+    }
 
     public int getId() {
         return id;

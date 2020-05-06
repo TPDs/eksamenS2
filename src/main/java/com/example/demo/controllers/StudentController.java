@@ -30,16 +30,15 @@ public class StudentController {
         return "topbanner";
     }
 
-
-    @PostMapping("/create")
-    public String create(@ModelAttribute Student student){
-        studentRepository.create(student);
-        return "redirect:/";
-    }
-
-
     @GetMapping("/student/create")
     public String create() {
+        return "/student/create";
+    }
+
+    @PostMapping("/student/create")
+    public String create(@ModelAttribute Student student){
+        studentRepository.create(student);
+        System.out.println("Helda");
         return "/student/create";
     }
 

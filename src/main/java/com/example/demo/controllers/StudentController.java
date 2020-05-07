@@ -54,8 +54,8 @@ public class StudentController {
     }
 
     @PostMapping("/student/delete")
-    public String postDelete() {
-        //studentRepository.delete();
+    public String postDelete(int id) {
+        studentRepository.delete(id);
         return "redirect:/";
     }
 

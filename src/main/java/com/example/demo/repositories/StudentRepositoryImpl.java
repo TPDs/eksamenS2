@@ -101,7 +101,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("An existing student was updated successfully!");
+                System.out.println("An existing student was updated successfully!!");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -10,31 +10,31 @@ import java.util.List;
 public class StudentRepositoryImpl implements IStudentRepository {
     private Connection conn;
 
-    public StudentRepositoryImpl(){
+    public StudentRepositoryImpl() {
         this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }
 
     @Override
     public boolean create(Student student) {
-        Student studentToCreate = new Student();
-        String sql = "INSERT INTO students(FirstName, LastName, EnrollmentDate,Cpr) VALUES (?,?,?,?)";
+        System.out.println(student.firstName);
+        //Student studentToCreate = new Student();
+        String sql = "INSERT INTO students(FirstName, LastName, Enrollment,Cpr) VALUES (?,?,?,?)";
         try {
             PreparedStatement createStudent = conn.prepareStatement(sql);
-            for (int i = 0; i < readAll().size(); i++)
-                if (student.cpr.equals(readAll().get(i).cpr)) {
-                    return false;
-                } else {
-                    createStudent.setString(1, student.firstName);
-                    createStudent.setString(2, student.lastName);
-                    createStudent.setDate(3, (Date) student.enrollmentDate);
-                    createStudent.setString(4, student.cpr);
-                    int rowsInserted = createStudent.executeUpdate();
-                    if (rowsInserted > 0) {
-                        System.out.println("Successfully!");
-                    }
-                }
+
+            //createStudent.setInt(1, student.id);
+            createStudent.setString(1, student.firstName);
+            createStudent.setString(2, student.lastName);
+            createStudent.setDate(3, (Date) student.enrollmentDate);
+            createStudent.setString(4, student.cpr);
+            int rowsInserted = createStudent.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Successfully!");
+            }
+
             return true;
-        } catch (SQLException s) {
+        } catch (
+                SQLException s) {
             s.printStackTrace();
             System.out.println("Fejlet");
         }
@@ -48,7 +48,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
         try {
             PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE id=" + id);
             ResultSet rs = getSingleStudent.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 studentToReturn = new Student();
                 studentToReturn.setCpr(String.valueOf(rs.getInt(1)));
                 studentToReturn.setFirstName(rs.getString(2));
@@ -56,8 +56,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
                 studentToReturn.setEnrollmentDate(rs.getDate(4));
                 studentToReturn.setCpr(rs.getString(5));
             }
-        }
-        catch(SQLException s){
+        } catch (SQLException s) {
             s.printStackTrace();
         }
         return studentToReturn;
@@ -69,7 +68,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM students");
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Student tempStudent = new Student();
                 tempStudent.setId(rs.getInt(1));
                 tempStudent.setFirstName(rs.getString(2));

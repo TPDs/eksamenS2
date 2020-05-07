@@ -83,8 +83,28 @@ public class StudentRepositoryImpl implements IStudentRepository {
         return allStudents;
     }
 
+    // jeg er ikke sikker på om dette er den korrekte måde at updatere et student objekt
+    // det kan være der skal tages input parameter til metoden udover selve student objektet
+    // som så skal brugers som parameter til PreparedStatement som sendes til Sql
     @Override
     public boolean update(Student student) {
+        String sql = "UPDATE Students SET FirstName=?, LastName=?, EnrollmentDate=?, Cpr=? WHERE id=?";
+
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, student.firstName);
+            statement.setString(2,student.lastName);
+            statement.setDate(3, (Date) student.enrollmentDate);
+            statement.setString(4,student.cpr);
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("An existing student was updated successfully!");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return false;
     }
 
@@ -95,8 +115,12 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, "id");
+            statement.setInt(1, id);
 
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("A student was deleted successfully!");
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

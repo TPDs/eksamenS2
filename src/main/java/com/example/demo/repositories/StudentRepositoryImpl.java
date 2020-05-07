@@ -89,14 +89,15 @@ public class StudentRepositoryImpl implements IStudentRepository {
     // som så skal brugers som parameter til PreparedStatement som sendes til Sql
     @Override
     public boolean update(Student student) {
-        String sql = "UPDATE students SET FirstName=?, LastName=?, EnrollmentDate=?, Cpr=? WHERE id=?";
+        String sql = "UPDATE students SET FirstName=?, LastName=?, Enrollment=?, Cpr=? WHERE id="+ student.id;
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, student.firstName);
             statement.setString(2,student.lastName);
-            statement.setDate(3, (Date) student.enrollmentDate);
+            statement.setDate(3, student.enrollmentDate);
             statement.setString(4,student.cpr);
+            //statement.setInt(5,student.id);
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {

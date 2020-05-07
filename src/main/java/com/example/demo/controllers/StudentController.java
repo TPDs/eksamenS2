@@ -55,19 +55,28 @@ public class StudentController {
 
     @PostMapping("/student/delete")
     public String postDelete(int id) {
+        System.out.println("Michal");
         studentRepository.delete(id);
         return "redirect:/";
     }
 
     @GetMapping("/student/detail")
     public String detail(@RequestParam int id,Model model) {
-        model.addAttribute("deleteStudent", studentRepository.read(id));
+        model.addAttribute("detailStudent", studentRepository.read(id));
         return "student/detail";
     }
 
     @GetMapping("/student/update")
-    public String update(){
+    public String getUpdate(@RequestParam int id, Model model){
+        model.addAttribute("updateStudent", studentRepository.read(id));
         return "student/update";
+    }
+    @PostMapping("/student/update")
+    public String postUpdate(Student student) {
+        System.out.println(student.firstName);
+        System.out.println("Helda");
+        studentRepository.update(student);
+        return "redirect:/";
     }
 
 

@@ -11,6 +11,36 @@
 <body>
 <div th:insert="/topbanner"></div>
 
+<div class="container">
+    <h1 style="
+                margin-top: 5px;
+                margin-bottom: 12px;
+    ">Update Student</h1>
+    <form action="#" th:action="@{/student/update}" method="POST">
+        <div class="form-group">
+            <label>First Name:</label>
+            <input class="form-control" type="text" th:field="*{updateStudent.firstName}">
+        </div>
+        <div class="form-group">
+            <label>Last Name:</label>
+            <input class="form-control" type="text" th:field="*{updateStudent.lastName}">
+        </div>
+        <div class="form-group">
+            <label>Enrollment Date:</label>
+            <input class="form-control" type="text" th:field="*{updateStudent.enrollmentDate}">
+        </div>
+        <div class="form-group">
+            <label>CPR:</label>
+            <input class="form-control" type="text" th:field="*{updateStudent.cpr}">
+            <input class="form-control" type="hidden" th:field="*{updateStudent.id}">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" style="
+                   ">Update</button>
+        </div>
+    </form>
+</div>
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

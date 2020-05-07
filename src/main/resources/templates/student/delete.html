@@ -19,12 +19,14 @@
         <td th:text="${deleteStudent.lastName}"></td>
     </div>
     <br>
-</div>
-<div class="container" style="margin-top: 2px;">
-    <button type="submit" class="btn btn-success" action="#" th:action="@{/student/delete}" th:object="${deleteStudent.id}" method="POST">Yes</button>
+    <form th:action="@{/student/delete}" method="POST">
+        <input type="hidden" th:field="${deleteStudent.id}">
+        <button type="submit" class="btn btn-success">Yes</button>
     <a class="btn btn-danger" href="/">No</a>
-    <!--<button type="button" class="btn btn-danger" href="../">No</button>-->
+
+    </form>
 </div>
+
 
 
 

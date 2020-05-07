@@ -25,7 +25,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
             //createStudent.setInt(1, student.id);
             createStudent.setString(1, student.firstName);
             createStudent.setString(2, student.lastName);
-            createStudent.setDate(3, (Date) student.enrollmentDate);
+            createStudent.setDate(3, student.enrollmentDate);
             createStudent.setString(4, student.cpr);
             int rowsInserted = createStudent.executeUpdate();
             if (rowsInserted > 0) {
@@ -50,7 +50,8 @@ public class StudentRepositoryImpl implements IStudentRepository {
             ResultSet rs = getSingleStudent.executeQuery();
             while (rs.next()) {
                 studentToReturn = new Student();
-                studentToReturn.setCpr(String.valueOf(rs.getInt(1)));
+                //studentToReturn.setCpr(String.valueOf(rs.getInt(1)));
+                studentToReturn.setId(rs.getInt(1));
                 studentToReturn.setFirstName(rs.getString(2));
                 studentToReturn.setLastName(rs.getString(3));
                 studentToReturn.setEnrollmentDate(rs.getDate(4));
@@ -88,7 +89,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
     // som så skal brugers som parameter til PreparedStatement som sendes til Sql
     @Override
     public boolean update(Student student) {
-        String sql = "UPDATE Students SET FirstName=?, LastName=?, EnrollmentDate=?, Cpr=? WHERE id=?";
+        String sql = "UPDATE students SET FirstName=?, LastName=?, EnrollmentDate=?, Cpr=? WHERE id=?";
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);

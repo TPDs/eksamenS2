@@ -34,25 +34,34 @@ public class StudentController {
     }
 
     @GetMapping("/student/create")
-    public String create() {
+    public String getCreate(Student student) {
         return "/student/create";
     }
 
     @PostMapping("/student/create")
-    public String create(Student student) {
+    public String postCreate(Student student) {
         System.out.println(student.firstName);
         System.out.println("Helda");
         studentRepository.create(student);
-        return "/student/create";
+        return "redirect:/";
     }
 
     @GetMapping("/student/delete")
-    public String delete() {
+    public String getDelete(@RequestParam int id, Model model) {
+        model.addAttribute("deleteStudent", studentRepository.read(id));
+        //Student deleteStudent = studentRepository.read(id);
         return "student/delete";
     }
 
+    @PostMapping("/student/delete")
+    public String postDelete() {
+        //studentRepository.delete();
+        return "redirect:/";
+    }
+
     @GetMapping("/student/detail")
-    public String detail() {
+    public String detail(@RequestParam int id,Model model) {
+        model.addAttribute("deleteStudent", studentRepository.read(id));
         return "student/detail";
     }
 

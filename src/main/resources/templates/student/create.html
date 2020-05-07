@@ -9,31 +9,38 @@
 </head>
 
 <body>
-<div th:insert="/topbanner"></div>
+    <div th:insert="/topbanner"></div>
+    <div class="container">
+        <h1 style="
+                margin-top: 5px;
+                margin-bottom: 12px;
+        ">Create Student</h1>
+        <form action="#" th:action="@{/student/create}" th:object="${student}" method="POST">
+            <div class="form-group">
+                <label>First Name:</label>
+                <input class="form-control" type="text" th:field="*{firstName}">
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label>
+                <input class="form-control" type="text" th:field="*{lastName}">
+            </div>
+            <div class="form-group">
+                <label>Enrollment Date:</label>
+                <input class="form-control" type="text" th:field="*{enrollmentDate}">
+            </div>
+            <div class="form-group">
+                <label>CPR:</label>
+                <input class="form-control" type="text" th:field="*{cpr}">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="
+                   ">Create</button>
+            </div>
+        </form>
+    </div>
 
-<form method="POST" action="create" modelAttribute="Student">
-    <div class="form-group">
-        <label>First Name:</label>
-        <input class="form-control" type="text">
-    </div>
-    <div>
-        <label>Last Name:</label>
-        <input class="form-control" type="text">
-    </div>
-    <div>
-        <label>Enrollment Date:</label>
-        <input class="form-control" type="text">
-    </div>
-    <div>
-        <label>CPR:</label>
-        <input class="form-control" type="text">
-    </div>
-    <div>
-        <button type="submit" class="btn btn-primary" style="
 
-        ">Create</button>
-    </div>
-</form>
+
 
 
 </body>

@@ -4,7 +4,7 @@ import com.example.demo.models.Student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class InMemoryStudentRepositoryImpl implements IStudentRepository{

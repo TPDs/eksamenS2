@@ -22,10 +22,10 @@ public class CoursesController {
         coursesRepository = new CoursesRepositoryImpl();
     }
 
-    @GetMapping("/courses")
+    @GetMapping("/courses/courses")
     public String index(Model model) {
         model.addAttribute("courses", coursesRepository.readAll());
-        return "/courses";
+        return "/courses/courses";
     }
 
     @GetMapping("/courses/create")
@@ -36,50 +36,47 @@ public class CoursesController {
     @PostMapping("/courses/create")
     public String postCreate(Courses courses) {
         coursesRepository.create(courses);
-        return "redirect:/";
+        return "redirect:/courses/courses";
     }
 
-    @GetMapping("/student/delete")
-    public String getDelete(@RequestParam int id, Model model) {
-        model.addAttribute("deleteStudent", studentRepository.read(id));
+    @GetMapping("/courses/delete")
+    public String getDelete(@RequestParam int idCourses, Model model) {
+        model.addAttribute("deleteCourses", coursesRepository.read(idCourses));
         //Student deleteStudent = studentRepository.read(id);
-        return "student/delete";
+        return "courses/delete";
     }
 
-    @PostMapping("/student/delete")
-    public String postDelete(int id) {
-        System.out.println("Michal");
-        studentRepository.delete(id);
-        return "redirect:/";
+    @PostMapping("/courses/delete")
+    public String postDelete(int idCourses) {
+        coursesRepository.delete(idCourses);
+        return "redirect:/courses/courses";
     }
 
-    @GetMapping("/student/detail")
-    public String detail(@RequestParam int id,Model model) {
-        model.addAttribute("detailStudent", studentRepository.read(id));
-        return "student/detail";
+    @GetMapping("/courses/detail")
+    public String detail(@RequestParam int idCourses,Model model) {
+        model.addAttribute("detailCourses", coursesRepository.read(idCourses));
+        return "courses/detail";
     }
 
-    @GetMapping("/student/update")
-    public String getUpdate(@RequestParam int id, Model model){
-        model.addAttribute("updateStudent", studentRepository.read(id));
-        return "student/update";
+    @GetMapping("/courses/update")
+    public String getUpdate(@RequestParam int idCourses, Model model){
+        model.addAttribute("updateCourses", coursesRepository.read(idCourses));
+        return "courses/update";
     }
-    @PostMapping("/student/update")
-    public String postUpdate(Student student) {
-        System.out.println(student.firstName);
-        System.out.println("Helda");
-        studentRepository.update(student);
-        return "redirect:/";
+    @PostMapping("/courses/update")
+    public String postUpdate(Courses courses) {
+        coursesRepository.update(courses);
+        return "redirect:/courses/courses";
     }
 
 
     //Very simple prototype of GET-request with parameter
     //https://www.baeldung.com/spring-request-param
     //TODO Direct to detailed view of student
-    @GetMapping("/student")
+    @GetMapping("/courses/courses")
     @ResponseBody
-    public String getStudentByParameter(@RequestParam int id) {
-        Student stu = studentRepository.read(id);
-        return "ID: " + id + " Name: " + stu.firstName + "";
+    public String getCoursesByParameter(@RequestParam int idCourses) {
+        Courses cou = coursesRepository.read(idCourses);
+        return "ID: " + idCourses + " Name: " + cou.courseName + "";
     }
 }

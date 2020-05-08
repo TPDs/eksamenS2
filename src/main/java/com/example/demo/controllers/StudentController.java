@@ -27,12 +27,6 @@ public class StudentController {
         return "index";
     }
 
-    @GetMapping("/topbanner")
-    public String topBanner(Model model) {
-        model.addAttribute("students", studentRepository.readAll());
-        return "topbanner";
-    }
-
     @GetMapping("/student/create")
     public String getCreate(Student student) {
         return "/student/create";

@@ -1,6 +1,4 @@
-package com.example.demo.models;
-
-import org.springframework.format.annotation.DateTimeFormat;
+package com.example.eksamenS2.models;
 
 import java.sql.Date;
 

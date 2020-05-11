@@ -1,8 +1,8 @@
-package com.example.demo.controllers;
+package com.example.eksamenS2.controllers;
 
-import com.example.demo.models.Student;
-import com.example.demo.repositories.IStudentRepository;
-import com.example.demo.repositories.StudentRepositoryImpl;
+import com.example.eksamenS2.models.Student;
+import com.example.eksamenS2.repositories.IStudentRepository;
+import com.example.eksamenS2.repositories.StudentRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +49,6 @@ public class StudentController {
 
     @PostMapping("/student/delete")
     public String postDelete(int id) {
-        System.out.println("Michal");
         studentRepository.delete(id);
         return "redirect:/";
     }
@@ -67,8 +66,6 @@ public class StudentController {
     }
     @PostMapping("/student/update")
     public String postUpdate(Student student) {
-        System.out.println(student.firstName);
-        System.out.println("Helda");
         studentRepository.update(student);
         return "redirect:/";
     }

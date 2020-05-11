@@ -1,9 +1,12 @@
-package com.example.demo.repositories;
+package com.example.eksamenS2.repositories;
 
-import com.example.demo.models.Student;
-import com.example.demo.util.DatabaseConnectionManager;
+import com.example.eksamenS2.models.Student;
+import com.example.eksamenS2.util.DatabaseConnectionManager;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

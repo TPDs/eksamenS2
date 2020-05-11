@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.example.eksamenS2.models;
 
 import java.sql.Date;
 

@@ -1,6 +1,6 @@
-package com.example.demo.repositories;
+package com.example.eksamenS2.repositories;
 
-import com.example.demo.models.Student;
+import com.example.eksamenS2.models.Student;
 
 import java.util.List;
 

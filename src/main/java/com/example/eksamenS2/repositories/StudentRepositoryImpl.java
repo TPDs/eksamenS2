@@ -1,6 +1,5 @@
 package com.example.eksamenS2.repositories;
 
-import com.example.eksamenS2.models.Student;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
 import java.sql.Connection;

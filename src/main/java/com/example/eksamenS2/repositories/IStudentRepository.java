@@ -1,7 +1,5 @@
 package com.example.eksamenS2.repositories;
 
-import com.example.eksamenS2.models.Student;
-
 import java.util.List;
 
 public interface IStudentRepository {

@@ -1,6 +1,5 @@
 package com.example.eksamenS2.controllers;
 
-import com.example.eksamenS2.models.Student;
 import com.example.eksamenS2.repositories.IStudentRepository;
 import com.example.eksamenS2.repositories.StudentRepositoryImpl;
 import org.springframework.stereotype.Controller;

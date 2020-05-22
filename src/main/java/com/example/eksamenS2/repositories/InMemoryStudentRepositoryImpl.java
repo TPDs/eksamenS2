@@ -1,7 +1,5 @@
 package com.example.eksamenS2.repositories;
 
-import com.example.eksamenS2.models.Student;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;

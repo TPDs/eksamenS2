@@ -1,7 +1,6 @@
 package com.example.eksamenS2.repositories;
 
-import java.util.List;
-
+/*
 public interface IStudentRepository {
     // CRUD operations
     public boolean create(Student student);
@@ -16,3 +15,6 @@ public interface IStudentRepository {
 }
 
 
+
+
+ */

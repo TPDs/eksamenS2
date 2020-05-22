@@ -1,10 +1,6 @@
 package com.example.eksamenS2.repositories;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+/*
 public class InMemoryStudentRepositoryImpl implements IStudentRepository{
     private List<Student> inMemoryDatabase;
 
@@ -52,3 +48,6 @@ public class InMemoryStudentRepositoryImpl implements IStudentRepository{
         return false;
     }
 }
+
+
+ */

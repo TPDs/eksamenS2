@@ -8,13 +8,13 @@ public class AccItems {
 
     public AccItems(){}
 
-    public AccItems( String name, int price) {
+    public AccItems(int itemsID, String name, int price) {
+        ItemsID = itemsID;
         Name = name;
         Price = price;
     }
 
-    public AccItems(int itemsID, String name, int price) {
-        ItemsID = itemsID;
+    public AccItems(String name, int price) {
         Name = name;
         Price = price;
     }
@@ -39,8 +39,4 @@ public class AccItems {
         Price = price;
     }
 
-    public AccItems(String name, int price) {
-        Name = name;
-        Price = price;
-    }
 }

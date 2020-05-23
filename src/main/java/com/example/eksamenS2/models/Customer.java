@@ -2,12 +2,14 @@ package com.example.eksamenS2.models;
 
 public class Customer {
 
+    private int ID;
     private String FirstName;
     private String LastName;
     private String Email;
     private int Phone;
     private String DriverLicens;
 
+    public Customer(){}
 
     public Customer(String firstName, String lastName, String email, int phone, String driverLicens) {
         FirstName = firstName;
@@ -17,6 +19,22 @@ public class Customer {
         DriverLicens = driverLicens;
     }
 
+    public Customer(int id,String firstName, String lastName, String email, int phone, String driverLicens) {
+        ID = id;
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        Phone = phone;
+        DriverLicens = driverLicens;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int id) {
+        this.ID = id;
+    }
 
     public String getFirstName() {
         return FirstName;

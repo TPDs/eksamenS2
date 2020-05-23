@@ -2,21 +2,30 @@ package com.example.eksamenS2.models;
 
 public class Models {
 
-    private String Brand, Type, Engine, About;
+    private String Model_Number, Brand, Type, Engine, About;
     private double Lenght;
     private boolean GearType, Aircon;
     private int km_L, year;
 
-    public Models(String brand, String type, String engine, String about, double lenght, boolean gearType, boolean aircon, int km_L, int year) {
-        Brand = brand;
-        Type = type;
-        Engine = engine;
-        About = about;
-        Lenght = lenght;
-        GearType = gearType;
-        Aircon = aircon;
+    public Models(String Model_Number, String brand, String type, String engine, String about, double lenght, boolean gearType, boolean aircon, int km_L, int year) {
+        this.Model_Number = Model_Number;
+        this.Brand = brand;
+        this.Type = type;
+        this.Engine = engine;
+        this.About = about;
+        this.Lenght = lenght;
+        this.GearType = gearType;
+        this.Aircon = aircon;
         this.km_L = km_L;
         this.year = year;
+    }
+
+    public String getModel_Number() {
+        return Model_Number;
+    }
+
+    public void setModel_Number(String model_Number) {
+        Model_Number = model_Number;
     }
 
     public String getBrand() {

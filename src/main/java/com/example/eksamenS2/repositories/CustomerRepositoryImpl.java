@@ -47,7 +47,7 @@ public class CustomerRepositoryImpl {
         Customer customerToReturn = new Customer();
 
         try {
-            PreparedStatement getSingleCustomer = conn.prepareStatement("SELECT * FROM customer WHERE id=" + id);
+            PreparedStatement getSingleCustomer = conn.prepareStatement("SELECT * FROM customer WHERE CustomerID=" + id);
             ResultSet rs = getSingleCustomer.executeQuery();
 
             while(rs.next()) {
@@ -89,16 +89,16 @@ public class CustomerRepositoryImpl {
 
 
     public boolean update(Customer customer) {
-        String sql = "UPDATE customer SET ID=?, FirstName=?, LastName=?, Email=?, Phone=?, DriverLicens=?";
+        String sql = "UPDATE customer SET FirstName=?, LastName=?, Email=?, Phone=?, DriverLicens=? WHERE CustomerID=,"+ customer.getID();
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, customer.getID());
-            statement.setString(2, customer.getFirstName());
-            statement.setString(3, customer.getLastName());
-            statement.setString(4, customer.getEmail());
-            statement.setInt(5, customer.getPhone());
-            statement.setString(6, customer.getDriverLicens());
+            //statement.setInt(1, customer.getID());
+            statement.setString(1, customer.getFirstName());
+            statement.setString(2, customer.getLastName());
+            statement.setString(3, customer.getEmail());
+            statement.setInt(4, customer.getPhone());
+            statement.setString(5, customer.getDriverLicens());
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {

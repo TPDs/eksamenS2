@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,6 +28,19 @@ public class BookingsController {
                     .map(Path::toString).collect(Collectors.toList());
 
             result.forEach(System.out::println);
+
+            String rep = "src\\main\\resources";
+            List<String> result2 = new ArrayList<>();
+
+
+            for (int i = 0; i < result.size(); i++) {
+                String s = result.get(i);
+                s = s.replace(rep, "..");
+                result2.add(s);
+
+            }
+            result2.forEach(System.out::println);
+
             model.addAttribute("ModelsImg", result);
         } catch (IOException e) {
             e.printStackTrace();

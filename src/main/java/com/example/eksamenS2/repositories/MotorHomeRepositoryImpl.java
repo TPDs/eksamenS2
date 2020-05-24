@@ -18,6 +18,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }
 
+    // Mangler Model i parameter!
     @Override
     public boolean create(MotorHome MotorHome) {
         System.out.println(MotorHome.getNumberPlate());

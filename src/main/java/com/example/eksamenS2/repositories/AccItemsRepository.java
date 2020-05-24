@@ -1,9 +1,6 @@
 package com.example.eksamenS2.repositories;
 
-import com.example.eksamenS2.models.AccItems;
-
-import java.util.List;
-
+/*
 public class AccItemsRepository {
 
     public boolean create(AccItems accItems){
@@ -33,3 +30,4 @@ public class AccItemsRepository {
 
 
 }
+*/

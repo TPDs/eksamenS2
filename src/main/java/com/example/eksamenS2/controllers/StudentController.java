@@ -1,13 +1,11 @@
 package com.example.eksamenS2.controllers;
 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
+/*
 @Controller
 public class StudentController {
 
-/*
+
     private IStudentRepository studentRepository;
 
     // InMemoryStudentRepositoryImpl eller StudentRepositoryImpl
@@ -74,7 +72,7 @@ public class StudentController {
         Student stu = studentRepository.read(id);
         return "ID: " + id + " Name: " + stu.firstName + "";
     }
-    */
+
 
 
 
@@ -84,3 +82,4 @@ public String index(){
         }
 }
 
+    */

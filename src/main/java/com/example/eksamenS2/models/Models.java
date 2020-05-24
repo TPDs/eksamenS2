@@ -2,31 +2,43 @@ package com.example.eksamenS2.models;
 
 public class Models {
 
-    private String Model_Number, Brand, Type, Engine, About;
-    private double Lenght;
+    private String Brand, Type, Engine, About, Model_number;
+    private double Length;
     private boolean GearType, Aircon;
     private int km_L, year;
 
-    public Models(String Model_Number, String brand, String type, String engine, String about, double lenght, boolean gearType, boolean aircon, int km_L, int year) {
-        this.Model_Number = Model_Number;
-        this.Brand = brand;
-        this.Type = type;
-        this.Engine = engine;
-        this.About = about;
-        this.Lenght = lenght;
-        this.GearType = gearType;
-        this.Aircon = aircon;
+    public Models(String brand, String type, String engine, String about, double length, boolean gearType, boolean aircon, int km_L, int year) {
+        Brand = brand;
+        Type = type;
+        Engine = engine;
+        About = about;
+        Length = length;
+        GearType = gearType;
+        Aircon = aircon;
         this.km_L = km_L;
         this.year = year;
     }
 
-    public String getModel_Number() {
-        return Model_Number;
+// Overloaded construktor til at oprette et tomt opjekt
+    public Models(){}
+
+// Overloaded constructor med model number
+    public Models(String Model_number, String brand, String type, String engine, String about, double length, boolean gearType, boolean aircon, int km_L, int year) {
+        this.Model_number = Model_number;
+        Brand = brand;
+        Type = type;
+        Engine = engine;
+        About = about;
+        Length = length;
+        GearType = gearType;
+        Aircon = aircon;
+        this.km_L = km_L;
+        this.year = year;
     }
 
-    public void setModel_Number(String model_Number) {
-        Model_Number = model_Number;
-    }
+    public String getModel_number() { return Model_number; }
+
+    public void setModel_number(String model_number) { Model_number = model_number; }
 
     public String getBrand() {
         return Brand;
@@ -60,12 +72,12 @@ public class Models {
         About = about;
     }
 
-    public double getLenght() {
-        return Lenght;
+    public double getLength() {
+        return Length;
     }
 
-    public void setLenght(double lenght) {
-        Lenght = lenght;
+    public void setLength(double lenght) {
+        Length = lenght;
     }
 
     public boolean isGearType() {

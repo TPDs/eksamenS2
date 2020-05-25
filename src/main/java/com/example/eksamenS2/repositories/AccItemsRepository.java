@@ -14,16 +14,20 @@ public class AccItemsRepository {
     private Connection conn;
     public AccItemsRepository() {this.conn = DatabaseConnectionManager.getDatabaseConnection();}
 
-
+// AutoIncrement skal ikke have input data ved oprettelse, den bliver oprettet automatisk
+//INSERT INTO Persons (FirstName,LastName)
+//VALUES ('Lars','Monsen');
+//Disse vil autogenerere en primary key med Auto Increment værdi "starter på 1 som default"
+// jeg har outcommentet ændringen så det kan bruges som eksempel
     public boolean create(AccItems accItems){
-        String sql = "INSERT INTO acc.items(ItemsID, Name, Price) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO acc.items(/*ItemsID,*/ Name, Price) VALUES (/*?,*/ ?, ?)";
 
         try {
             PreparedStatement psItems = conn.prepareStatement(sql);
 
-            psItems.setInt(1, accItems.getItemsID());
+           // psItems.setInt(1, accItems.getItemsID());
             psItems.setString(1, accItems.getName());
-            psItems.setInt(1, accItems.getPrice());
+            psItems.setInt(2, accItems.getPrice());
 
             int rowsInserted = psItems.executeUpdate();
             if (rowsInserted > 0) {
@@ -38,11 +42,11 @@ public class AccItemsRepository {
     }
 
 
-    public AccItems read(int id){
+    public AccItems read(int ItemsID){
         AccItems accItemsToReturn = new AccItems();
 
         try {
-            PreparedStatement getSingleAccItem = conn.prepareStatement("SELECT * FROM acc.items WHERE id=" +id);
+            PreparedStatement getSingleAccItem = conn.prepareStatement("SELECT * FROM acc.items WHERE ItemsID=" +ItemsID);
             ResultSet rs = getSingleAccItem.executeQuery();
 
             while(rs.next()){
@@ -81,13 +85,13 @@ public class AccItemsRepository {
     }
 
     public boolean update(AccItems accItems){
-        String sql = "UPDATE acc.items SET ItemsID=?, Name=?, Price=? WHERE id="+ accItems.getItemsID();
+        String sql = "UPDATE acc.items SET Name=?, Price=? WHERE ItemsID="+ accItems.getItemsID();
 
         try {
             PreparedStatement ps=conn.prepareStatement(sql);
-            ps.setInt(1,accItems.getItemsID());
-            ps.setString(2,accItems.getName());
-            ps.setInt(3,accItems.getPrice());
+            //ps.setInt(1,accItems.getItemsID());
+            ps.setString(1,accItems.getName());
+            ps.setInt(2,accItems.getPrice());
 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
@@ -101,12 +105,12 @@ public class AccItemsRepository {
         return false;
     }
 
-    public boolean delete(int id){
-        String sql = "DELETE FROM acc.items WHERE id=?";
+    public boolean delete(int ItemsID){
+        String sql = "DELETE FROM acc.items WHERE ItemsID=?";
 
         try {
             PreparedStatement ps= conn.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, ItemsID);
 
             int rowsDeleted = ps.executeUpdate();
             if (rowsDeleted > 0) {

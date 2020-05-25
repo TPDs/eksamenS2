@@ -33,16 +33,23 @@ public class BookingsController {
             List<String> result2 = new ArrayList<>();
 
 
-            for (int i = 0; i < result.size(); i++) {
+            for (int i = 1; i < result.size(); i++) {
                 String s = result.get(i);
                 s = s.replace(rep, "..");
                 s = s.replace("\\", "/");
                 result2.add(s);
 
             }
+            String p = "";
+            p = result.get(0);
+            p = p.replace(rep, "..");
+
+
             result2.forEach(System.out::println);
 
+            model.addAttribute("First", p);
             model.addAttribute("ModelsImg", result2);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

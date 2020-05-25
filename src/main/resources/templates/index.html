@@ -9,29 +9,36 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<div th:insert="/topbanner"></div>
+<div th:insert="/template"></div>
 <!--  ../img/test/MG_0249_800x800_ritocco.jpg "../img/test/maxresdefault.jpg" "../img/test/download.jpg" -->
 <div class="container">
 
     <div class="bd-example">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            </ol>
+            <div class="carousel-inner" data-interval="5000">
 
-            <div class="carousel-inner">
-                <tr th:each="model : ${ModelsImg}">
-                <div class="carousel-item active" >
-                        <img th:src="${model}" height="250px" width="250px" class="rounded" alt="...">
+                <div class="carousel-item active" th:each="firstImg : ${First}" >
+                        <img th:src="${firstImg}" height="250px" width="250px" class="rounded" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                         </div>
+                </div>
+                <tr th:each="model : ${ModelsImg}">
+                <div class="carousel-item">
+                    <img th:src="${model}" height="250px" width="250px" class="rounded" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
                 </div>
                 </tr>
             </div>
         </div>
     </div>
+</div>
+<br>
+<div class="container">
+    <p class="lead">Vores motorhomes kommer i flere forskellige varianter, med plads til både store familier, eller til dig og kæresten.
+        Alle modeller har konkurrencestærke priser, og inkluderer gode senge, køkkenudstyr og ekstra tilbehør og services alt efter behov</p>
+
+
 </div>
 
 

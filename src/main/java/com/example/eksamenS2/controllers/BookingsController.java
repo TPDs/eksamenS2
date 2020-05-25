@@ -43,6 +43,7 @@ public class BookingsController {
             String p = "";
             p = result.get(0);
             p = p.replace(rep, "..");
+            p = p.replace("\\", "/");
 
 
             result2.forEach(System.out::println);

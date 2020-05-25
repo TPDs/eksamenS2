@@ -2,11 +2,11 @@ package com.example.eksamenS2.models;
 
 import java.sql.SQLData;
 
-public class Bookings {
+public class BookingID {
 
         private SQLData FromDate, EndDate;
 
-        public Bookings(SQLData fromDate, SQLData endDate) {
+        public BookingID(SQLData fromDate, SQLData endDate) {
                 FromDate = fromDate;
                 EndDate = endDate;
         }

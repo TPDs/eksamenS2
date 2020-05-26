@@ -24,10 +24,10 @@ public class CustomerRepositoryImpl {
             PreparedStatement createCustomer = conn.prepareStatement(sql);
 
             createCustomer.setString(1, customer.getFirstName());
-            createCustomer.setString(1, customer.getLastName());
-            createCustomer.setString(1, customer.getEmail());
-            createCustomer.setInt(1, customer.getPhone());
-            createCustomer.setString(1,customer.getDriverLicens());
+            createCustomer.setString(2, customer.getLastName());
+            createCustomer.setString(3, customer.getEmail());
+            createCustomer.setString(4, customer.getPhone());
+            createCustomer.setString(5,customer.getDriverLicens());
 
             int rowsInserted = createCustomer.executeUpdate();
             if (rowsInserted > 0) {
@@ -55,7 +55,7 @@ public class CustomerRepositoryImpl {
                 customerToReturn.setFirstName(rs.getString(2));
                 customerToReturn.setLastName(rs.getString(3));
                 customerToReturn.setEmail(rs.getString(4));
-                customerToReturn.setPhone(rs.getInt(5));
+                customerToReturn.setPhone(rs.getString(5));
                 customerToReturn.setDriverLicens(rs.getString(6));
             }
         } catch (SQLException s) {
@@ -77,7 +77,7 @@ public class CustomerRepositoryImpl {
                 tempCustomer.setFirstName(rs.getString(2));
                 tempCustomer.setLastName(rs.getString(3));
                 tempCustomer.setEmail(rs.getString(4));
-                tempCustomer.setPhone(rs.getInt(5));
+                tempCustomer.setPhone(rs.getString(5));
                 tempCustomer.setDriverLicens(rs.getString(5));
                 allCustomers.add(tempCustomer);
             }
@@ -97,7 +97,7 @@ public class CustomerRepositoryImpl {
             statement.setString(1, customer.getFirstName());
             statement.setString(2, customer.getLastName());
             statement.setString(3, customer.getEmail());
-            statement.setInt(4, customer.getPhone());
+            statement.setString(4, customer.getPhone());
             statement.setString(5, customer.getDriverLicens());
 
             int rowsUpdated = statement.executeUpdate();

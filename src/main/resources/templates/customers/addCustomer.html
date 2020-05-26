@@ -12,9 +12,10 @@
 <body>
 <div th:insert="template"></div>
 <div class="container">
+    <br>
 
 
-    <form action="#" th:action="@{/customer/addCustomer}" th:object="${customer}" method="POST">
+    <form action="#" th:action="@{/customers/addCustomer}" th:object="${customer}" method="POST">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Fornavn</label>
@@ -32,6 +33,7 @@
             <input type="text" class="form-control" th:field="*{Email}">
         </div>
 
+
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label >Telefon Nr</label>
@@ -44,7 +46,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary">Opret</button>
     </form>
 
 

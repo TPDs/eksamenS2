@@ -6,12 +6,12 @@ public class Customer {
     private String FirstName;
     private String LastName;
     private String Email;
-    private int Phone;
+    private String Phone;
     private String DriverLicens;
 
     public Customer(){}
 
-    public Customer(String firstName, String lastName, String email, int phone, String driverLicens) {
+    public Customer(String firstName, String lastName, String email, String phone, String driverLicens) {
         FirstName = firstName;
         LastName = lastName;
         Email = email;
@@ -19,7 +19,7 @@ public class Customer {
         DriverLicens = driverLicens;
     }
 
-    public Customer(int id,String firstName, String lastName, String email, int phone, String driverLicens) {
+    public Customer(int id,String firstName, String lastName, String email, String phone, String driverLicens) {
         ID = id;
         FirstName = firstName;
         LastName = lastName;
@@ -60,11 +60,11 @@ public class Customer {
         Email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         Phone = phone;
     }
 

@@ -9,7 +9,7 @@ enum Role {
 public class Users {
 
     private String UserID, FirstName, LastName, Password;
-    private Role role;
+    public Role role;
 
     public Users() {
     }
@@ -22,6 +22,13 @@ public class Users {
         this.role = role;
     }
 
+    public Users(String userID, String firstName, String lastName, String password, Role role) {
+        UserID = userID;
+        FirstName = firstName;
+        LastName = lastName;
+        Password = password;
+        this.role = role;
+    }
 
     public Users(String userID, String password) {
         UserID = userID;
@@ -31,6 +38,11 @@ public class Users {
 
     public String getUserID() {
         return UserID;
+    }
+
+    public Users(String firstName, Role role) {
+        FirstName = firstName;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -61,7 +73,16 @@ public class Users {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(String role) {
+        this.role = Role.valueOf(role);
+    }
+
+    public void setUserID(String userID) {
+        UserID = userID;
+    }
+
+    @Override
+    public String toString() {
+        return " " + role;
     }
 }

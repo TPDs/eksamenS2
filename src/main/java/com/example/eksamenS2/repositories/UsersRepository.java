@@ -17,16 +17,27 @@ public class UsersRepository {
 
     public Users read(Users users) {
         Users UsersToReturn = new Users();
-
+        System.out.println(users.getUserID() + " " + users.getPassword());
         try {
-            String sql = "SELECT * FROM users WHERE UserID=" + users.getUserID() + "and Password=" + users.getPassword();
+            String sql = "SELECT * FROM users WHERE UserID= ? AND Password= ?";
             PreparedStatement rs = conn.prepareStatement(sql);
+            rs.setString(1, users.getUserID());
+            rs.setString(2, users.getPassword());
+
             ResultSet ps = rs.executeQuery();
-
-
+            if (ps.next()) {
+                UsersToReturn.setUserID(ps.getString(1));
+                UsersToReturn.setFirstName(ps.getString(2));
+                UsersToReturn.setLastName(ps.getString(3));
+                UsersToReturn.setPassword(ps.getString(4));
+                UsersToReturn.setRole(ps.getString(5));
+                System.out.println("Det virker");
+            }
         } catch (SQLException s) {
             s.printStackTrace();
+            System.out.println("Der er en fejl");
         }
+        System.out.println(UsersToReturn.getRole());
         return UsersToReturn;
     }
 }

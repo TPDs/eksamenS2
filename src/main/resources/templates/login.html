@@ -17,7 +17,7 @@
                 margin-top: 5px;
                 margin-bottom: 12px;
         ">Staff Login</h1>
-    <form action="#" th:action="@{/staff/login}" th:object="${Users}" method="POST">
+    <form action="#" th:action="@{/login}" th:object="${users}" method="POST">
         <div class="form-group">
             <label>Brugernavn:</label>
             <input class="form-control" type="text" th:field="*{UserID}">

@@ -59,12 +59,5 @@ public class BookingsController {
     }
 
 
-    @GetMapping("login")
-    public String login() {
-
-
-        return "login";
-    }
-
 }
 

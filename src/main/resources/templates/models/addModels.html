@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:insert="/template"></div>
+<div class="container">
+    <h1 style="
+                margin-top: 5px;
+                margin-bottom: 12px;
+        ">Staff Login</h1>
+    <form action="#" th:action="@{/models/addModels}" th:object="${models}" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-7">
+                <label>Mærke</label>
+                <input type="text" class="form-control" th:field="*{brand}">
+            </div>
+            <div class="form group col-md-5">
+                <label>Vælg billeder af modellen</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleFormControlFile1">
+                    <label class="custom-file-label" for="exampleFormControlFile1"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Model</label>
+            <input type="text" class="form-control" th:field="*{Model_number}">
+        </div>
+    </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Type</label>
+            <input type="text" class="form-control" th:field="*{type}">
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Længde</label>
+            <input type="number" class="form-control" th:field="*{length}">
+        </div>
+        </div>
+            <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Km/l</label>
+            <input type="number" class="form-control" th:field="*{km_L}">
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Årgang</label>
+            <input type="number" class="form-control" th:field="*{year}">
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Motor</label>
+            <input type="text" class="form-control" th:field="*{engine}">
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Geartype</label>
+            <select id="inputState" class="form-control" th:field="*{gearType}">
+                <option selected value="0">Automatgear</option>
+                <option value="1">Manuel</option>
+            </select>
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Aircondition</label>
+            <select id="inputState" class="form-control" th:field="*{aircon}">
+                <option selected value="0">Ja</option>
+                <option value="1">Nej</option>
+            </select>
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form group col-md-7">
+            <label>Om model</label>
+            <textarea class="form-control" rows="6" th:field="*{about}"></textarea>
+        </div>
+        </div>
+        <div class="form-row">
+            <a class="btn btn-primary" href="../motorhomes/typeOverview.html">Fortryd</a>
+            <button type="button" class="btn btn-success show-confirm">Godkend</button>
+
+        </div>
+
+    </form>
+
+
+
+
+
+
+
+
+<br>
+</div>
+
+<div th:insert="/templateFooter"></div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js.map"></script>
+<script>
+    $(document).on("click", ".show-confirm", function(e) {
+        bootbox.confirm("Penis ring?", function(result) {
+            console.log("Penis");
+        });
+    });
+</script>
+
+</body>
+</html>

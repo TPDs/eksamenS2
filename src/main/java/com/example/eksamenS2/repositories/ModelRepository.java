@@ -15,9 +15,7 @@ public class ModelRepository {
 
 
     public boolean create(Models model){
-        String sql = "INSERT INTO models" +
-                "(Model_number, Brand, Type, Engine, About, Length, GearType, Aircon, Km_L, year)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO models(Model_number, Brand, Type, Engine, About, Length, GearType, Aircon, Km_L, year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
 

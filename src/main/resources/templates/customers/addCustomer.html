@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,41 +10,42 @@
 
 </head>
 <body>
-<div th:insert="../template"></div>
+<div th:insert="template"></div>
 <div class="container">
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
 
+    <form action="#" th:action="@{/customer/addCustomer}" th:object="${customer}" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Fornavn</label>
+                <input type="text" class="form-control" th:field="*{FirstName}">
+            </div>
 
+            <div class="form-group col-md-6">
+                <label>Efternavn</label>
+                <input type="text" class="form-control" th:field="*{LastName}" >
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label> Email</label>
+            <input type="text" class="form-control" th:field="*{Email}">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label >Telefon Nr</label>
+                <input type="text" class="form-control" th:field="*{Phone}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Kørekort</label>
+                <input type="text" class="form-control" th:field="*{DriverLicens}">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
 
 
 

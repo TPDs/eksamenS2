@@ -22,9 +22,4 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping ("/customers/addCustomer")
-    public String KundeOprettelse(Customer customer){
-    return "/customers/addCustomer";
-    }
-
 }

@@ -20,7 +20,7 @@ public class AccItemsRepository {
 //Disse vil autogenerere en primary key med Auto Increment værdi "starter på 1 som default"
 // jeg har outcommentet ændringen så det kan bruges som eksempel
     public boolean create(AccItems accItems){
-        String sql = "INSERT INTO acc.items(/*ItemsID,*/ Name, Price) VALUES (/*?,*/ ?, ?)";
+        String sql = "INSERT INTO accitems(/*ItemsID,*/ Name, Price) VALUES (/*?,*/ ?, ?)";
 
         try {
             PreparedStatement psItems = conn.prepareStatement(sql);
@@ -46,7 +46,7 @@ public class AccItemsRepository {
         AccItems accItemsToReturn = new AccItems();
 
         try {
-            PreparedStatement getSingleAccItem = conn.prepareStatement("SELECT * FROM acc.items WHERE ItemsID=" +ItemsID);
+            PreparedStatement getSingleAccItem = conn.prepareStatement("SELECT * FROM accitems WHERE ItemsID=" + ItemsID);
             ResultSet rs = getSingleAccItem.executeQuery();
 
             while(rs.next()){
@@ -67,7 +67,7 @@ public class AccItemsRepository {
     public List<AccItems> readAll(){
         List<AccItems> allAccItems = new ArrayList<>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM acc.items");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM accitems");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 AccItems tempAccItem = new AccItems();
@@ -85,7 +85,7 @@ public class AccItemsRepository {
     }
 
     public boolean update(AccItems accItems){
-        String sql = "UPDATE acc.items SET Name=?, Price=? WHERE ItemsID="+ accItems.getItemsID();
+        String sql = "UPDATE accitems SET Name=?, Price=? WHERE ItemsID=" + accItems.getItemsID();
 
         try {
             PreparedStatement ps=conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class AccItemsRepository {
     }
 
     public boolean delete(int ItemsID){
-        String sql = "DELETE FROM acc.items WHERE ItemsID=?";
+        String sql = "DELETE FROM accitems WHERE ItemsID=?";
 
         try {
             PreparedStatement ps= conn.prepareStatement(sql);

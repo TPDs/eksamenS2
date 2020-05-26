@@ -8,14 +8,29 @@ enum Role {
 
 public class Users {
 
-    private String FirstName, LastName, Password;
+    private String UserID, FirstName, LastName, Password;
     private Role role;
+
+    public Users() {
+    }
+
 
     public Users(String firstName, String lastName, String password, Role role) {
         FirstName = firstName;
         LastName = lastName;
         Password = password;
         this.role = role;
+    }
+
+
+    public Users(String userID, String password) {
+        UserID = userID;
+        Password = password;
+    }
+
+
+    public String getUserID() {
+        return UserID;
     }
 
     public String getFirstName() {

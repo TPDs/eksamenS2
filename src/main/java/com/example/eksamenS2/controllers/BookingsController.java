@@ -40,11 +40,11 @@ public class BookingsController {
                 result2.add(s);
 
             }
-            String p = "";
+            String p;
             p = result.get(0);
             p = p.replace(rep, "..");
             p = p.replace("\\", "/");
-
+            p = p.replace("\\", "/");
 
             result2.forEach(System.out::println);
 
@@ -57,5 +57,14 @@ public class BookingsController {
 
         return "index";
     }
+
+
+    @GetMapping("login")
+    public String login() {
+
+
+        return "login";
+    }
+
 }
 

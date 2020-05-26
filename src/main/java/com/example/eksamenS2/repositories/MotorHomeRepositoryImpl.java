@@ -48,10 +48,9 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
     public MotorHome read(int id) {
         MotorHome MotorHomeToReturn = new MotorHome();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM MotorHome WHERE MotorHomesID=" + id);
-            ResultSet rs = getSingleStudent.executeQuery();
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM MotorHome WHERE MotorHomesID=" + id);
+            ResultSet rs = getSingleMotorHome.executeQuery();
             while (rs.next()) {
-                MotorHomeToReturn = new MotorHome();
                 MotorHomeToReturn.setMotorHomesID(rs.getInt(1));
                 MotorHomeToReturn.setNumberPlate(rs.getString(2));
                 MotorHomeToReturn.setModels_Model_number(rs.getString(3));

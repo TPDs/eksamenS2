@@ -14,13 +14,13 @@
 <div class="container">
 
 <!--    Mangler at lave referance videre til addMotorhome og så lave de funktionaliteter-->
-    <button type="button" class="btn btn-primary" href="/motorhomes/addMotorhome"
+    <a type="button" class="btn btn-primary" href="/motorhomes/addMotorhome"
             style="padding-left: 100px; padding-right: 100px">
-        Tilføj Motorhome</button>
+        Tilføj Motorhome</a>
 
-    <button type="button" class="btn btn-primary"
+    <a type="button" class="btn btn-primary" href="/models/addModels"
             style="padding-left: 100px; padding-right: 100px">
-        Tilføj Model</button>
+        Tilføj Model</a>
 
     <table class="table table-striped" style="width: 615px">
         <thead>
@@ -62,19 +62,8 @@
 
 
 <body>
-<div th:insert="/template"></div>
-<div class="container">
 
-
-
-
-
-
-
-
-
-</div>
-
+<div th:insert="/templateFooter"></div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -3,10 +3,10 @@ package com.example.eksamenS2.repositories;
 import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +88,24 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
     }
 
     @Override
-    public boolean update(MotorHome MotorHome) {
+    public boolean update(MotorHome motorHome) {
+        String sql = "UPDATE motorhomes SET NumberPlate=?, Models_Model_number=?, Total_Km=?, Status=? WHERE id=" + motorHome.getMotorHomesID();
+
+        try{
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, motorHome.getNumberPlate());
+            statement.setString(2, motorHome.getModels_Model_number());
+            statement.setInt(3,motorHome.getTotal_Km());
+            statement.setString(4, motorHome.getStatus());
+
+            int rowsUpdated = statement.executeUpdate();
+            if(rowsUpdated > 0){
+                System.out.println("An existing motorhome was updated successfully!");
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+
         return false;
     }
 

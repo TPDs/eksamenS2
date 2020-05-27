@@ -28,6 +28,21 @@ public class MotorHome {
         this.status = status;
     }
 
+    public MotorHome(String numberPlate, String models_Model_number, int total_Km, Status status) {
+        NumberPlate = numberPlate;
+        Models_Model_number = models_Model_number;
+        Total_Km = total_Km;
+        this.status = status;
+    }
+
+    public MotorHome(String numberPlate, String models_Model_number, int total_Km, int motorHomesID, Status status) {
+        NumberPlate = numberPlate;
+        Models_Model_number = models_Model_number;
+        Total_Km = total_Km;
+        MotorHomesID = motorHomesID;
+        this.status = status;
+    }
+
     public MotorHome(int MotorHomesID, String numberPlate, String Models_Model_number, int total_Km, Status status) {
         NumberPlate = numberPlate;
         Total_Km = total_Km;

@@ -14,6 +14,9 @@ public class ModelRepository {
     public ModelRepository() {this.conn= DatabaseConnectionManager.getDatabaseConnection(); }
 
 
+    // skal lave en metode der kan iterere igennem model numre til visning på "opret motorhome" siden
+
+
     public boolean create(Models model){
         String sql = "INSERT INTO models(Model_number, Brand, Type, Engine, About, Length, GearType, Aircon, Km_L, year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {

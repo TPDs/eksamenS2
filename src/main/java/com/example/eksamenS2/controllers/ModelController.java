@@ -3,6 +3,7 @@ package com.example.eksamenS2.controllers;
 import com.example.eksamenS2.models.Models;
 import com.example.eksamenS2.repositories.ModelRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -18,8 +19,15 @@ public class ModelController {
     }
 
     @PostMapping("/models/addModels")
-    public String postModel(Models models){
+    public String postModel(Models models) {
         modelRepository.create(models);
         return "redirect:/";
     }
+
+        @GetMapping("/motorHome/addMotorhome")
+            public String AddModelToHtmlList(Model model)  {
+            model.addAttribute("Models", modelRepository.readAll());
+                    return"/motorhomes/addMotorhome";
+    }
+
 }

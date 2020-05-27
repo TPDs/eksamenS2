@@ -18,17 +18,17 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }
 
-    // Mangler Model i parameter!
+
     @Override
     public boolean create(MotorHome MotorHome) {
-        System.out.println(MotorHome.getNumberPlate());
         // MotorHome motorHomeToCreate = new MotorHome();
-        String sql = "INSERT INTO motorHome(NumberPlate, Total_Km, Status) VALUES (?,?,?)";
+        String sql = "INSERT INTO motorhomes(NumberPlate, Models_Model_number, Total_Km, Status) VALUES (?,?,?,?)";
         try {
             PreparedStatement motorHomeToCreate = conn.prepareStatement(sql);
             motorHomeToCreate.setString(1, MotorHome.getNumberPlate());
-            motorHomeToCreate.setInt(2, MotorHome.getTotal_Km());
-            motorHomeToCreate.setString(3, MotorHome.getStatus());
+            motorHomeToCreate.setString(2, MotorHome.getModels_Model_number());
+            motorHomeToCreate.setInt(3, MotorHome.getTotal_Km());
+            motorHomeToCreate.setString(4, MotorHome.getStatus());
             int rowsInserted = motorHomeToCreate.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Successfully!");
@@ -48,7 +48,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
     public MotorHome read(int id) {
         MotorHome MotorHomeToReturn = new MotorHome();
         try {
-            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM MotorHome WHERE MotorHomesID=" + id);
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM motorhomes WHERE MotorHomesID=" + id);
             ResultSet rs = getSingleMotorHome.executeQuery();
             while (rs.next()) {
                 MotorHomeToReturn.setMotorHomesID(rs.getInt(1));

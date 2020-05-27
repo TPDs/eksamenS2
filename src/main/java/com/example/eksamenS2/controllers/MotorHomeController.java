@@ -4,6 +4,7 @@ import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.repositories.MotorHomeRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MotorHomeController {
@@ -16,5 +17,12 @@ public class MotorHomeController {
         return "/motorhomes/detailMotorhome";
     }
 
+    @GetMapping ("/motorhomes/addMotorhome")
+    public String addMotorhome(MotorHome motorhome){ return "/motorhomes/addMotorhome";}
 
+    @PostMapping("/motorhomes/addMotorhome")
+    public String postMotorhome(MotorHome motorhome){
+        motorhomeRep.create(motorhome);
+        return "redirect:/";
+    }
 }

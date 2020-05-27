@@ -20,32 +20,25 @@
 
 
     <table class="table table-striped" style="
-    width: 400px;"
-    >
-        <thead>
+    width: 400px;">
+
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
+            <th scope="col">Model</th>
+            <th scope="col">Type</th>
+            <th scope="col">Mærke</th>
+            <th scope="col">Vælg</th>
         </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+
+        <tr th:each="models :${models}">
+            <td th:text="${model.Model_number}"></td>
+            <td th:text="${model.Brand}"></td>
+            <td th:text="${model.Type}"></td>
+
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-        </tr>
-        </tbody>
+
+
+
     </table>
 
 

@@ -12,36 +12,22 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
-
-
-    <table>
+<br>
+    <h1>Liste over accessories</h1>
+<br>
+    <table class="table table-striped">
         <tr>
             <th>Accessories ID</th>
             <th>Navn</th>
             <th>Pris</th>
         </tr>
         <tr th:each="accessories : ${accessories}">
-            <td th:text="${student.id}"></td>
-            <td th:text="${student.firstName}"></td>
-            <td th:text="${student.lastName}"></td>
-            <td th:text="${student.enrollmentDate}"></td>
-            <td><!--<a th:href="@{/student(id=${student.id})}">-->
-                <a th:href="@{/student/detail(id=${student.id})}" class="btn btn-success" role="button">Detail</a>
-                <a th:href="@{/student/update(id=${student.id})}" class="btn btn-primary" role="button">Edit</a>
-                <a th:href="@{/student/delete(id=${student.id})}" class="btn btn-danger" role="button">Delete</a>
-                <!--<button type="button" class="btn btn-success" href="detail">Details</button>
-                <button type="button" class="btn btn-primary" href="/student/update.html">Update</button>
-                <button type="button" class="btn btn-danger" href="/student/delete.html">Delete</button>-->
-                </a></td>
+            <td th:text="${accessories.itemsID}"></td>
+            <td th:text="${accessories.name}"></td>
+            <td th:text="${accessories.price}"></td>
         </tr>
     </table>
-
-
-
-
-
-
-
+<br>
 
 </div>
 <div th:insert="/templateFooter"></div>

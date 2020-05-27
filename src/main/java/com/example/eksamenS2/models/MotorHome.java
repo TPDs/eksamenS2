@@ -74,7 +74,11 @@ public class MotorHome {
     }
 
     public String getStatus() {
-        return this.status.name();
+       if(this.status!=null){
+
+           return this.status.name();
+       }
+        return "Cleaning";
     }
 
     public void setStatus(String status) {

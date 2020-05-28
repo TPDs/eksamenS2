@@ -1,5 +1,7 @@
 package com.example.eksamenS2.controllers;
 
+import com.example.eksamenS2.models.BookingID;
+import com.example.eksamenS2.repositories.BookingIDRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,12 @@ public class BookingsController {
     // How to create a folder in Java https://stackoverflow.com/questions/4801971/how-to-create-empty-folder-in-java/4802032
     // Dette skal vi bruge for hver Model ved oprettelse
 
+    private BookingIDRepositoryImpl BookingIDRep;
+
+    public BookingsController() {
+        BookingIDRep = new BookingIDRepositoryImpl();
+    }
+
 
     @GetMapping("/bookings/showBookings")
     public String ShowBookings() {
@@ -28,10 +36,17 @@ public class BookingsController {
     }
 
     @GetMapping("/bookings/addBooking")
-    public String addBookings() {
+    public String createBookings(BookingID bookingID) {
 
         return "bookings/addBooking";
     }
+
+    @PostMapping("/bookings/addBooking")
+    public String addBookings(Model model, BookingID bookingID) {
+        model.addAttribute("ModelBooking", BookingIDRep.create(bookingID));
+        return "bookings/addBooking";
+    }
+
 
     @GetMapping("bookings/completedbookings")
     public String completeddBookings() {
@@ -77,6 +92,7 @@ public class BookingsController {
         return "index";
     }
 
+    // Bruges ved at indlæsning af billeder fra en models mappe navn
     @PostMapping("/modelpictures")
     public String index(Model model, String ModelNumber) {
         try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\" + ModelNumber + "\\"))) {

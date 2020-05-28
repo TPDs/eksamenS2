@@ -39,5 +39,11 @@ public class MotorHomeController {
         return "redirect:/";
     }
 
+// til models læsning i motorhome oprettelse
+//    @GetMapping("/motorHome/addMotorhome")
+//            public String showModel(Model model)  {
+//            model.addAttribute("Models", motorhomeRep.readAll());
+//                    return"/motorhomes/addMotorhome";
+//    }
 
 }

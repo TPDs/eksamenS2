@@ -29,7 +29,7 @@ public class UsersRepository {
                 UsersToReturn.setUserID(ps.getString(1));
                 UsersToReturn.setFirstName(ps.getString(2));
                 UsersToReturn.setLastName(ps.getString(3));
-                UsersToReturn.setPassword(ps.getString(4));
+                //UsersToReturn.setPassword(ps.getString(4));
                 UsersToReturn.setRole(ps.getString(5));
                 System.out.println("Det virker");
             }
@@ -37,7 +37,6 @@ public class UsersRepository {
             s.printStackTrace();
             System.out.println("Der er en fejl");
         }
-        System.out.println(UsersToReturn.getRole());
         return UsersToReturn;
     }
 }

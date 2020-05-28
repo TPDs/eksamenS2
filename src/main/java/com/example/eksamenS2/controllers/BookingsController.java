@@ -21,16 +21,15 @@ public class BookingsController {
 
     @GetMapping("/")
     public String index(Model model) {
+         try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\test\\"))) {
 
-        try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\test\\"))) {
+             List<String> result = walk.filter(Files::isRegularFile)
+                     .map(Path::toString).collect(Collectors.toList());
 
-            List<String> result = walk.filter(Files::isRegularFile)
-                    .map(Path::toString).collect(Collectors.toList());
+             result.forEach(System.out::println);
 
-            result.forEach(System.out::println);
-
-            String rep = "src\\main\\resources\\static";
-            List<String> result2 = new ArrayList<>();
+             String rep = "src\\main\\resources\\static";
+             List<String> result2 = new ArrayList<>();
 
 
             for (int i = 1; i < result.size(); i++) {

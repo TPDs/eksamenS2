@@ -22,15 +22,15 @@ public class MotorHome {
     public MotorHome() {
     }
 
-    public MotorHome(String numberPlate, int total_Km, Status status) {
+    public MotorHome(String numberPlate, String models_Model_number, int total_Km, Status status) {
         NumberPlate = numberPlate;
+        Models_Model_number = models_Model_number;
         Total_Km = total_Km;
         this.status = status;
     }
 
-    public MotorHome(String numberPlate, String models_Model_number, int total_Km, Status status) {
+    public MotorHome(String numberPlate, int total_Km, Status status) {
         NumberPlate = numberPlate;
-        Models_Model_number = models_Model_number;
         Total_Km = total_Km;
         this.status = status;
     }

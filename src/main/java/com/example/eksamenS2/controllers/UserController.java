@@ -18,17 +18,28 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String StaffLogin(Users users, Model model) {
-        //model.addAttribute("staff",UsersRepository.read(users));
-        //System.out.println(users.getFirstName() + " Password:" + users.getPassword());
-        return "login";
+    public String Login() {
+
+        return "/login";
     }
+
 
     @PostMapping("/login")
-    public String Login(Users users, Model model) {
+    public String Login(String username, String password, Model model) {
+        Users users = new Users(username, password);
         model.addAttribute("staff", UsersRepository.read(users));
-        return "index";
+        System.out.println(users.getFirstName() + " Password:" + users.getPassword());
+        return "/login";
     }
-
+/*
+    @PostMapping("/login")
+    public String Login(Users users, Model model) {
+        model.addAttribute("Staff", UsersRepository.read(users));
+        String test = String.valueOf(UsersRepository.read(users).getRole());
+        System.out.println(test);
+        model.addAttribute("Role", test);
+        return "redirect:/";
+    }
+*/
 
 }

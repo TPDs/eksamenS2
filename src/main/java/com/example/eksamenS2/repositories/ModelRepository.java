@@ -3,10 +3,7 @@ package com.example.eksamenS2.repositories;
 import com.example.eksamenS2.models.Models;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,24 @@ public class ModelRepository {
 
 
     // skal lave en metode der kan iterere igennem model numre til visning på "opret motorhome" siden
+public String saveIteratedModelNr(int indexPos)
+{
+    ArrayList<String> ModelNrTemp = new ArrayList<>();
+    try {
+        PreparedStatement ModelPs= conn.prepareStatement("SELECT * FROM models");
+        ResultSet rs = ModelPs.executeQuery();
+        int i =1;
+        while(rs.next()){
 
+            if(i == indexPos){
+                ModelNrTemp.add(rs.getString(1));
+            }
+        }
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
+    return "" + ModelNrTemp.get(0);
+}
 
     public boolean create(Models model){
         String sql = "INSERT INTO models(Model_number, Brand, Type, Engine, About, Length, GearType, Aircon, Km_L, year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

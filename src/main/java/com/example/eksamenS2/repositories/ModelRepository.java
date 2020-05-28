@@ -2,6 +2,7 @@ package com.example.eksamenS2.repositories;
 
 import com.example.eksamenS2.models.Models;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -99,6 +100,7 @@ public class ModelRepository {
             e.printStackTrace();
             System.out.println("ohnoes Readyall Models");
         }
+        System.out.println("Read all Model virker");
         return allModels;
     }
 

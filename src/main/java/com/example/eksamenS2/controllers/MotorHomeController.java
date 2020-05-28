@@ -14,13 +14,10 @@ public class MotorHomeController {
     private MotorHomeRepositoryImpl motorhomeRep;
     public MotorHomeController(){motorhomeRep = new MotorHomeRepositoryImpl();}
 
-    @GetMapping("/motorhomes")
+    @GetMapping("/motorhomes/detailMotorhome")
     public String GetMotorhome(MotorHome motorHome){
         return "/motorhomes/detailMotorhome";
     }
-
-    @GetMapping ("/motorhomes/addMotorhome")
-    public String addMotorhome(MotorHome motorHome){ return "/motorhomes/addMotorhome";}
 
     @PostMapping("/motorhomes/addMotorhome")
     public String postMotorhome(MotorHome motorHome){

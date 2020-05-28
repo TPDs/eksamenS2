@@ -3,6 +3,7 @@ package com.example.eksamenS2.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,15 +22,15 @@ public class BookingsController {
 
     @GetMapping("/")
     public String index(Model model) {
-         try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\test\\"))) {
+        try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\test\\"))) {
 
-             List<String> result = walk.filter(Files::isRegularFile)
-                     .map(Path::toString).collect(Collectors.toList());
+            List<String> result = walk.filter(Files::isRegularFile)
+                    .map(Path::toString).collect(Collectors.toList());
 
-             result.forEach(System.out::println);
+            result.forEach(System.out::println);
 
-             String rep = "src\\main\\resources\\static";
-             List<String> result2 = new ArrayList<>();
+            String rep = "src\\main\\resources\\static";
+            List<String> result2 = new ArrayList<>();
 
 
             for (int i = 1; i < result.size(); i++) {
@@ -43,7 +44,6 @@ public class BookingsController {
             p = result.get(0);
             p = p.replace(rep, "..");
             p = p.replace("\\", "/");
-            p = p.replace("\\", "/");
 
             result2.forEach(System.out::println);
 
@@ -55,6 +55,43 @@ public class BookingsController {
         }
 
         return "index";
+    }
+
+    @PostMapping("/modelpictures")
+    public String index(Model model, String ModelNumber) {
+        try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\" + ModelNumber + "\\"))) {
+
+            List<String> result = walk.filter(Files::isRegularFile)
+                    .map(Path::toString).collect(Collectors.toList());
+
+            result.forEach(System.out::println);
+
+            String rep = "src\\main\\resources\\static";
+            List<String> result2 = new ArrayList<>();
+
+
+            for (int i = 1; i < result.size(); i++) {
+                String s = result.get(i);
+                s = s.replace(rep, "..");
+                s = s.replace("\\", "/");
+                result2.add(s);
+
+            }
+            String p;
+            p = result.get(0);
+            p = p.replace(rep, "..");
+            p = p.replace("\\", "/");
+
+            result2.forEach(System.out::println);
+
+            model.addAttribute("First", p);
+            model.addAttribute("ModelsImg", result2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
 

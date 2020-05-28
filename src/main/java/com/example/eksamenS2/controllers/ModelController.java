@@ -1,6 +1,7 @@
 package com.example.eksamenS2.controllers;
 
 import com.example.eksamenS2.models.Models;
+import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.repositories.ModelRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,21 +12,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ModelController {
 
     private ModelRepository modelRepository;
-    public ModelController(){modelRepository = new ModelRepository();}
 
-    // denne kode snippet har jeg lavet for at prøve at få model udpring til at virke
-    //oprette motorhomes med " vise modeller ved motorhome oprettelse"
-
-//    @GetMapping("/models/addModels")
-//    public String index(Model model) {
-//        model.addAttribute("Models", modelRepository.readAll());
-//        return "index";
-//    }
+    public ModelController() {
+        modelRepository = new ModelRepository();
+    }
 
     @GetMapping("/models/addModels")
-    public String getModel(Models models){
-        return "/models/addModels";
+    public String index(Model model) {
+        model.addAttribute("Models", modelRepository.readAll());
+        return "index";
     }
+
 
     @PostMapping("/models/addModels")
     public String postModel(Models models) {
@@ -33,15 +30,11 @@ public class ModelController {
         return "redirect:/";
     }
 
-//        @GetMapping("/motorHome/addMotorhome")
-//            public String showModel(Model model)  {
-//            model.addAttribute("Models", modelRepository.readAll());
-//                    return"/motorhomes/addMotorhome";
-//    }
-
-    @GetMapping("/models/models")
-    public String showModel1(Model model)  {
+    @GetMapping("/motorhomes/addMotorhome")
+    public String showModel(Model model, MotorHome motorHome) {
         model.addAttribute("Models", modelRepository.readAll());
-        return"/models/showModel1";
+        return "/motorhomes/addMotorhome";
     }
+
+
 }

@@ -6,7 +6,8 @@
     <title></title>
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 <body>
@@ -14,32 +15,33 @@
 <div class="container">
 
     <a type="button" class="btn btn-primary" href="/models/addModels"
-            style="padding-left: 100px;padding-right: 100px;padding-top: 6px;border-top-width: 1px;margin-top: 15px;border-bottom-width: 1px;margin-bottom: 15px;margin-left: 50px;">
+       style="padding-left: 100px;padding-right: 100px;padding-top: 6px;border-top-width: 1px;margin-top: 15px;border-bottom-width: 1px;margin-bottom: 15px;margin-left: 50px;">
         Tilføj Model</a>
-
 
 
     <table class="table table-striped" style="
     width: 400px;">
 
         <tr>
-            <th scope="col">#</th>
+
             <th scope="col">Model</th>
-            <th scope="col">Type</th>
             <th scope="col">Mærke</th>
+            <th scope="col">Type</th>
             <th scope="col">Vælg</th>
         </tr>
 
-        <tr th:each="model : ${Models}">
-            <td th:text="${model.Model_number}"></td>
-            <td th:text="${model.Brand}"></td>
-            <td th:text="${model.Type}"></td>
+        <tr th:each="models : ${Models}">
+            <td th:text="${models.Model_number}"></td>
+            <td th:text="${models.Brand}"></td>
+            <td th:text="${models.Type}"></td>
 
         </tr>
 
+
     </table>
 
-        <form action="#" th:action="@{/motorhomes/addMotorhome}" th:object="${motorHome}" method="POST">
+
+    <form action="#" th:action="@{/motorhomes/addMotorhome}" th:object="${motorHome}" method="POST">
         <div class="form-row">
             <div class="form-group col-md-5">
                 <label>Nummerplade</label>
@@ -48,33 +50,23 @@
 
             <div class="form-group col-md-5">
                 <label>Model Nr</label>
-                <input type="text" class="form-control" th:field="*{Models_Model_number}" >
+                <input type="text" class="form-control" th:field="*{Models_Model_number}">
             </div>
 
-        <div class="form-group col-md-5">
-            <label> Total Km</label>
-            <input type="number" class="form-control" th:field="*{Total_Km}">
-        </div>
-
-        <div class="form-row">
             <div class="form-group col-md-5">
-                <label >Status</label>
-                <input type="text" class="form-control" th:field="*{Status}" style="border-right-width: 1px;
-                       padding-right: 12px;
-                       height: 39px;
-                       width: 151px;">
+                <label> Total Km</label>
+                <input type="number" class="form-control" th:field="*{Total_Km}">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label>Status</label>
+                    <input type="text" class="form-control" th:field="*{Status}">
+                </div>
             </div>
         </div>
-
-        <button type="submit" class="btn btn-primary" style="
-    height: 39px;
-    padding-top: 6px;
-    border-top-width: 1px;
-    margin-top: 32px;
-    width: 68px;
-">Opret</button>
+        <button type="submit" class="btn btn-primary">Opret</button>
     </form>
-
 
 
 </div>
@@ -82,9 +74,15 @@
 <div th:insert="/templateFooter"></div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

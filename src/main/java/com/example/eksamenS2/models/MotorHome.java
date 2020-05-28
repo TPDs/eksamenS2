@@ -43,11 +43,6 @@ public class MotorHome {
         this.status = status;
     }
 
-    /*public MotorHome(int MotorHomesID, String numberPlate, String Models_Model_number, int total_Km, Status status) {
-        NumberPlate = numberPlate;
-        Total_Km = total_Km;
-        this.status = status;
-    }*/
 
     public String getModels_Model_number() {
         return Models_Model_number;

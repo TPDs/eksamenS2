@@ -19,9 +19,9 @@ public class ModelController {
     }
 
     @GetMapping("/models/addModels")
-    public String index(Model model) {
-        model.addAttribute("Models", modelRepository.readAll());
-        return "index";
+    public String index(Models models) {
+
+        return "/models/addModels";
     }
 
 

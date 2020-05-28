@@ -20,11 +20,6 @@ public class MotorHomeController {
         return "/motorhomes/detailMotorhome";
     }
 
-
-
-    @GetMapping ("/motorhomes/addMotorhome")
-    public String addMotorhome(MotorHome motorHome){ return "/motorhomes/addMotorhome";}
-
     @PostMapping("/motorhomes/addMotorhome")
     public String postMotorhome(MotorHome motorHome){
         motorhomeRep.create(motorHome);

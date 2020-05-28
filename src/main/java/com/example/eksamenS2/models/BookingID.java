@@ -1,30 +1,51 @@
 package com.example.eksamenS2.models;
 
-import java.sql.SQLData;
 
 public class BookingID {
 
-        private SQLData FromDate, EndDate;
+        private java.sql.Date FromDate, EndDate;
+        private String StaffID;
+        private int CustomerID;
 
-        public BookingID(SQLData fromDate, SQLData endDate) {
-                FromDate = fromDate;
-                EndDate = endDate;
+        public BookingID() {
         }
 
+        public BookingID(java.sql.Date fromDate, java.sql.Date endDate, String staffID, int customerID) {
+                FromDate = fromDate;
+                EndDate = endDate;
+                StaffID = staffID;
+                CustomerID = customerID;
+        }
 
-        public SQLData getFromDate() {
+        public String getStaffID() {
+                return StaffID;
+        }
+
+        public void setStaffID(String staffID) {
+                StaffID = staffID;
+        }
+
+        public int getCustomerID() {
+                return CustomerID;
+        }
+
+        public void setCustomerID(int customerID) {
+                CustomerID = customerID;
+        }
+
+        public java.sql.Date getFromDate() {
                 return FromDate;
         }
 
-        public void setFromDate(SQLData fromDate) {
+        public void setFromDate(java.sql.Date fromDate) {
                 FromDate = fromDate;
         }
 
-        public SQLData getEndDate() {
+        public java.sql.Date getEndDate() {
                 return EndDate;
         }
 
-        public void setEndDate(SQLData endDate) {
+        public void setEndDate(java.sql.Date endDate) {
                 EndDate = endDate;
         }
 }

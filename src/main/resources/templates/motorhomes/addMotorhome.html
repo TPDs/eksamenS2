@@ -23,7 +23,6 @@
     width: 400px;">
 
         <tr>
-
             <th scope="col">Model</th>
             <th scope="col">Mærke</th>
             <th scope="col">Type</th>
@@ -34,7 +33,7 @@
             <td th:text="${models.Model_number}"></td>
             <td th:text="${models.Brand}"></td>
             <td th:text="${models.Type}"></td>
-
+<!--            Mangler en Button med der skal markere det valgt model nummmer eller caste den til Model fielded-->
         </tr>
 
 
@@ -61,7 +60,7 @@
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label>Status</label>
-                    <input type="text" class="form-control" th:field="*{Status}">
+                    <input type="text" class="form-control" style="width: 151px" th:field="*{Status}">
                 </div>
             </div>
         </div>

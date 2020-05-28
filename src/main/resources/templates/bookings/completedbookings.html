@@ -14,35 +14,31 @@
 <div th:insert="/template"></div>
 <div class="container">
 
-    <form action="#" th:action="@{/bookings/addBooking}" th:object="${bookingID}" method="POST">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label>Start Dato</label>
-                <input type="date" data-date-format="DD-MMMM-YYYY" class="form-control" th:field="*{FromDate}">
-            </div>
+    <table class="table table-striped" style="width: 615px">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
 
-            <div class="form-group col-md-6">
-                <label>Slut Dato</label>
-                <input type="date" data-date-format="DD-MMMM-YYYY" class="form-control" th:field="*{EndDate}">
-            </div>
-        </div>
-        <div class="form-group">
-            <label> Kunde ID</label>
-            <input type="number" class="form-control" th:field="*{customerID}">
-        </div>
-        <div class="form-group">
-            <label> Staff ID</label>
-            <input type="text" class="form-control" th:field="*{staffID}">
-        </div>
-
-
-        <button type="submit" class="btn btn-primary">Opret</button>
-    </form>
-
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>3 compakt</td>
+            <td>2</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 
+
+</div>
 <div th:insert="/templateFooter"></div>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -54,7 +50,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
 
 </body>
 </html>

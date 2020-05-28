@@ -20,6 +20,26 @@ public class BookingsController {
     // How to create a folder in Java https://stackoverflow.com/questions/4801971/how-to-create-empty-folder-in-java/4802032
     // Dette skal vi bruge for hver Model ved oprettelse
 
+
+    @GetMapping("/bookings/showBookings")
+    public String ShowBookings() {
+
+        return "bookings/showBookings";
+    }
+
+    @GetMapping("/bookings/addBooking")
+    public String addBookings() {
+
+        return "bookings/addBooking";
+    }
+
+    @GetMapping("bookings/completedbookings")
+    public String completeddBookings() {
+
+        return "bookings/completedbookings";
+    }
+
+
     @GetMapping("/")
     public String index(Model model) {
         try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\test\\"))) {

@@ -13,6 +13,15 @@ public class ModelController {
     private ModelRepository modelRepository;
     public ModelController(){modelRepository = new ModelRepository();}
 
+    // denne kode snippet har jeg lavet for at prøve at få model udpring til at virke
+    //oprette motorhomes med " vise modeller ved motorhome oprettelse"
+
+//    @GetMapping("/models/addModels")
+//    public String index(Model model) {
+//        model.addAttribute("Models", modelRepository.readAll());
+//        return "index";
+//    }
+
     @GetMapping("/models/addModels")
     public String getModel(Models models){
         return "/models/addModels";

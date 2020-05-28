@@ -111,4 +111,20 @@ public class Models {
     public void setYear(int year) {
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return "Models{" +
+                "Brand='" + Brand + '\'' +
+                ", Type='" + Type + '\'' +
+                ", Engine='" + Engine + '\'' +
+                ", About='" + About + '\'' +
+                ", Model_number='" + Model_number + '\'' +
+                ", Length=" + Length +
+                ", GearType=" + GearType +
+                ", Aircon=" + Aircon +
+                ", km_L=" + km_L +
+                ", year=" + year +
+                '}';
+    }
 }

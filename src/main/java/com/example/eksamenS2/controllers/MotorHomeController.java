@@ -15,9 +15,15 @@ public class MotorHomeController {
     public MotorHomeController(){motorhomeRep = new MotorHomeRepositoryImpl();}
 
     @GetMapping("/motorhomes/detailMotorhome")
-    public String GetMotorhome(MotorHome motorHome){
+    public String getDetailMotorhome(@RequestParam int id, Model model){
+        model.addAttribute("detailMotorhome", motorhomeRep.read(id));
         return "/motorhomes/detailMotorhome";
     }
+
+
+
+    @GetMapping ("/motorhomes/addMotorhome")
+    public String addMotorhome(MotorHome motorHome){ return "/motorhomes/addMotorhome";}
 
     @PostMapping("/motorhomes/addMotorhome")
     public String postMotorhome(MotorHome motorHome){
@@ -39,11 +45,5 @@ public class MotorHomeController {
         return "redirect:/";
     }
 
-// til models læsning i motorhome oprettelse
-//    @GetMapping("/motorHome/addMotorhome")
-//            public String showModel(Model model)  {
-//            model.addAttribute("Models", motorhomeRep.readAll());
-//                    return"/motorhomes/addMotorhome";
-//    }
 
 }

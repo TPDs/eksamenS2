@@ -12,53 +12,36 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+<br>
+<h1>Om motorhome</h1>
+    <br>
 
-<!--    Mangler at lave referance videre til addMotorhome og så lave de funktionaliteter-->
-    <a type="button" class="btn btn-primary" href="/motorhomes/addMotorhome"
-            style="padding-left: 100px; padding-right: 100px">
-        Tilføj Motorhome</a>
 
-    <a type="button" class="btn btn-primary" href="/models/addModels"
-            style="padding-left: 100px; padding-right: 100px">
-        Tilføj Model</a>
+    <p style="font-size: 115%;">
+        <b>Motorhome ID:</b> <td th:text="${detailMotorhome.getMotorHomesID()}"></td>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Model:</b> <td th:text="${detailMotorhome.getModels_Model_number()}"></td>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Nummerplade:</b> <td th:text="${detailMotorhome.getNumberPlate()}"></td>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Total km:</b> <td th:text="${detailMotorhome.getTotal_Km()}"></td>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Status:</b> <td th:text="${detailMotorhome.getStatus()}"></td>
+    </p>
 
-    <table class="table table-striped" style="width: 615px">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Type</th>
-            <th scope="col">Ready</th>
-            <th scope="col">Cleaning</th>
-            <th scope="col">Repair</th>
-            <th scope="col">C+R</th>
-            <th scope="col">Booked</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>3 compakt</td>
-            <td>2</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
+
+
+
+
+
+
 
 </div>
+<br>
 
 
 

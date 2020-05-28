@@ -30,11 +30,11 @@ public class ModelController {
         return "redirect:/";
     }
 
-    @GetMapping("/motorhomes/addMotorhome")
+    /*@GetMapping("/motorhomes/addMotorhome")
     public String showModel(Model model, MotorHome motorHome) {
         model.addAttribute("Models", modelRepository.readAll());
         return "/motorhomes/addMotorhome";
-    }
+    }*/
 
 
 }

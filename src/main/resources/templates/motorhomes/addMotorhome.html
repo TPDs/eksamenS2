@@ -30,10 +30,10 @@
             <th scope="col">Vælg</th>
         </tr>
 
-        <tr th:each="model : ${Models}">
-            <td th:text="${model.Model_number}"></td>
-            <td th:text="${model.Brand}"></td>
-            <td th:text="${model.Type}"></td>
+        <tr th:each="Model : ${Models}">
+            <td th:text="${Model.Model_number}"></td>
+            <td th:text="${Model.Brand}"></td>
+            <td th:text="${Model.Type}"></td>
 
         </tr>
 

@@ -41,7 +41,7 @@ public class ModelController {
 
     @GetMapping("/models/models")
     public String showModel1(Model model)  {
-        model.addAttribute("Models", modelRepository.readAll());
-        return"/models/showModel1";
+        model.addAttribute("Model", modelRepository.readAll());
+        return"/MotorHome/showModel1";
     }
 }

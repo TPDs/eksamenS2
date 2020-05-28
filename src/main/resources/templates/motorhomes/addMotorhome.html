@@ -33,7 +33,13 @@
             <td th:text="${models.Model_number}"></td>
             <td th:text="${models.Brand}"></td>
             <td th:text="${models.Type}"></td>
-<!--            Mangler en Button med der skal markere det valgt model nummmer eller caste den til Model fielded-->
+            <td>
+                <a th:href="@{/motorhomes/detailMotorhome(id=${models.Model_number})}" class="btn btn-success"
+                   role="button">Detail</a>
+                <a th:href="@{/motorhomes/updateMotorhome(id=${models.Model_number})}" class="btn btn-success"
+                   role="button">Se udvalg</a>
+            </td>
+            <!--            Mangler en Button med der skal markere det valgt model nummmer eller caste den til Model fielded-->
         </tr>
 
 

@@ -14,30 +14,15 @@
 <div th:insert="/template"></div>
 <div class="container">
 
-    <form action="#" th:action="@{/bookings/addBooking}" th:object="${bookingID}" method="POST">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label>Start Dato</label>
-                <input type="date" data-date-format="DD-MMMM-YYYY" class="form-control" th:field="*{FromDate}">
-            </div>
-
-            <div class="form-group col-md-6">
-                <label>Slut Dato</label>
-                <input type="date" data-date-format="DD-MMMM-YYYY" class="form-control" th:field="*{EndDate}">
-            </div>
-        </div>
-        <div class="form-group">
-            <label> Kunde ID</label>
-            <input type="number" class="form-control" th:field="*{customerID}">
-        </div>
-        <div class="form-group">
-            <label> Staff ID</label>
-            <input type="text" class="form-control" th:field="*{staffID}">
-        </div>
-
-
-        <button type="submit" class="btn btn-primary">Opret Booking</button>
-    </form>
+    <tr th:each="MotorList : ${MotorHomeList}">
+        <td th:text="${MotorList.MotorHomesID}"></td>
+        <td th:text="${MotorList.NumberPlate}"></td>
+        <td th:text="${MotorList.Total_Km}"></td>
+        <td th:text="${MotorList.Status}"></td>
+        <td>
+            <a th:href="@{/student/detail(id=${MotorList.MotorHomesID})}" class="btn btn-success" role="button">Vælg</a>
+            </a></td>
+    </tr>
 
 
 </div>

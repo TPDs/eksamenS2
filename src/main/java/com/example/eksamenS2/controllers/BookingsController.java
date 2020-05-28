@@ -1,11 +1,13 @@
 package com.example.eksamenS2.controllers;
 
 import com.example.eksamenS2.models.BookingID;
+import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.repositories.BookingIDRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -40,6 +42,13 @@ public class BookingsController {
 
         return "bookings/addBooking";
     }
+
+    @GetMapping("/bookings/BookMotorHome")
+    public String bookMotorHome(@RequestParam MotorHome motorHome, Model model) {
+        model.addAttribute("MotorHomeList", BookingIDRep.readAllbyModel(motorHome.getModels_Model_number()));
+        return "bookings/confirmBooking";
+    }
+
 
     @PostMapping("/bookings/addBooking")
     public String addBookings(Model model, BookingID bookingID) {

@@ -18,40 +18,43 @@
 
 
     <p style="font-size: 115%;">
-        <b>Motorhome ID:</b> <td th:text="${detailMotorhome.getMotorHomesID()}"></td>
+        <b>Motorhome ID:</b> <td th:text="${detailMotorhome.motorHomesID}"></td>
     </p>
     <p style="font-size: 115%;">
-        <b>Model:</b> <td th:text="${detailMotorhome.getModels_Model_number()}"></td>
+        <b>Model:</b> <td th:text="${detailMotorhome.models_Model_number}"></td>
     </p>
     <p style="font-size: 115%;">
-        <b>Nummerplade:</b> <td th:text="${detailMotorhome.getNumberPlate()}"></td>
+        <b>Nummerplade:</b> <td th:text="${detailMotorhome.numberPlate}"></td>
     </p>
     <p style="font-size: 115%;">
-        <b>Total km:</b> <td th:text="${detailMotorhome.getTotal_Km()}"></td>
+        <b>Total km:</b> <td th:text="${detailMotorhome.total_Km}"></td>
     </p>
     <!--<p style="font-size: 115%;">
         <b>Status:</b> <td th:text="${detailMotorhome.getStatus()}"></td>
     </p>-->
-
-    <form>
-        <div class="form-group">
-            <label>Status: </label>
-            <select class="form-control">
-                <option>Cleaning</option>
-                <option>Repair</option>
-                <option>C+R</option>
-                <option>Ready</option>
-                <option>Out Of Order</option>
+<!--    (id=${detailMotorhome.getMotorHomesID()})-->
+    <form th:action="@{/motorhomes/detailMotorhome}" th:object="${detailMotorhome}" method="POST">
+        <div class="form-group" style="font-size: 115%;">
+            <label><b>Status: </b></label>
+            <select class="form-control" th:field="*{status}">
+                <option value="Cleaning">Cleaning</option>
+                <option value="Repair">Repair</option>
+                <option value="CleanAndRepair">Clean and Repair</option>
+                <option value="Ready">Ready</option>
+                <option value="OutOfOrder">Ude af drift</option>
+                <option value="Booked">Booked</option>
+                <option value="TempBooked">Midlertidigt booked</option>
             </select>
         </div>
+        <button type="submit" class="btn btn-primary">Ændre status</button>
     </form>
 
 
     <div class="wrapper1">
         <a href="../motorhomes/chooseType" class="btn btn-danger" role="button">Tilbage</a>
     </div>
-    <div class="wrapper2" th:each="detailMotorhome : ${detailMotorhome}">
-        <a th:href="@{/motorhomes/updateMotorhome(id=${detailMotorhome.id})}" class="btn btn-danger" role="button">Rediger motorhome</a>
+    <div class="wrapper2" th:object="${detailMotorhome}">
+        <a th:href="@{/motorhomes/updateMotorhome(id=${detailMotorhome.getMotorHomesID()})}" class="btn btn-danger" role="button">Rediger motorhome</a>
     </div>
     <div class="wrapper3">
         <a href="../motorhomes/chooseType" class="btn btn-danger" role="button">Vis model</a>

@@ -114,6 +114,25 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
     public boolean delete(int id) {
         return false;
     }
+
+
+    public boolean updateStatus(MotorHome motorHome){
+        String sql = "UPDATE motorhomes SET Status=? WHERE MotorHomesID=" + motorHome.getMotorHomesID();
+
+        try{
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, motorHome.getStatus());
+
+            int rowsUpdated = statement.executeUpdate();
+            if(rowsUpdated > 0){
+                System.out.println("An existing motorhome was updated successfully!");
+            }
+
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
 }
 
 

@@ -18,21 +18,42 @@
 
 
     <p style="font-size: 115%;">
-        <b>Motorhome ID:</b> <td th:text="${detailMotorhome.getMotorHomesID()}"></td>
+        <b>Mærke:</b> <td th:text="${detailModel.getBrand()}"></td>
     </p>
     <p style="font-size: 115%;">
-        <b>Model:</b> <td th:text="${detailMotorhome.getModels_Model_number()}"></td>
+        <b>Model:</b> <td th:text="${detailModel.getModel_number()}"></td>
     </p>
     <p style="font-size: 115%;">
-        <b>Nummerplade:</b> <td th:text="${detailMotorhome.getNumberPlate()}"></td>
+        <b>Type:</b> <td th:text="${detailModel.getType()}"></td>
     </p>
     <p style="font-size: 115%;">
-        <b>Total km:</b> <td th:text="${detailMotorhome.getTotal_Km()}"></td>
+        <b>Længde:</b> <td th:text="${detailModel.getLength()}"></td>
     </p>
     <p style="font-size: 115%;">
-        <b>Status:</b> <td th:text="${detailMotorhome.getStatus()}"></td>
+        <b>Km/l:</b> <td th:text="${detailModel.getKm_L()}"></td>
+    </p>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Årgang:</b> <td th:text="${detailModel.getYear()}"></td>
+    </p>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Motortype:</b> <td th:text="${detailModel.getEngine()}"></td>
+    </p>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Geartype:</b> <td th:text="${detailModel.isGearType()}"></td>
+    </p>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Aircondition:</b> <td th:text="${detailModel.isAircon()}"></td>
+    </p>
+    </p>
+    <p style="font-size: 115%;">
+        <b>Om model:</b> <td th:text="${detailModel.getAbout()}"></td>
     </p>
 
+    <a href="/models/updateModels"
 
 
 

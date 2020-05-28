@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ModelController {
@@ -34,6 +35,12 @@ public class ModelController {
     public String showModel(Model model, MotorHome motorHome) {
         model.addAttribute("Models", modelRepository.readAll());
         return "/motorhomes/addMotorhome";
+    }
+
+    @GetMapping("/models/detailModels")
+    public String getDetailModel(@RequestParam String id, Model model){
+        model.addAttribute("detailModel", modelRepository.read(id));
+        return "/models/detailModels";
     }
 
 

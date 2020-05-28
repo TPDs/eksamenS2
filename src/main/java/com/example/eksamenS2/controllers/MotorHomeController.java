@@ -20,6 +20,13 @@ public class MotorHomeController {
         return "/motorhomes/detailMotorhome";
     }
 
+    @PostMapping("/motorhomes/detailMotorhome")
+    public String updateMotorhomeStatus(MotorHome detailMotorhome){
+        motorhomeRep.updateStatus(detailMotorhome);
+        return "/motorhomes/detailMotorhome";
+    }
+
+
     @PostMapping("/motorhomes/addMotorhome")
     public String postMotorhome(MotorHome motorHome){
         motorhomeRep.create(motorHome);
@@ -38,6 +45,8 @@ public class MotorHomeController {
         motorhomeRep.update(motorHome);
         return "redirect:/";
     }
+
+
 
 
 }

@@ -90,7 +90,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
 
     @Override
     public boolean update(MotorHome motorHome) {
-        String sql = "UPDATE motorhomes SET NumberPlate=?, Models_Model_number=?, Total_Km=?, Status=? WHERE id=" + motorHome.getMotorHomesID();
+        String sql = "UPDATE motorhomes SET NumberPlate=?, Models_Model_number=?, Total_Km=?, Status=? WHERE MotorHomesID=" + motorHome.getMotorHomesID();
 
         try{
             PreparedStatement statement = conn.prepareStatement(sql);

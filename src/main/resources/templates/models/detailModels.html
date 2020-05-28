@@ -12,8 +12,8 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
-<br>
-<h1>Om motorhome</h1>
+    <br>
+    <h1>Om motorhome</h1>
     <br>
 
 
@@ -29,33 +29,12 @@
     <p style="font-size: 115%;">
         <b>Total km:</b> <td th:text="${detailMotorhome.getTotal_Km()}"></td>
     </p>
-    <!--<p style="font-size: 115%;">
+    <p style="font-size: 115%;">
         <b>Status:</b> <td th:text="${detailMotorhome.getStatus()}"></td>
-    </p>-->
-
-    <form>
-        <div class="form-group">
-            <label>Status: </label>
-            <select class="form-control">
-                <option>Cleaning</option>
-                <option>Repair</option>
-                <option>C+R</option>
-                <option>Ready</option>
-                <option>Out Of Order</option>
-            </select>
-        </div>
-    </form>
+    </p>
 
 
-    <div class="wrapper1">
-        <a href="../motorhomes/chooseType" class="btn btn-danger" role="button">Tilbage</a>
-    </div>
-    <div class="wrapper2" th:each="detailMotorhome : ${detailMotorhome}">
-        <a th:href="@{/motorhomes/updateMotorhome(id=${detailMotorhome.id})}" class="btn btn-danger" role="button">Rediger motorhome</a>
-    </div>
-    <div class="wrapper3">
-        <a href="../motorhomes/chooseType" class="btn btn-danger" role="button">Vis model</a>
-    </div>
+
 
 
 

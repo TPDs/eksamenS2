@@ -28,7 +28,6 @@ public class MotorHomeController {
 
     @GetMapping("/motorhomes/updateMotorhome")
     public String getUpdateMotorhome(@RequestParam int id, Model model){
-        MotorHome motorhome = new MotorHome();
         model.addAttribute("updateMotorHome", motorhomeRep.read(id));
         return "/motorhomes/updateMotorhome";
 

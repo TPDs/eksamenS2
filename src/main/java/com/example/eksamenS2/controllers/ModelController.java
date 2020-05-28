@@ -33,10 +33,15 @@ public class ModelController {
         return "redirect:/";
     }
 
-        @GetMapping("/motorHome/addMotorhome")
-            public String AddModelToHtmlList(Model model)  {
-            model.addAttribute("Models", modelRepository.readAll());
-                    return"/motorhomes/addMotorhome";
-    }
+//        @GetMapping("/motorHome/addMotorhome")
+//            public String showModel(Model model)  {
+//            model.addAttribute("Models", modelRepository.readAll());
+//                    return"/motorhomes/addMotorhome";
+//    }
 
+    @GetMapping("/models/models")
+    public String showModel1(Model model)  {
+        model.addAttribute("Models", modelRepository.readAll());
+        return"/models/showModel1";
+    }
 }

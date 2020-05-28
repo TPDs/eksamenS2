@@ -27,13 +27,13 @@ public class ModelRepository {
             ps.setString(1,model.getModel_number());
             ps.setString(2,model.getBrand());
             ps.setString(3,model.getType());
-            ps.setString(4,model.getEngine());
-            ps.setString(5,model.getAbout());
             ps.setDouble(6,model.getLength());
-            ps.setBoolean(7,model.isGearType());
-            ps.setBoolean(8, model.isAircon());
             ps.setInt(9,model.getKm_L());
             ps.setInt(10,model.getYear());
+            ps.setBoolean(7,model.isGearType());
+            ps.setString(4,model.getEngine());
+            ps.setBoolean(8, model.isAircon());
+            ps.setString(5,model.getAbout());
 
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
@@ -58,13 +58,14 @@ public class ModelRepository {
                 modelToReturn.setModel_number(rs.getString(1));
                 modelToReturn.setBrand(rs.getString(2));
                 modelToReturn.setType(rs.getString(3));
-                modelToReturn.setEngine(rs.getString(4));
-                modelToReturn.setAbout(rs.getString(5));
-                modelToReturn.setLength(rs.getDouble(6));
+                modelToReturn.setLength(rs.getDouble(4));
+                modelToReturn.setKm_L(rs.getInt(5));
+                modelToReturn.setYear(rs.getInt(6));
                 modelToReturn.setGearType(rs.getBoolean(7));
-                modelToReturn.setAircon(rs.getBoolean(8));
-                modelToReturn.setKm_L(rs.getInt(9));
-                modelToReturn.setYear(rs.getInt(10));
+                modelToReturn.setEngine(rs.getString(8));
+                modelToReturn.setAircon(rs.getBoolean(9));
+                modelToReturn.setAbout(rs.getString(10));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,13 +85,13 @@ public class ModelRepository {
                 tempModel.setModel_number(rs.getString(1));
                 tempModel.setBrand(rs.getString(2));
                 tempModel.setType(rs.getString(3));
-                tempModel.setEngine(rs.getString(4));
-                tempModel.setAbout(rs.getString(5));
-                tempModel.setLength(rs.getDouble(6));
+                tempModel.setLength(rs.getDouble(4));
+                tempModel.setKm_L(rs.getInt(5));
+                tempModel.setYear(rs.getInt(6));
                 tempModel.setGearType(rs.getBoolean(7));
-                tempModel.setAircon(rs.getBoolean(8));
-                tempModel.setKm_L(rs.getInt(9));
-                tempModel.setYear(rs.getInt(10));
+                tempModel.setEngine(rs.getString(8));
+                tempModel.setAircon(rs.getBoolean(9));
+                tempModel.setAbout(rs.getString(10));
                 allModels.add(tempModel);
             }
 
@@ -111,13 +112,13 @@ public class ModelRepository {
             ps.setString(1,model.getModel_number());
             ps.setString(2,model.getBrand());
             ps.setString(3,model.getType());
-            ps.setString(4,model.getEngine());
-            ps.setString(5,model.getAbout());
-            ps.setDouble(6,model.getLength());
+            ps.setDouble(4,model.getLength());
+            ps.setInt(5,model.getKm_L());
+            ps.setInt(6,model.getYear());
             ps.setBoolean(7,model.isGearType());
-            ps.setBoolean(8,model.isAircon());
-            ps.setInt(9,model.getKm_L());
-            ps.setInt(10,model.getYear());
+            ps.setString(8,model.getEngine());
+            ps.setBoolean(9,model.isAircon());
+            ps.setString(10,model.getAbout());
 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {

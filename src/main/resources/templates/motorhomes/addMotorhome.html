@@ -30,18 +30,14 @@
             <th scope="col">Vælg</th>
         </tr>
 
-        <tr th:each="models :${models}">
-            <td th:text="${models.Model_number}"></td>
-            <td th:text="${models.Brand}"></td>
-            <td th:text="${models.Type}"></td>
+        <tr th:each="model : ${Models}">
+            <td th:text="${model.Model_number}"></td>
+            <td th:text="${model.Brand}"></td>
+            <td th:text="${model.Type}"></td>
 
         </tr>
 
-
-
     </table>
-
-
 
         <form action="#" th:action="@{/motorhomes/addMotorhome}" th:object="${motorHome}" method="POST">
         <div class="form-row">
@@ -63,11 +59,20 @@
         <div class="form-row">
             <div class="form-group col-md-5">
                 <label >Status</label>
-                <input type="text" class="form-control" th:field="*{Status}">
+                <input type="text" class="form-control" th:field="*{Status}" style="border-right-width: 1px;
+                       padding-right: 12px;
+                       height: 39px;
+                       width: 151px;">
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Opret</button>
+        <button type="submit" class="btn btn-primary" style="
+    height: 39px;
+    padding-top: 6px;
+    border-top-width: 1px;
+    margin-top: 32px;
+    width: 68px;
+">Opret</button>
     </form>
 
 

@@ -13,23 +13,46 @@
 <div th:insert="/template"></div>
 <div class="container">
     <h1>Opdater Modeloplysninger</h1>
-    <form action="#" th:action="@{/motorhomes/updateMotorhome}" th:object="${updateMotorHome}" method="POST">
+    <form action="#" th:action="@{/models/updateModels}" th:object="${updateModel}" method="POST">
         <div class="form-group">
-            <label>Nummerplade:</label>
-            <input class="form-control" type="text" th:field="*{numberPlate}">
+            <label>Mærke: </label>
+            <input class="form-control" type="text" th:field="*{brand}">
         </div>
         <div class="form-group">
-            <label>Model nr:</label>
-            <input class="form-control" type="text" th:field="*{models_Model_number}">
+            <label>Model: </label>
+            <input class="form-control" type="text" th:field="*{model_number}">
         </div>
         <div class="form-group">
-            <label>Total km:</label>
-            <input class="form-control" type="text" th:field="*{total_Km}">
+            <label>Type: </label>
+            <input class="form-control" type="text" th:field="*{type}">
         </div>
         <div class="form-group">
-            <label>Status:</label>
-            <input class="form-control" type="text" th:field="*{status}">
-            <input class="form-control" type="hidden" th:field="*{motorHomesID}">
+            <label>Længde: </label>
+            <input class="form-control" type="text" th:field="*{length}">
+        </div>
+        <div class="form-group">
+            <label>Km/l: </label>
+            <input class="form-control" type="number" th:field="*{km_L}">
+        </div>
+        <div class="form-group">
+            <label>Årgang: </label>
+            <input class="form-control" type="number" th:field="*{year}">
+        </div>
+        <div class="form-group">
+            <label>Motortype: </label>
+            <input class="form-control" type="text" th:field="*{engine}">
+        </div>
+        <div class="form-group">
+            <label>Geartype: </label>
+            <input class="form-control" type="text" th:field="*{gearType}">
+        </div>
+        <div class="form-group">
+            <label>Aircondition: </label>
+            <input class="form-control" type="text" th:field="*{aircon}">
+        </div>
+        <div class="form-group">
+            <label>Om model:</label>
+            <input class="form-control" type="text" th:field="*{about}">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" style="

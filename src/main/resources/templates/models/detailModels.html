@@ -13,7 +13,7 @@
 <div th:insert="/template"></div>
 <div class="container">
     <br>
-    <h1>Om motorhome</h1>
+    <h1>Om modellen</h1>
     <br>
 
 
@@ -53,22 +53,23 @@
         <b>Om model:</b> <td th:text="${detailModel.getAbout()}"></td>
     </p>
 
-    <a href="/models/updateModels"
+    <div class="wrapper3" th:object="${detailModel}">
+        <a class="btn btn-warning" th:href="@{/models/updateModels(id=${detailModel.getModel_number()})}">Opdater model</a>
+    </div>
 
 
 
 
 
-
-
+    <br>
 </div>
-<br>
 
 
-
-<body>
 
 <div th:insert="/templateFooter"></div>
+
+
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

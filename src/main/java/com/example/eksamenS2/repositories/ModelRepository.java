@@ -106,7 +106,7 @@ public class ModelRepository {
 
 
     public boolean update(Models model) {
-        String sql = "UPDATE models SET Model_number=?, Brand=?, Type=?, Engine=?, About=?, Length=?, GearType=?, Aircon=?, Km_L=?, Year=? WHERE Model_number=" + model.getModel_number();
+        String sql = "UPDATE models SET Model_number=?, Brand=?, Type=?, Length=?, Km_L=?, Year=?, GearType=?, Engine=?, Aircon=?, About=? WHERE Model_number=" + model.getModel_number();
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);

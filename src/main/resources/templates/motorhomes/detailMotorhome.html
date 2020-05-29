@@ -56,8 +56,8 @@
     <div class="wrapper2" th:object="${detailMotorhome}">
         <a th:href="@{/motorhomes/updateMotorhome(id=${detailMotorhome.getMotorHomesID()})}" class="btn btn-danger" role="button">Rediger motorhome</a>
     </div>
-    <div class="wrapper3">
-        <a href="../motorhomes/chooseType" class="btn btn-danger" role="button">Vis model</a>
+    <div class="wrapper3" th:object="${detailMotorhome}">
+        <a th:href="@{/models/detailModels(id=${detailMotorhome.getModels_Model_number()})}" class="btn btn-danger" role="button">Vis model</a>
     </div>
 
 

@@ -23,7 +23,7 @@ public class MotorHomeController {
     @PostMapping("/motorhomes/detailMotorhome")
     public String updateMotorhomeStatus(MotorHome detailMotorhome){
         motorhomeRep.updateStatus(detailMotorhome);
-        return "/motorhomes/detailMotorhome";
+        return "redirect:/";
     }
 
 

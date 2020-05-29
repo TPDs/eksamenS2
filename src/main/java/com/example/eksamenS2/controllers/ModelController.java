@@ -43,5 +43,17 @@ public class ModelController {
         return "/models/detailModels";
     }
 
+    @GetMapping("/models/updateModels")
+    public String getUpdateModel(@RequestParam String id, Model model){
+        model.addAttribute("updateModel", modelRepository.read(id));
+        return "/models/updateModels";
+    }
+
+    @PostMapping("/models/updateModels")
+    public String postUpdateModel(Models models){
+        modelRepository.update(models);
+        return "redirect:/";
+    }
+
 
 }

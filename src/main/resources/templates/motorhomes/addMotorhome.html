@@ -33,6 +33,13 @@
             <td th:text="${models.Model_number}"></td>
             <td th:text="${models.Brand}"></td>
             <td th:text="${models.Type}"></td>
+
+<!--            hvis koden ikke virker så ryk denne knap ?-->
+            <button onclick="myFunktion()">Vælg</button>
+            <td>   <a role="button" class="btn btn-primary" id=""></a>
+
+            </td>
+
             <td>
                 <a th:href="@{/motorhomes/detailMotorhome(id=${models.Model_number})}" class="btn btn-success"
                    role="button">Detail</a>

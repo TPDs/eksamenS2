@@ -26,6 +26,7 @@
             <th scope="col">Model</th>
             <th scope="col">Mærke</th>
             <th scope="col">Type</th>
+            <th scope="col">Info</th>
             <th scope="col">Vælg</th>
         </tr>
 
@@ -34,19 +35,15 @@
             <td th:text="${models.Brand}"></td>
             <td th:text="${models.Type}"></td>
 
-<!--            hvis koden ikke virker så ryk denne knap ?-->
-            <button onclick="myFunktion()">Vælg</button>
-            <td>   <a role="button" class="btn btn-primary" id=""></a>
-
-            </td>
-
             <td>
-                <a th:href="@{/motorhomes/detailMotorhome(id=${models.Model_number})}" class="btn btn-success"
-                   role="button">Detail</a>
-                <a th:href="@{/motorhomes/updateMotorhome(id=${models.Model_number})}" class="btn btn-success"
-                   role="button">Se udvalg</a>
+                <a th:href="@{/models/detailModels(id=${models.Model_number})}" class="btn btn-success"
+                   role="button">Mere om</a>
             </td>
-            <!--            Mangler en Button med der skal markere det valgt model nummmer eller caste den til Model fielded-->
+            <td>
+                <button th:attr="value=${models.Model_number}" onclick="myFunction(value)" class="btn btn-success"
+                        role="button">Vælg model
+                </button>
+            </td>
         </tr>
 
 
@@ -62,7 +59,7 @@
 
             <div class="form-group col-md-5">
                 <label>Model Nr</label>
-                <input type="text" class="form-control" th:field="*{Models_Model_number}">
+                <input type="text" class="form-control" th:field="*{Models_Model_number}" id="pick">
             </div>
 
             <div class="form-group col-md-5">
@@ -82,6 +79,15 @@
 
 
 </div>
+
+
+<script>
+    function myFunction(value) {
+        var x = value;
+        document.getElementById("pick").value = x;
+    }
+</script>
+
 
 <div th:insert="/templateFooter"></div>
 <!-- Optional JavaScript -->

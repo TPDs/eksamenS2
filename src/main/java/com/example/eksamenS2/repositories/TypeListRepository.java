@@ -1,5 +1,6 @@
 package com.example.eksamenS2.repositories;
 import com.example.eksamenS2.models.Models;
+import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 import org.springframework.ui.Model;
 
@@ -11,12 +12,60 @@ public class TypeListRepository {
     private Connection conn;
     public TypeListRepository() {this.conn = DatabaseConnectionManager.getDatabaseConnection(); }
 
-    // oprette et objekt med information omkring Type fra models.
-    // og status fra Motorhomes
+// tester lige noget af
+
+//    public String AlternativMetode(Model_number)
+
+
+// Metode der skal kunne finde mængden af de forskellige status
+// Daniel Skal lave det her færdig imorgen! tager model_nr og type og sammenligner med model_nR og status
+public List<String> readStatusAmount(String Type){
+        List<String> ResultListFromTypeSearch = new ArrayList<>();
+    try {
+        PreparedStatement Modelps = conn.prepareStatement("SELECT Model_number , Type FROM models WHERE Type="+ Type );
+        List<Models> ModelNrType = new ArrayList<>();
+        List<MotorHome> MotorHomeModelNr = new ArrayList<>();
+
+        ResultSet Modelrs = Modelps.executeQuery();
+        while(Modelrs.next()){
+            Models tempNrType = new Models();
+
+            tempNrType.setModel_number(Modelrs.getString(1));
+            tempNrType.setType(Modelrs.getString(2));
+
+            ModelNrType.add(tempNrType);
+        }
+
+        PreparedStatement MotorHomeps = conn.prepareStatement("SELECT Models_Model_number, status FROM motorhomes");
+        ResultSet MotorHomers = MotorHomeps.executeQuery();
+
+        while(MotorHomers.next()){
+            MotorHome tempMhId = new MotorHome();
+
+            tempMhId.setModels_Model_number(MotorHomers.getString(1));
+            tempMhId.setStatus(MotorHomers.getString(2));
+
+            MotorHomeModelNr.add(tempMhId);
+        }
+
+
+        for(int i=0;i<=ModelNrType.size();i++){
+            for(int j=0; j<=MotorHomeModelNr.size();j++){
+                if(ModelNrType.get(i).getModel_number().equals(MotorHomeModelNr.get(j).getModels_Model_number())){
+                    ResultListFromTypeSearch.add(MotorHomeModelNr.get(j).getStatus());
+            }
+            }
+        }
+    }
+
+    catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
+    return ResultListFromTypeSearch;
+}
 
     // skal kunne "tælle mængden af typer, og indsætte den talte værdi
-    // i den tilsvarende type
-
+    // i den tilsvarende type ArrayList
     public List<Models> readAllTypes(){
         List<Models> allTypes = new ArrayList<>();
         List<Models> alleEnkelteTyper = new ArrayList<>();

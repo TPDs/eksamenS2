@@ -19,4 +19,8 @@ public class TypeListController {
         model.addAttribute("readAllTypes",typesRepository.readAllTypes());
         return "/motorhomes/chooseType";
         }
+
+//        @GetMapping("/motorhomes/chooseType")
+//    public String GetStatuses(Model model)
+
 }

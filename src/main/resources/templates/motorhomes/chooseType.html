@@ -15,7 +15,22 @@
 
 
 
+    <table class="table table-striped" style="
+    width: 400px;">
 
+        <tr>
+            <th scope="col">Model</th>
+            <th scope="col">Mærke</th>
+            <th scope="col">Type</th>
+            <th scope="col">Vælg</th>
+        </tr>
+
+           <tr th:each= "Types : ${readAllTypes}">
+               <td th:text="${Types.Type}"> </td>
+
+           </tr>
+
+    </table>
 
 
 

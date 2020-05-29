@@ -130,6 +130,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
 
         } catch (SQLException throwables){
             throwables.printStackTrace();
+            System.out.printf("Pernis");
         }
         return false;
     }

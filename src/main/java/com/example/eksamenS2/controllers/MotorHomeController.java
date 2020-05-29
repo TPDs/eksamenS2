@@ -15,7 +15,7 @@ public class MotorHomeController {
     public MotorHomeController(){motorhomeRep = new MotorHomeRepositoryImpl();}
 
     @GetMapping("/motorhomes/detailMotorhome")
-    public String getDetailMotorhome(@RequestParam int id, Model model){
+    public String getDetailMotorhome(@RequestParam int id, Model model, MotorHome motorHome){
         model.addAttribute("detailMotorhome", motorhomeRep.read(id));
         return "/motorhomes/detailMotorhome";
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title></title>
+    <title>Nordic Motorhome Rental</title>
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -27,14 +27,21 @@
             <input class="form-control" type="text" th:field="*{total_Km}">
         </div>
         <div class="form-group">
-            <label>Status:</label>
-            <input class="form-control" type="text" th:field="*{status}">
             <input class="form-control" type="hidden" th:field="*{motorHomesID}">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary" style="
-                   ">Opdater</button>
+            <label>Status: </label>
+            <select class="form-control" th:field="*{status}">
+                <option th:value="Cleaning">Cleaning</option>
+                <option th:value="Repair">Repair</option>
+                <option th:value="CleanAndRepair">Clean and Repair</option>
+                <option th:value="Ready">Ready</option>
+                <option th:value="OutOfOrder">Ude af drift</option>
+                <option th:value="Booked">Booked</option>
+                <option th:value="TempBooked">Midlertidigt booked</option>
+            </select>
         </div>
+        <button type="submit" class="btn btn-success">Opdater</button>
     </form>
 
 

@@ -5,16 +5,18 @@ public class BookingID {
 
         private java.sql.Date FromDate, EndDate;
         private String StaffID;
-        private int CustomerID;
+        private int CustomerID, BookingID;
 
         public BookingID() {
         }
 
-        public BookingID(java.sql.Date fromDate, java.sql.Date endDate, String staffID, int customerID) {
+        public BookingID(java.sql.Date fromDate, java.sql.Date endDate, String staffID, int customerID, int bookingID) {
                 FromDate = fromDate;
                 EndDate = endDate;
                 StaffID = staffID;
                 CustomerID = customerID;
+                BookingID = bookingID;
+
         }
 
         public String getStaffID() {
@@ -47,5 +49,13 @@ public class BookingID {
 
         public void setEndDate(java.sql.Date endDate) {
                 EndDate = endDate;
+        }
+
+        public int getBookingID() {
+                return BookingID;
+        }
+
+        public void setBookingID(int bookingID) {
+                BookingID = bookingID;
         }
 }

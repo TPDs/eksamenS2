@@ -14,13 +14,13 @@
 <div class="container">
 
 
-<!--    <a type="button" class="btn btn-primary" href="/bookings/addBooking"-->
-<!--       style="padding-left: 100px; padding-right: 100px">-->
-<!--        Opret Booking</a>-->
+    <a type="button" class="btn btn-primary" href="/bookings/addBooking"
+       style="padding-left: 100px; padding-right: 100px">
+        Opret Booking</a>
 
-<!--    <a type="button" class="btn btn-primary" href="/bookings/completedbookings"-->
-<!--       style="padding-left: 100px; padding-right: 100px">-->
-<!--        Se Tidligere Bookings</a>-->
+    <a type="button" class="btn btn-primary" href="/bookings/completedbookings"
+       style="padding-left: 100px; padding-right: 100px">
+        Se Tidligere Bookings</a>
 
 <!--    <table class="table table-striped" style="width: 615px">-->
 <!--        <thead>-->
@@ -45,12 +45,14 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Tilbehør ID</th>
-            <th>Navn</th>
-            <th>Pris</th>
+            <th>Booking ID</th>
+            <th>Motorhome ID</th>
+            <th>Start Dato</th>
+            <th>Slut Dato</th>
+            <th>Kunde ID</th>
         </tr>
-        <tr th:each="accessories : ${accessories}">
-            <td th:text="${accessories.itemsID}"></td>
+        <tr th:each="motorhome_booking : ${motorhome_booking}">
+            <td th:text="${motorhome_booking.booking_id_bookingID}"></td>
             <td th:text="${accessories.name}"></td>
             <td th:text="${accessories.price}"></td>
         </tr>

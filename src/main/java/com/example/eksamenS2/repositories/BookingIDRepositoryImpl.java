@@ -65,4 +65,31 @@ public class BookingIDRepositoryImpl {
 
         return AllMotorHomesByModel;
     }
+
+    public List<BookingID> showCurrentBookings() {
+        List<BookingID> AllBookings = new ArrayList<>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM bookingid");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                BookingID tempBookingID = new BookingID();
+                tempBookingID.setBookingID(rs.getInt(1));
+                tempBookingID.setFromDate(rs.getDate(2));
+                tempBookingID.setEndDate(rs.getDate(3));
+                tempBookingID.setCustomerID(rs.getInt(4));
+                tempBookingID.setStaffID(rs.getString(5));
+                AllBookings.add(tempBookingID);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return AllBookings;
+    }
+
+
+
+
 }

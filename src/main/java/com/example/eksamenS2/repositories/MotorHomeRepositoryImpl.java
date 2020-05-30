@@ -3,10 +3,10 @@ package com.example.eksamenS2.repositories;
 import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
-import java.sql.*;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

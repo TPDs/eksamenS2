@@ -1,6 +1,7 @@
 package com.example.eksamenS2.controllers;
 
 import com.example.eksamenS2.models.BookingID;
+import com.example.eksamenS2.models.EndBooking;
 import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.repositories.BookingIDRepositoryImpl;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -61,6 +66,11 @@ public class BookingsController {
     public String completeddBookings() {
 
         return "bookings/completedbookings";
+    }
+
+    @GetMapping("/bookings/EndBooking")
+    public String endbooking() {
+        return "/bookings/EndBooking";
     }
 
 
@@ -137,6 +147,55 @@ public class BookingsController {
         }
 
         return "";
+    }
+
+    @PostMapping("/EndBooking")
+    public Boolean endbooking(EndBooking endBooking, MotorHome motorHome, BookingID bookingID) {
+        int Total_km = motorHome.getTotal_Km() - endBooking.getEndKm();
+        int EndGas = 100 - endBooking.getEndgas();
+        int PickUpKm = endBooking.getPickUpKm();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal1 = new GregorianCalendar();
+        Calendar cal2 = new GregorianCalendar();
+        cal1.setTime(bookingID.getFromDate());
+        cal2.setTime(bookingID.getEndDate());
+        int days = daysBetween(bookingID.getFromDate(), bookingID.getEndDate());
+        int KmPerDay = Total_km / days;
+// Hvis "days" er i season, skal der vælges en pris ud fra season. 1.6 1.3 eller 1
+
+
+        return true;
+    }
+
+    public int daysBetween(Date d1, Date d2) {
+        return (int) ((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    public double SeasonCheck(Date startdate) {
+        Double SeasonPrice = null;
+
+        // Disse Datoer skal ændres over tiden da de desværre er blevet hardcoded pga tidspress, Ville evt have lavet et sql table til dette og/eller en fucktion der retter år for hver season ..Michael
+        Date LowA = new Date(2020 - 1 - 15);
+        Date LowB = new Date(2020 - 5 - 15);
+
+        Date HighA = new Date(2020 - 5 - 16);
+        Date HighB = new Date(2020 - 10 - 15);
+
+        Date MidA = new Date(2020 - 10 - 16);
+        Date MidB = new Date(2021 - 1 - 14);
+
+
+        if (LowA.compareTo(startdate) * startdate.compareTo(LowB) > 0) {
+            SeasonPrice = 1.0;
+        } else if (MidA.compareTo(startdate) * startdate.compareTo(MidB) > 0) {
+            SeasonPrice = 1.3;
+        } else if (HighA.compareTo(startdate) * startdate.compareTo(HighB) > 0) {
+            SeasonPrice = 1.6;
+        }
+
+
+        return SeasonPrice;
     }
 
 

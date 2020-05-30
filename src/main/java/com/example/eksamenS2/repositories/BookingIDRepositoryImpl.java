@@ -67,7 +67,7 @@ public class BookingIDRepositoryImpl {
     }
 
     public List<BookingID> showCurrentBookings() {
-        List<BookingID> AllBookings = new ArrayList<>();
+        List<BookingID> AllBookingsBK = new ArrayList<>();
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM bookingid");
             ResultSet rs = ps.executeQuery();
@@ -78,7 +78,7 @@ public class BookingIDRepositoryImpl {
                 tempBookingID.setEndDate(rs.getDate(3));
                 tempBookingID.setCustomerID(rs.getInt(4));
                 tempBookingID.setStaffID(rs.getString(5));
-                AllBookings.add(tempBookingID);
+                AllBookingsBK.add(tempBookingID);
             }
 
 
@@ -86,7 +86,7 @@ public class BookingIDRepositoryImpl {
             e.printStackTrace();
         }
 
-        return AllBookings;
+        return AllBookingsBK;
     }
 
 

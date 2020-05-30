@@ -33,12 +33,6 @@ public class BookingsController {
         BookingIDRep = new BookingIDRepositoryImpl();
     }
 
-    @GetMapping("/bookings/showBookings")
-    public String ShowBookings() {
-
-        return "bookings/showBookings";
-    }
-
     @GetMapping("/bookings/addBooking")
     public String createBookings(BookingID bookingID) {
 
@@ -65,13 +59,22 @@ public class BookingsController {
     }
 
     @GetMapping("/bookings/showBookings")
-    public String readAllBookings(Model model, BookingID bookingID, MotorhomeBooking motorhomeBooking){
+    public String readAllBookings(Model model, Model model2, BookingID bookingID, MotorhomeBooking motorhomeBooking){
         MotorhomeBookingRep = new MotorhomeBookingRepository();
+        model.addAttribute("idontgivearatsass", BookingIDRep.showCurrentBookings());
+        model.addAttribute("idontgivearatsazz", MotorhomeBookingRep.showCurrentBookings());
 
-        model.addAttribute("showCurrentBookings", BookingIDRep.showCurrentBookings());
-        model.addAttribute("motorhomeBooking", MotorhomeBookingRep.showCurrentBookings());
 
-        return "/accessories/showAccessories";
+        ArrayList<BookingID> bookingArr = new ArrayList<>();
+        for(int i = 0; i<BookingIDRep.showCurrentBookings().size(); i++){
+            BookingID book = new BookingID(BookingIDRep.showCurrentBookings().get(i).getFromDate(),BookingIDRep.showCurrentBookings().get(i).getEndDate(),BookingIDRep.showCurrentBookings().get(i).getStaffID(),BookingIDRep.showCurrentBookings().get(i).getCustomerID(),BookingIDRep.showCurrentBookings().get(i).getBookingID(),MotorhomeBookingRep.showCurrentBookings().get(i).getMotorhomeID());
+            bookingArr.add(book);
+        }
+
+        //model.addAttribute("motorhomeBooking", MotorhomeBookingRep.showCurrentBookings());
+        model2.addAttribute("showCurrentBookings", bookingArr);
+
+        return "/bookings/showBookings";
     }
 
 

@@ -1,11 +1,13 @@
 package com.example.eksamenS2.models;
 
 
+import java.sql.Date;
+
 public class BookingID {
 
         private java.sql.Date FromDate, EndDate;
         private String StaffID;
-        private int CustomerID, BookingID;
+        private int CustomerID, BookingID, MotorhomeID;
 
         public BookingID() {
         }
@@ -16,7 +18,15 @@ public class BookingID {
                 StaffID = staffID;
                 CustomerID = customerID;
                 BookingID = bookingID;
+        }
 
+        public BookingID(Date fromDate, Date endDate, String staffID, int customerID, int bookingID, int motorhomeID) {
+                FromDate = fromDate;
+                EndDate = endDate;
+                StaffID = staffID;
+                CustomerID = customerID;
+                BookingID = bookingID;
+                MotorhomeID = motorhomeID;
         }
 
         public String getStaffID() {
@@ -57,5 +67,13 @@ public class BookingID {
 
         public void setBookingID(int bookingID) {
                 BookingID = bookingID;
+        }
+
+        public int getMotorhomeID() {
+                return MotorhomeID;
+        }
+
+        public void setMotorhomeID(int motorhomeID) {
+                MotorhomeID = motorhomeID;
         }
 }

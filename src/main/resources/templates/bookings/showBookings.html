@@ -50,11 +50,16 @@
             <th>Start Dato</th>
             <th>Slut Dato</th>
             <th>Kunde ID</th>
+            <th>Medarbejder ID</th>
         </tr>
-        <tr th:each="motorhome_booking : ${motorhome_booking}">
-            <td th:text="${motorhome_booking.booking_id_bookingID}"></td>
-            <td th:text="${accessories.name}"></td>
-            <td th:text="${accessories.price}"></td>
+        <tr th:each="showCurrentBooking: ${showCurrentBookings}">
+            <td th:text="${showCurrentBooking.bookingID}"></td>
+            <td th:text="${showCurrentBooking.motorhomeID}"></td>
+            <td th:text="${showCurrentBooking.fromDate}"></td>
+            <td th:text="${showCurrentBooking.endDate}"></td>
+            <td th:text="${showCurrentBooking.customerID}"></td>
+            <td th:text="${showCurrentBooking.staffID}"></td>
+
         </tr>
 
 

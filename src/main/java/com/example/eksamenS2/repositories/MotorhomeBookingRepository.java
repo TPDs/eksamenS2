@@ -1,6 +1,5 @@
 package com.example.eksamenS2.repositories;
 
-import com.example.eksamenS2.models.BookingID;
 import com.example.eksamenS2.models.MotorhomeBooking;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 

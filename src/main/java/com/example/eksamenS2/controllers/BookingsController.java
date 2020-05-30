@@ -1,8 +1,7 @@
 package com.example.eksamenS2.controllers;
 
-import com.example.eksamenS2.models.BookingID;
-import com.example.eksamenS2.models.MotorHome;
-import com.example.eksamenS2.models.MotorhomeBooking;
+import com.example.eksamenS2.models.*;
+import com.example.eksamenS2.repositories.AccItemsRepository;
 import com.example.eksamenS2.repositories.BookingIDRepositoryImpl;
 import com.example.eksamenS2.repositories.MotorhomeBookingRepository;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,11 +25,11 @@ import java.util.stream.Stream;
 
 @Controller
 public class BookingsController {
-    // How to create a folder in Java https://stackoverflow.com/questions/4801971/how-to-create-empty-folder-in-java/4802032
-    // Dette skal vi bruge for hver Model ved oprettelse
 
     private BookingIDRepositoryImpl BookingIDRep;
     private MotorhomeBookingRepository MotorhomeBookingRep;
+    private AccItemsRepository AccItemsRep;
+
 
     public BookingsController() {
         BookingIDRep = new BookingIDRepositoryImpl();
@@ -58,21 +60,23 @@ public class BookingsController {
         return "bookings/completedbookings";
     }
 
+
     @GetMapping("/bookings/showBookings")
-    public String readAllBookings(Model model, Model model2, BookingID bookingID, MotorhomeBooking motorhomeBooking){
+    public String readAllBookings(Model model) {
         MotorhomeBookingRep = new MotorhomeBookingRepository();
-        model.addAttribute("idontgivearatsass", BookingIDRep.showCurrentBookings());
-        model.addAttribute("idontgivearatsazz", MotorhomeBookingRep.showCurrentBookings());
-
-
         ArrayList<BookingID> bookingArr = new ArrayList<>();
-        for(int i = 0; i<BookingIDRep.showCurrentBookings().size(); i++){
-            BookingID book = new BookingID(BookingIDRep.showCurrentBookings().get(i).getFromDate(),BookingIDRep.showCurrentBookings().get(i).getEndDate(),BookingIDRep.showCurrentBookings().get(i).getStaffID(),BookingIDRep.showCurrentBookings().get(i).getCustomerID(),BookingIDRep.showCurrentBookings().get(i).getBookingID(),MotorhomeBookingRep.showCurrentBookings().get(i).getMotorhomeID());
+
+        // Loader disse 2 Arraylister ind i 2 nye arrays for ikke at kalde SQL serveren ved hvert loop
+        ArrayList<BookingID> Blist = new ArrayList<>(BookingIDRep.showCurrentBookings());
+        ArrayList<MotorhomeBooking> Alist = new ArrayList<>(MotorhomeBookingRep.showCurrentBookings());
+
+        for (int i = 0; i < Blist.size(); ) {
+            BookingID book = new BookingID(Blist.get(i).getFromDate(), Blist.get(i).getEndDate(), Blist.get(i).getStaffID(), Blist.get(i).getCustomerID(), Blist.get(i).getBookingID(), Alist.get(i).getMotorhomeID());
             bookingArr.add(book);
+            i++;
         }
 
-        //model.addAttribute("motorhomeBooking", MotorhomeBookingRep.showCurrentBookings());
-        model2.addAttribute("showCurrentBookings", bookingArr);
+        model.addAttribute("showCurrentBookings", bookingArr);
 
         return "/bookings/showBookings";
     }
@@ -153,6 +157,55 @@ public class BookingsController {
 //        return "";
 //    }
 
+    @PostMapping("/EndBooking")
+    public String endbooking(EndBooking endBooking, MotorHome motorHome, BookingID bookingID, Model model, int IdBooking) {
+        int Total_km = motorHome.getTotal_Km() - endBooking.getEndKm();
+        int EndGas = 100 - endBooking.getEndgas();
+        int PickUpKm = endBooking.getPickUpKm();
+        int MhId = motorHome.getMotorHomesID();
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal1 = new GregorianCalendar();
+        Calendar cal2 = new GregorianCalendar();
+        cal1.setTime(bookingID.getFromDate());
+        cal2.setTime(bookingID.getEndDate());
+        int days = daysBetween(bookingID.getFromDate(), bookingID.getEndDate());
+        int KmPerDay = Total_km / days;
+        double SeasonPrice = SeasonCheck(bookingID.getFromDate());
+        CompletedBookings BookingData = new CompletedBookings(Total_km, EndGas, PickUpKm, days, KmPerDay, IdBooking, MhId, SeasonPrice, bookingID.getFromDate(), bookingID.getEndDate());
+        model.addAttribute("CompletedMotorHomeBooking", BookingData);
+        model.addAttribute("AccBookings", AccItemsRep.readAllByBooking(bookingID));
+        return "bookings/confirmBooking";
+    }
+
+    public int daysBetween(Date d1, Date d2) {
+        return (int) ((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    public double SeasonCheck(Date startdate) {
+        Double SeasonPrice = null;
+
+        // Disse Datoer burde kunne ændres over tiden, men de desværre er blevet hardcoded pga tidspress, Ville evt have lavet et sql table til dette og/eller en fucktion der retter år for hver season ..Michael
+        Date LowA = new Date(2020 - 1 - 15);
+        Date LowB = new Date(2020 - 5 - 15);
+
+        Date HighA = new Date(2020 - 5 - 16);
+        Date HighB = new Date(2020 - 10 - 15);
+
+        Date MidA = new Date(2020 - 10 - 16);
+        Date MidB = new Date(2021 - 1 - 14);
+
+
+        if (LowA.compareTo(startdate) * startdate.compareTo(LowB) > 0) {
+            SeasonPrice = 1.0;
+        } else if (MidA.compareTo(startdate) * startdate.compareTo(MidB) > 0) {
+            SeasonPrice = 1.3;
+        } else if (HighA.compareTo(startdate) * startdate.compareTo(HighB) > 0) {
+            SeasonPrice = 1.6;
+        }
+
+
+        return SeasonPrice;
+    }
 
 }
 

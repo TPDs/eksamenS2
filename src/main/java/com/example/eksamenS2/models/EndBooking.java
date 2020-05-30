@@ -8,6 +8,8 @@ public class EndBooking {
     private int Endgas, EndKm, PickUpKm;
     private Date SeasonDate;
 
+    public EndBooking() {
+    }
 
     public EndBooking(int endgas, int endKm, int pickUpKm, Date seasonDate) {
         Endgas = endgas;

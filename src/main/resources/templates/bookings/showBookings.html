@@ -25,12 +25,16 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Booking ID</th>
-            <th>Motorhome ID</th>
+            <th>Booking</th>
+            <th>Motorhome</th>
             <th>Start Dato</th>
             <th>Slut Dato</th>
-            <th>Kunde ID</th>
-            <th>Medarbejder ID</th>
+            <th>Kunde</th>
+            <th>Medarbejder</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
         </tr>
         <tr th:each="showCurrentBooking: ${showCurrentBookings}">
             <td th:text="${showCurrentBooking.getBookingID()}"></td>
@@ -39,6 +43,12 @@
             <td th:text="${showCurrentBooking.getEndDate()}"></td>
             <td th:text="${showCurrentBooking.getCustomerID()}"></td>
             <td th:text="${showCurrentBooking.getStaffID()}"></td>
+            <td><a class="btn btn-success" th:href="@{/bookings/EndBooking(id=${showCurrentBooking.getBookingID()})}">Afslut</a>
+            </td>
+            <td><a class="btn btn-warning"
+                   th:action="@{/bookings/EditBooking(id=${showCurrentBooking.getBookingID()})}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{/bookings/DeleteBooking(id=${showCurrentBooking.getBookingID()})}">Delete</a>
+            </td>
 
         </tr>
 

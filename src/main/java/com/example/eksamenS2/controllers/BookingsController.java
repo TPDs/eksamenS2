@@ -3,6 +3,7 @@ package com.example.eksamenS2.controllers;
 import com.example.eksamenS2.models.*;
 import com.example.eksamenS2.repositories.AccItemsRepository;
 import com.example.eksamenS2.repositories.BookingIDRepositoryImpl;
+import com.example.eksamenS2.repositories.MotorHomeRepositoryImpl;
 import com.example.eksamenS2.repositories.MotorhomeBookingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ public class BookingsController {
     private BookingIDRepositoryImpl BookingIDRep;
     private MotorhomeBookingRepository MotorhomeBookingRep;
     private AccItemsRepository AccItemsRep;
+    private MotorHomeRepositoryImpl Motorhomerep;
 
 
     public BookingsController() {
@@ -50,7 +52,9 @@ public class BookingsController {
 
     @PostMapping("/bookings/addBooking")
     public String addBookings(Model model, BookingID bookingID) {
+        MotorhomeBookingRep = new MotorhomeBookingRepository();
         model.addAttribute("ModelBooking", BookingIDRep.create(bookingID));
+        model.addAttribute("SingleMotorHomeBookings", MotorhomeBookingRep.showCurrentBookings());
         return "bookings/addBooking";
     }
 
@@ -157,8 +161,21 @@ public class BookingsController {
 //        return "";
 //    }
 
-    @PostMapping("/EndBooking")
-    public String endbooking(EndBooking endBooking, MotorHome motorHome, BookingID bookingID, Model model, int IdBooking) {
+
+    @GetMapping("bookings/EndBooking")
+    public String EndedBooking(@RequestParam int id, Model model) {
+        System.out.println(id);
+        BookingID BookingIDobj;
+        BookingIDobj = BookingIDRep.BookingIdByInt(id);
+        model.addAttribute("AccList", AccItemsRep.readAllByBooking(BookingIDobj));
+        model.addAttribute("motorhome", Motorhomerep.read(BookingIDRep.MotorhomeByBookingID(id)));
+        model.addAttribute("BookingID", BookingIDobj);
+        return "bookings/confirmBooking";
+    }
+
+
+    @PostMapping("bookings/EndBooking")
+    public String endbooking(EndBooking endBooking, MotorHome motorHome, BookingID bookingID, Model model) {
         int Total_km = motorHome.getTotal_Km() - endBooking.getEndKm();
         int EndGas = 100 - endBooking.getEndgas();
         int PickUpKm = endBooking.getPickUpKm();
@@ -171,10 +188,10 @@ public class BookingsController {
         int days = daysBetween(bookingID.getFromDate(), bookingID.getEndDate());
         int KmPerDay = Total_km / days;
         double SeasonPrice = SeasonCheck(bookingID.getFromDate());
-        CompletedBookings BookingData = new CompletedBookings(Total_km, EndGas, PickUpKm, days, KmPerDay, IdBooking, MhId, SeasonPrice, bookingID.getFromDate(), bookingID.getEndDate());
+        CompletedBookings BookingData = new CompletedBookings(Total_km, EndGas, PickUpKm, days, KmPerDay, bookingID.getBookingID(), MhId, SeasonPrice, bookingID.getFromDate(), bookingID.getEndDate());
         model.addAttribute("CompletedMotorHomeBooking", BookingData);
         model.addAttribute("AccBookings", AccItemsRep.readAllByBooking(bookingID));
-        return "bookings/confirmBooking";
+        return "bookings/confirmBooking"; // ændres til et completed?
     }
 
     public int daysBetween(Date d1, Date d2) {

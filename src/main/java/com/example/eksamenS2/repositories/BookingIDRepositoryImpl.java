@@ -2,6 +2,7 @@ package com.example.eksamenS2.repositories;
 
 import com.example.eksamenS2.models.BookingID;
 import com.example.eksamenS2.models.MotorHome;
+import com.example.eksamenS2.models.MotorhomeBooking;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -90,6 +91,67 @@ public class BookingIDRepositoryImpl {
     }
 
 
+    public List<MotorhomeBooking> AllBookingsbyMotorHome(int motorHome) {
+        List<MotorhomeBooking> AllBookingsByMotorhome = new ArrayList<>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM motorhome_booking WHERE MotorHomes_MotorHomesID=" + motorHome);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                MotorhomeBooking tempBooking = new MotorhomeBooking();
+                tempBooking.setBookingID(rs.getInt(2));
+                AllBookingsByMotorhome.add(tempBooking);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return AllBookingsByMotorhome;
+    }
+
+
+    public BookingID BookingIdByInt(int id) {
+        BookingID bookingID = new BookingID();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM bookingid WHERE BookingID=" + id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                bookingID.setBookingID(rs.getInt(1));
+                bookingID.setFromDate(rs.getDate(2));
+                bookingID.setEndDate(rs.getDate(3));
+                bookingID.setCustomerID(rs.getInt(4));
+                bookingID.setStaffID(rs.getString(5));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return bookingID;
+    }
+
+
+    public int MotorhomeByBookingID(int id) {
+        int MotorHomeid = 0;
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM motorhome_booking WHERE BookingID=" + id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                MotorHomeid = rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return MotorHomeid;
+    }
 
 
 }

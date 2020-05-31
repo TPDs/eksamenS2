@@ -7,6 +7,11 @@ public class Models {
     private boolean GearType, Aircon;
     private int km_L, year;
 
+    public Models(String type, String model_number) {
+        Type = type;
+        Model_number = model_number;
+    }
+
     public Models(String brand, String type, String engine, String about, double length, boolean gearType, boolean aircon, int km_L, int year) {
         Brand = brand;
         Type = type;

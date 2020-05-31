@@ -12,66 +12,40 @@ public class TypeListRepository {
     private Connection conn;
     public TypeListRepository() {this.conn = DatabaseConnectionManager.getDatabaseConnection(); }
 
-// tester lige noget af
+// Skal oprette et objekt der kan bruges i Thymeleaf til at each iterere i html
+//gennem spring, så vi kan få vist hvor mange forskellige status de seperate typer har
 
-//    public String AlternativMetode(Model_number)
+   public List<Models> StatusAmounts() {
+       List<Models> ModelNummerOgStatus = new ArrayList<>();
+       try {
+           PreparedStatement Modelps = conn.prepareStatement("SELECT Model_number , Type FROM models");
+           ResultSet Modelrs = Modelps.executeQuery();
+           while (Modelrs.next()) {
+               Models tempNrType = new Models();
 
+               tempNrType.setModel_number(Modelrs.getString(1));
+               tempNrType.setType(Modelrs.getString(2));
 
-// Metode der skal kunne finde mængden af de forskellige status
-// Daniel Skal lave det her færdig imorgen! tager model_nr og type og sammenligner med model_nR og status
-public List<String> readStatusAmount(String Type){
-        List<String> ResultListFromTypeSearch = new ArrayList<>();
-    try {
-        PreparedStatement Modelps = conn.prepareStatement("SELECT Model_number , Type FROM models WHERE Type="+ Type );
-        List<Models> ModelNrType = new ArrayList<>();
-        List<MotorHome> MotorHomeModelNr = new ArrayList<>();
+               ModelNummerOgStatus.add(tempNrType);
+           }
 
-        ResultSet Modelrs = Modelps.executeQuery();
-        while(Modelrs.next()){
-            Models tempNrType = new Models();
+           } catch(SQLException throwables){
+               throwables.printStackTrace();
+           }
+    return ModelNummerOgStatus;
+   }
 
-            tempNrType.setModel_number(Modelrs.getString(1));
-            tempNrType.setType(Modelrs.getString(2));
-
-            ModelNrType.add(tempNrType);
-        }
-
-        PreparedStatement MotorHomeps = conn.prepareStatement("SELECT Models_Model_number, status FROM motorhomes");
-        ResultSet MotorHomers = MotorHomeps.executeQuery();
-
-        while(MotorHomers.next()){
-            MotorHome tempMhId = new MotorHome();
-
-            tempMhId.setModels_Model_number(MotorHomers.getString(1));
-            tempMhId.setStatus(MotorHomers.getString(2));
-
-            MotorHomeModelNr.add(tempMhId);
-        }
+//public List<MotorHome>
 
 
-        for(int i=0;i<=ModelNrType.size();i++){
-            for(int j=0; j<=MotorHomeModelNr.size();j++){
-                if(ModelNrType.get(i).getModel_number().equals(MotorHomeModelNr.get(j).getModels_Model_number())){
-                    ResultListFromTypeSearch.add(MotorHomeModelNr.get(j).getStatus());
-            }
-            }
-        }
-    }
 
-    catch (SQLException throwables) {
-        throwables.printStackTrace();
-    }
-    return ResultListFromTypeSearch;
-}
 
-    // skal kunne "tælle mængden af typer, og indsætte den talte værdi
-    // i den tilsvarende type ArrayList
+    // denne metode finder DISTINCT typer og gemmer en af hver type i en ArrayListe
     public List<Models> readAllTypes(){
-        List<Models> allTypes = new ArrayList<>();
         List<Models> alleEnkelteTyper = new ArrayList<>();
 
         try {
-            PreparedStatement ps= conn.prepareStatement("SELECT DISTINCT Type FROM models");
+            PreparedStatement ps= conn.prepareStatement("SELECT DISTINCT Type, FROM models");
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
@@ -80,6 +54,22 @@ public List<String> readStatusAmount(String Type){
 
                 alleEnkelteTyper.add(tempType);
             }
+
+        } catch (SQLException throwables) {
+
+            throwables.printStackTrace();
+            System.out.println("ArrayListe med enkel type metoden fungere ikke");
+        }
+
+        return alleEnkelteTyper;
+    }
+
+
+
+
+}
+
+
 
 // dette kode stykke burdte virke istedet for Distinct keyword i SQL PreparedStatement
 //            for(int i=0;i<allTypes.size();i++) {
@@ -107,18 +97,10 @@ public List<String> readStatusAmount(String Type){
 //                }
 //            }
 
-        } catch (SQLException throwables) {
-
-            throwables.printStackTrace();
-            System.out.println("ArrayListe med enkel type metoden fungere ikke");
-        }
-        System.out.println(""+ allTypes.size());
-        System.out.println("" + alleEnkelteTyper.size());
-    return alleEnkelteTyper;
-    }
 
 
 
 
 
-}
+
+

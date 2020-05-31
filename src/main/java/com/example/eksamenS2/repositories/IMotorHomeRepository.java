@@ -14,7 +14,7 @@ public interface IMotorHomeRepository {
 
     public boolean update(MotorHome MotorHome);
 
-    public boolean delete(int id);
+    public boolean delete(MotorHome motorhome);
 }
 
 

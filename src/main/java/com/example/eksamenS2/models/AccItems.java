@@ -4,9 +4,10 @@ public class AccItems {
 
     private int ItemsID;
     private String Name;
-    private int Price;
+    private int Price, Amount;
 
-    public AccItems(){}
+    public AccItems() {
+    }
 
     public AccItems(int itemsID, String name, int price) {
         ItemsID = itemsID;
@@ -19,9 +20,28 @@ public class AccItems {
         Price = price;
     }
 
-    public int getItemsID() { return ItemsID; }
+    public AccItems(int itemsID, String name, int price, int amount) {
+        ItemsID = itemsID;
+        Name = name;
+        Price = price;
+        Amount = amount;
+    }
 
-    public void setItemsID(int itemsID) { ItemsID = itemsID; }
+    public int getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(int amount) {
+        Amount = amount;
+    }
+
+    public int getItemsID() {
+        return ItemsID;
+    }
+
+    public void setItemsID(int itemsID) {
+        ItemsID = itemsID;
+    }
 
     public String getName() {
         return Name;

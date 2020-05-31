@@ -39,13 +39,16 @@
     <br><br>
     <table class="table table-striped">
         <tr>
+            <th>Tilbehør</th>
             <th>AccItems</th>
             <th>Antal</th>
             <th>Pris</th>
         </tr>
         <tr th:each="AccItems: ${AccList}">
+            <td th:text="*{AccItems.name}"></td>
             <td th:text="*{AccItems.accItemsID}"></td>
             <td th:text="*{AccItems.amount}"></td>
+            <td th:text="*{AccItems.price}"></td>
         </tr>
     </table>
 

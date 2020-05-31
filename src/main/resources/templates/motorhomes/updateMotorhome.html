@@ -12,7 +12,9 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br>
     <h1>Opdater Motorhomeoplysninger</h1>
+    <br>
     <form action="#" th:action="@{/motorhomes/updateMotorhome}" th:object="${updateMotorHome}" method="POST">
         <div class="form-group">
             <label>Nummerplade:</label>
@@ -41,15 +43,10 @@
                 <option th:value="TempBooked">Midlertidigt booked</option>
             </select>
         </div>
+        <br>
         <button type="submit" class="btn btn-success">Opdater</button>
     </form>
-
-
-
-
-
-
-
+    <br>
 
 </div>
 

@@ -58,24 +58,17 @@
                     <input class="form-control" type="hidden" th:field="*{motorHomesID}">
                 </div>
         </div>
-        <button type="submit" class="btn btn-primary">Ændre status</button>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <a href="/motorhomes/chooseType" class="btn btn-danger float-left" type="button">Fortryd</a>
+                <button type="submit" class="btn btn-success ml-auto">Ændre Status</button>
+                <a th:href="@{/motorhomes/updateMotorhome(id=${detailMotorhome.motorHomesID})}" class="btn btn-warning ml-auto">Rediger Motorhome</a>
+                <a th:href="@{../models/updateModels(id=${detailMotorhome.models_Model_number})}" class="btn btn-warning ml-auto">Rediger Model</a>
+
+            </div>
+        </div>
     </form>
-
-
-    <div class="wrapper1">
-        <a href="../motorhomes/chooseType" class="btn btn-danger" role="button">Tilbage</a>
-    </div>
-<!--    <div class="wrapper2" th:object="${detailMotorhome}">-->
-<!--        <a th:href="@{/motorhomes/updateMotorhome(id=${detailMotorhome.getMotorHomesID()})}" class="btn btn-danger" role="button">Rediger motorhome</a>-->
-<!--    </div>-->
-<!--    <div class="wrapper3" th:object="${detailMotorhome}">-->
-<!--        <a th:href="@{/models/detailModels(id=${detailMotorhome.getModels_Model_number()})}" class="btn btn-danger" role="button">Vis model</a>-->
-<!--    </div>-->
-
-
-
-
-
 </div>
 <br>
 

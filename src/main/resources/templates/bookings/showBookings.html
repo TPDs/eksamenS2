@@ -12,8 +12,11 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br>
+    <h1>Nuværende bookinger</h1>
+    <br>
 
-
+    <div>
     <a type="button" class="btn btn-primary" href="/bookings/addBooking"
        style="padding-left: 100px; padding-right: 100px">
         Opret Booking</a>
@@ -21,8 +24,8 @@
     <a type="button" class="btn btn-primary" href="/bookings/completedbookings"
        style="padding-left: 100px; padding-right: 100px">
         Se Tidligere Bookings</a>
-
-
+    </div>
+    <br>
     <table class="table table-striped">
         <tr>
             <th>Booking</th>
@@ -34,7 +37,6 @@
             <th></th>
             <th></th>
             <th></th>
-
         </tr>
         <tr th:each="showCurrentBooking: ${showCurrentBookings}">
             <td th:text="${showCurrentBooking.getBookingID()}"></td>
@@ -49,17 +51,11 @@
             </td>
             <td><a class="btn btn-danger" th:href="@{/bookings/deleteBooking(id=${showCurrentBooking.getBookingID()})}">Delete</a>
             </td>
-
         </tr>
-
-
-
 
     </table>
 
-
-
-
+<br>
 </div>
 <div th:insert="/templateFooter"></div>
 

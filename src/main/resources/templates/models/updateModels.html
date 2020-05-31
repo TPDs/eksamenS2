@@ -12,7 +12,9 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br>
     <h1>Opdater Modeloplysninger</h1>
+    <br>
     <form action="#" th:action="@{/models/updateModels}" th:object="${updateModel}" method="POST">
         <div class="form-group">
             <label>Mærke: </label>
@@ -54,19 +56,13 @@
             <label>Om model:</label>
             <input class="form-control" type="text" th:field="*{about}">
         </div>
+        <br>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" style="
                    ">Opdater</button>
         </div>
     </form>
-
-
-
-
-
-
-
-
+<br>
 </div>
 
 <div th:insert="/templateFooter"></div>

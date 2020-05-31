@@ -13,12 +13,44 @@
 <div th:insert="/template"></div>
 <div class="container">
 
-<h1>noget penis</h1>
+
+    <table class="table table-striped" style="
+    width: 400px;">
+
+        <tr>
+<!--            <th scope="col">Type</th>-->
+            <th scope="col">MotorhomeID</th>
+            <th scope="col">Model</th>
+            <th scope="col">Nummerplade</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total Km</th>
+
+        </tr>
+
+        <tr th:each= "Details : ${showMotorhome}">
+            <td th:text="${Details.getMhID()}"> </td>
+            <td th:text="${Details.getModel()}"> </td>
+            <td th:text="${Details.getNumberPlate()}"> </td>
+            <td th:text="${Details.getStatus()}"> </td>
+            <td th:text="${Details.getTotalKm()}"> </td>
+
+              <!-- Denne knap skal vise Christians super detail side med ukendt videresendt parameter           -->
+            <td> <a class="btn btn-primary" th:href="@{/motorhomes/detailMotorhome(Type=${Details.getMhID()})}">Details</a>
+<!--             Denne knap skal gå videre til booking " som den gør" men med korrekt parameter er ikke sikker på mh id er den korrekte   -->
+            <td> <a class="btn btn-primary" th:href="@{/bookings/addBooking(Type=${Details.getMhID()})}">Book</a>
+<!--             Denne knap skal slette den valgte type/motorhome/noget-->
+<!--            <td> <a class="btn btn-primary" th:href="@{/bookings/addBooking(Type=${Details.getMhID()})}">Slet</a>-->
+                <!-- Knappen skal sende enten et objekt videre eller et motorhome id som kan bruges-->
+                <!-- Til at oprette en bookings addBooking som bruger    "snak med de andre om hvad den skal bruge til oprettelse af booking       -->
 
 
+        </tr>
+
+        <!--        <tr th:each= "Types : ${readAllTypes}">-->
+        <!--               <td th:text="${Types.Type}"> </td>-->
 
 
-
+    </table>
 
 
 </div>

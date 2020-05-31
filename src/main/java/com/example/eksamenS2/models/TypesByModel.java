@@ -3,7 +3,7 @@ package com.example.eksamenS2.models;
 public class TypesByModel {
 
    private String typer;
-   private String status;
+   private String status, MhID,Model,TotalKm,NumberPlate;
    private int Ready, Cleaning, Repair, CleanAndRepair, Booked, OutOfOrder, TempBooked;
 
     public TypesByModel(String typer, String status) {
@@ -25,6 +25,48 @@ public class TypesByModel {
         Booked = booked;
         OutOfOrder = outOfOrder;
         TempBooked = tempBooked;
+    }
+
+    // con lavet til joined table Detail objekt
+    public TypesByModel(String typer, String status, String MhID, String model, String totalKm,String numberPlate) {
+        this.typer = typer;
+        this.status = status;
+        this.MhID = MhID;
+        Model = model;
+        TotalKm = totalKm;
+        NumberPlate = numberPlate;
+    }
+
+    public String getNumberPlate() {
+        return NumberPlate;
+    }
+
+    public void setNumberPlate(String numberPlate) {
+        NumberPlate = numberPlate;
+    }
+
+    public String getMhID() {
+        return MhID;
+    }
+
+    public void setMhID(String mhID) {
+        this.MhID = mhID;
+    }
+
+    public String getModel() {
+        return Model;
+    }
+
+    public void setModel(String model) {
+        Model = model;
+    }
+
+    public String getTotalKm() {
+        return TotalKm;
+    }
+
+    public void setTotalKm(String totalKm) {
+        TotalKm = totalKm;
     }
 
     public int getReady() {

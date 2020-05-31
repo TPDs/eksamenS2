@@ -65,6 +65,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         return MotorHomeToReturn;
     }
 
+
     @Override
     public List<MotorHome> readAll() {
         List<MotorHome> AllMotorHome = new ArrayList<>();
@@ -85,7 +86,6 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return AllMotorHome;
     }
 

@@ -24,16 +24,28 @@
             <th scope="col">Cleaning</th>
             <th scope="col">Repair</th>
             <th scope="col">Clean and Repair</th>
+            <th scope="col">Booked</th>
+            <th scope="col">Out of order</th>
         </tr>
 
-           <tr th:each="Types : ${readAllTypes}">
-               <td th:text="${Types.Type}"></td>
-               <td th:text="${Types.Type}"></td>
-               <td th:text="${Types.Type}"></td>
-               <td th:text="${Types.Type}"></td>
+           <tr th:each= "Types : ${ReadyCount}">
+               <td th:text="${Types.getTyper()}"> </td>
+               <td th:text="${Types.getReady()}"> </td>
+               <td th:text="${Types.getCleaning()}"> </td>
+               <td th:text="${Types.getRepair()}"> </td>
+               <td th:text="${Types.getCleanAndRepair()}"> </td>
+               <td th:text="${Types.getOutOfOrder()}"> </td>
+               <td th:text="${Types.getTempBooked()}"> </td>
+               <td button class="btn btn-primary" th:href="@{showMotorhome()}">Vælg</button>
+
+               </td>
 
 
            </tr>
+
+<!--        <tr th:each= "Types : ${readAllTypes}">-->
+<!--               <td th:text="${Types.Type}"> </td>-->
+
 
     </table>
 

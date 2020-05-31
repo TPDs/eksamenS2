@@ -136,9 +136,9 @@ public class BookingIDRepositoryImpl {
 
 
     public int MotorhomeByBookingID(int id) {
-        int MotorHomeid = 0;
+        int MotorHomeid = 1;
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM motorhome_booking WHERE BookingID=" + id);
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM motorhome_booking WHERE Booking_Id_BookingID=" + id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -149,7 +149,7 @@ public class BookingIDRepositoryImpl {
             e.printStackTrace();
 
         }
-
+        System.out.println("test");
         return MotorHomeid;
     }
 

@@ -34,6 +34,8 @@ public class BookingsController {
 
 
     public BookingsController() {
+        Motorhomerep = new MotorHomeRepositoryImpl();
+        AccItemsRep = new AccItemsRepository();
         BookingIDRep = new BookingIDRepositoryImpl();
     }
 
@@ -164,12 +166,10 @@ public class BookingsController {
 
     @GetMapping("bookings/EndBooking")
     public String EndedBooking(@RequestParam int id, Model model) {
-        System.out.println(id);
-        BookingID BookingIDobj;
-        BookingIDobj = BookingIDRep.BookingIdByInt(id);
-        model.addAttribute("AccList", AccItemsRep.readAllByBooking(BookingIDobj));
-        model.addAttribute("motorhome", Motorhomerep.read(BookingIDRep.MotorhomeByBookingID(id)));
-        model.addAttribute("BookingID", BookingIDobj);
+        int ids = BookingIDRep.MotorhomeByBookingID(id);
+        model.addAttribute("AccList", AccItemsRep.readAllByBooking(id));
+        model.addAttribute("motorhome", Motorhomerep.read(ids));
+        model.addAttribute("BookingID", BookingIDRep.BookingIdByInt(id));
         return "bookings/confirmBooking";
     }
 
@@ -190,7 +190,7 @@ public class BookingsController {
         double SeasonPrice = SeasonCheck(bookingID.getFromDate());
         CompletedBookings BookingData = new CompletedBookings(Total_km, EndGas, PickUpKm, days, KmPerDay, bookingID.getBookingID(), MhId, SeasonPrice, bookingID.getFromDate(), bookingID.getEndDate());
         model.addAttribute("CompletedMotorHomeBooking", BookingData);
-        model.addAttribute("AccBookings", AccItemsRep.readAllByBooking(bookingID));
+        model.addAttribute("AccBookings", AccItemsRep.readAllByBooking(bookingID.getBookingID()));
         return "bookings/confirmBooking"; // ændres til et completed?
     }
 

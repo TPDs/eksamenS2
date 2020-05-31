@@ -2,7 +2,6 @@ package com.example.eksamenS2.repositories;
 
 import com.example.eksamenS2.models.AccItems;
 import com.example.eksamenS2.models.BookingAccItems;
-import com.example.eksamenS2.models.BookingID;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -83,23 +82,29 @@ public class AccItemsRepository {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.out.println("noget gik galt da man forsøgte at bruge read all metoden");
+
         }
-        System.out.println("alting gik fint med readallAcc metoden");
+
         return allAccItems;
     }
 
 
-    public List<BookingAccItems> readAllByBooking(BookingID bookingID) {
+    public List<BookingAccItems> readAllByBooking(int id) {
+        System.out.println("p1");
+
         List<BookingAccItems> allAccItemsByBooking = new ArrayList<>();
+
+
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM booking_accitems WHERE booking_id_BookingID=" + bookingID.getBookingID());
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM booking_accitems WHERE Booking_Id_BookingID=" + id);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 BookingAccItems tempAccItem = new BookingAccItems();
-                tempAccItem.setAmount(rs.getInt(1));
+                tempAccItem.setAmount(rs.getInt(3));
                 tempAccItem.setAccItemsID(rs.getInt(2));
-                tempAccItem.setBookingID(rs.getInt(3));
+                tempAccItem.setBookingID(rs.getInt(1));
+
 
                 allAccItemsByBooking.add(tempAccItem);
             }

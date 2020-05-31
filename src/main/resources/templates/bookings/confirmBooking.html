@@ -6,19 +6,48 @@
     <title>Nordic Motorhome Rental</title>
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br><br>
+    <p>
+        <b> BookingID: </b>
+    <td th:text="*{BookingID.getBookingID()}"></td>
+    </p>
+
+    <p>
+        <b> Fra: </b>
+    <td th:text="*{BookingID.getFromDate()}"></td>
+    <br> <b> Til: </b>
+    <td th:text="*{BookingID.getEndDate()}"></td>
+    </p>
+
+    <p>
+        <b> MotorHomeID: </b>
+    <td th:text="*{motorhome.motorHomesID}"></td>
+    </p>
+    <p>
+        <b> MotorHome Nummerplade: </b>
+    <td th:text="*{motorhome.numberPlate}"></td>
+    </p>
 
 
-
-Hej
-
-
-
+    <br><br>
+    <table class="table table-striped">
+        <tr>
+            <th>AccItems</th>
+            <th>Antal</th>
+            <th>Pris</th>
+        </tr>
+        <tr th:each="AccItems: ${AccList}">
+            <td th:text="*{AccItems.accItemsID}"></td>
+            <td th:text="*{AccItems.amount}"></td>
+        </tr>
+    </table>
 
 
 </div>
@@ -26,9 +55,15 @@ Hej
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

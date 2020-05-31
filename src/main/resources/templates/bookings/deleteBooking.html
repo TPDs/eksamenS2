@@ -13,9 +13,38 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br>
+    <p style="font-size: 175%; text-align: center;"  >Er du sikker på, at du vil slette bookingen?</p>
+    <br>
+    <p style="font-size: 140%;">
+        <b>Booking ID: </b> <td th:text="${deleteBooking.bookingID}"></td>
+    </p>
 
+    <p style="font-size: 140%;">
+        <b>Start Dato: </b> <td th:text="${deleteBooking.fromDate}"></td>
+    </p>
 
+    <p style="font-size: 140%;">
+        <b>Slut Dato: </b> <td th:text="${deleteBooking.endDate}"></td>
+    </p>
 
+    <p style="font-size: 140%;">
+        <b>Kunde ID: </b> <td th:text="${deleteBooking.customerID}"></td>
+    </p>
+    <p style="font-size: 140%;">
+        <b>Medarbejder ID: </b> <td th:text="${deleteBooking.staffID}"></td>
+    </p>
+    <br>
+    <form th:action="@{/bookings/deleteBooking}" method="POST">
+        <div class="container-fluid">
+            <div class="row">
+                <a class="btn btn-danger float-left" href="/bookings/showBookings" type="button">Afkræft</a>
+                <button type="submit" class="btn btn-success ml-auto">Bekræft</button>
+                <input type="hidden" th:field="${deleteBooking.bookingID}">
+            </div>
+        </div>
+    </form>
+<br>
 </div>
 
 <div th:insert="/templateFooter"></div>

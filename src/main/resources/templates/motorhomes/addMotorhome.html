@@ -13,6 +13,9 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br>
+    <h1>Tilføj Motorhome</h1>
+    <br>
 
     <a type="button" class="btn btn-primary" href="/models/addModels"
        style="padding-left: 100px;padding-right: 100px;padding-top: 6px;border-top-width: 1px;margin-top: 15px;border-bottom-width: 1px;margin-bottom: 15px;margin-left: 50px;">
@@ -49,7 +52,6 @@
 
     </table>
 
-
     <form action="#" th:action="@{/motorhomes/addMotorhome}" th:object="${motorHome}" method="POST">
         <div class="form-row">
             <div class="form-group col-md-5">
@@ -57,27 +59,34 @@
                 <input type="text" class="form-control" th:field="*{NumberPlate}">
             </div>
 
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-7">
                 <label>Model Nr</label>
                 <input type="text" class="form-control" th:field="*{Models_Model_number}" id="pick">
             </div>
-
-            <div class="form-group col-md-5">
-                <label> Total Km</label>
-                <input type="number" class="form-control" th:field="*{Total_Km}">
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-5">
-                    <label>Status</label>
-                    <input type="text" class="form-control" style="width: 151px" th:field="*{Status}">
-                </div>
-            </div>
         </div>
+        <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label> Total Km</label>
+                    <input type="number" class="form-control" th:field="*{Total_Km}">
+                </div>
+                <div class="form-group col-md-7">
+                    <label>Status</label>
+                    <select class="form-control" th:field="*{status}">
+                        <option th:value="Cleaning">Cleaning</option>
+                        <option th:value="Repair">Repair</option>
+                        <option th:value="CleanAndRepair">Clean and Repair</option>
+                        <option th:value="Ready">Ready</option>
+                        <option th:value="OutOfOrder">Ude af drift</option>
+                        <option th:value="Booked">Booked</option>
+                        <option th:value="TempBooked">Midlertidigt booked</option>
+                    </select>
+                </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Opret</button>
     </form>
 
-
+<br>
 </div>
 
 

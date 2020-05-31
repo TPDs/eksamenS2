@@ -85,6 +85,19 @@ public class BookingsController {
         return "/bookings/showBookings";
     }
 
+    @GetMapping("/bookings/deleteBooking")
+    public String getDeleteBooking(@RequestParam int id, Model model){
+        model.addAttribute("deleteBooking", BookingIDRep.BookingIdByInt(id));
+        return "/bookings/deleteBooking";
+
+    }
+
+    @PostMapping("/bookings/deleteBooking")
+    public String postDeleteBooking(BookingID bookingID){
+        BookingIDRep.deleteBooking(bookingID);
+        return "redirect:/";
+    }
+
 
     @GetMapping("/")
     public String index(Model model) {

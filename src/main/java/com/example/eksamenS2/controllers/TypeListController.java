@@ -27,10 +27,10 @@ private TypeListRepository TypeRep;
         TypeRep = new TypeListRepository();}
 
         @GetMapping("/motorhomes/showMotorhome")
-        public String GetShowMotorhome(Model model, @RequestParam int id){
-       // model.addAttribute("showMotorhome",TypeRep. // metodekaldet skal være her til metode der finder alle metoder til specifik type);
+        public String GetShowMotorhome(Model model, @RequestParam String Type){
+        model.addAttribute("showMotorhome",TypeRep.ModelsFromType(Type));
 
-            return "/motorhomes/ShowMotorhomes";
+            return "/motorhomes/showMotorhome";
         }
 
 

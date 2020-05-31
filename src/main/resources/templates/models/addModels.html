@@ -12,10 +12,11 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br>
     <h1 style="
-                margin-top: 5px;
-                margin-bottom: 12px;
+                margin-bottom: 6px;
         ">Opret model</h1>
+    <br>
     <form action="#" th:action="@{/models/addModels}" th:object="${models}" method="POST">
         <div class="form-row">
             <div class="form-group col-md-7">
@@ -33,43 +34,43 @@
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Model</label>
-            <input type="text" class="form-control" th:field="*{Model_number}">
+            <input type="text" class="form-control" th:field="*{Model_number}" style="margin-bottom: 20px;">
         </div>
-    </div>
+        </div>
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Type</label>
-            <input type="text" class="form-control" th:field="*{type}">
+            <input type="text" class="form-control" th:field="*{type}" style="margin-bottom: 20px;">
         </div>
         </div>
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Længde</label>
-            <input type="number" class="form-control" th:field="*{length}">
+            <input type="number" step="0.01" class="form-control" th:field="*{length}" style="margin-bottom: 20px;">
         </div>
         </div>
             <div class="form-row">
         <div class="form group col-md-7">
             <label>Km/l</label>
-            <input type="number" class="form-control" th:field="*{km_L}">
+            <input type="number" step="0.01" class="form-control" th:field="*{km_L}" style="margin-bottom: 20px;">
         </div>
         </div>
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Årgang</label>
-            <input type="number" class="form-control" th:field="*{year}">
+            <input type="number" class="form-control" th:field="*{year}" style="margin-bottom: 20px;">
         </div>
         </div>
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Motor</label>
-            <input type="text" class="form-control" th:field="*{engine}">
+            <input type="text" class="form-control" th:field="*{engine}" style="margin-bottom: 20px;">
         </div>
         </div>
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Geartype</label>
-            <select id="inputState" class="form-control" th:field="*{gearType}">
+            <select id="inputState" class="form-control" th:field="*{gearType}" style="margin-bottom: 20px;">
                 <option selected value="0">Automatgear</option>
                 <option value="1">Manuel</option>
             </select>
@@ -78,7 +79,7 @@
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Aircondition</label>
-            <select id="inputState" class="form-control" th:field="*{aircon}">
+            <select id="inputState" class="form-control" th:field="*{aircon}" style="margin-bottom: 20px;">
                 <option selected value="0">Ja</option>
                 <option value="1">Nej</option>
             </select>
@@ -87,20 +88,19 @@
         <div class="form-row">
         <div class="form group col-md-7">
             <label>Om model</label>
-            <textarea class="form-control" rows="6" th:field="*{about}"></textarea>
+            <textarea class="form-control" rows="6" th:field="*{about}" style="margin-bottom: 20px;"></textarea>
         </div>
         </div>
-        <div class="form-row">
-            <!--<a class="btn btn-primary" href="../motorhomes/chooseType">Fortryd</a>-->
-            <button type="button" class="btn btn-success">Godkend</button>
-
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <a href="/motorhomes/chooseType" class="btn btn-danger float-left" type="button">Fortryd</a>
+                <button type="submit" class="btn btn-success ml-auto">Button</button>
+            </div>
         </div>
-
     </form>
 
-
-
-
+<!--    float-right-->
 
 
 

@@ -12,14 +12,31 @@
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+    <br>
+    <p style="font-size: 175%; text-align: center;"  >Er du sikker på, at du vil slette Motorhomet?</p>
+    <br>
+    <p style="font-size: 140%;">
+        <b>Motorhome ID: </b> <td th:text="${deleteMotorhome.motorHomesID}"></td>
+    </p>
 
+    <p style="font-size: 140%;">
+        <b>Nummerplade: </b> <td th:text="${deleteMotorhome.numberPlate}"></td>
+    </p>
 
+    <p style="font-size: 140%;">
+        <b>Model: </b> <td th:text="${deleteMotorhome.models_Model_number}"></td>
+    </p>
 
-
-
-
-
-
+    <form th:action="@{/motorhomes/deleteMotorhome}" method="POST">
+        <div class="container-fluid">
+            <div class="row">
+                <a class="btn btn-danger float-left" href="/motorhomes/chooseType" type="button">Afkræft</a>
+                <button type="submit" class="btn btn-success ml-auto">Bekræft</button>
+                <input type="hidden" th:field="${deleteMotorhome.motorHomesID}">
+            </div>
+        </div>
+    </form>
+    <br>
 
 </div>
 <div th:insert="/templateFooter"></div>

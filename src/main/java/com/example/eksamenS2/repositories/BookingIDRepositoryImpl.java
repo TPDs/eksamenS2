@@ -153,5 +153,24 @@ public class BookingIDRepositoryImpl {
         return MotorHomeid;
     }
 
+    public boolean deleteBooking(BookingID bookingID) {
+
+        String sql = "DELETE FROM bookingid WHERE BookingID=?";
+
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, bookingID.getBookingID());
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("En booking er herved blevet slettet! Hahah!");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
+    }
+
 
 }

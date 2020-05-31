@@ -1,5 +1,6 @@
 package com.example.eksamenS2.repositories;
 
+import com.example.eksamenS2.models.BookingID;
 import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
@@ -64,6 +65,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         return MotorHomeToReturn;
     }
 
+
     @Override
     public List<MotorHome> readAll() {
         List<MotorHome> AllMotorHome = new ArrayList<>();
@@ -84,7 +86,6 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return AllMotorHome;
     }
 
@@ -109,9 +110,23 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
 
         return false;
     }
-
     @Override
-    public boolean delete(int id) {
+    public boolean delete(MotorHome motorhome) {
+
+        String sql = "DELETE FROM motorhomes WHERE MotorHomesID=?";
+
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, motorhome.getMotorHomesID());
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Et motorhome er herved blevet slettet");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return false;
     }
 

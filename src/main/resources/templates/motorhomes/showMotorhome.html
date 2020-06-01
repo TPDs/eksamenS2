@@ -39,7 +39,7 @@
 <!--             Denne knap skal gå videre til booking " som den gør" men med korrekt parameter er ikke sikker på mh id er den korrekte   -->
             <td> <a class="btn btn-primary" th:href="@{/bookings/addBooking(Type=${Details.getMhID()})}">Book</a>
 <!--             Denne knap skal slette den valgte type/motorhome/noget-->
-<!--            <td> <a class="btn btn-primary" th:href="@{/bookings/addBooking(Type=${Details.getMhID()})}">Slet</a>-->
+            <td> <a class="btn btn-primary" th:href="@{/motorhomes/deleteMotorhome(Type=${Details.getMhID()})}">Slet</a>
                 <!-- Knappen skal sende enten et objekt videre eller et motorhome id som kan bruges-->
                 <!-- Til at oprette en bookings addBooking som bruger    "snak med de andre om hvad den skal bruge til oprettelse af booking       -->
 

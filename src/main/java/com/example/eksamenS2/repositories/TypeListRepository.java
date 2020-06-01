@@ -28,7 +28,7 @@ public class TypeListRepository {
                 TypesByModel tempModel = new TypesByModel();
 
 
-                tempModel.setMhID(rs.getString(1));
+                tempModel.setMhID(rs.getInt(1));
                 tempModel.setModel(rs.getString(2));
                 tempModel.setNumberPlate(rs.getString(3));
                 tempModel.setStatus(rs.getString(4));

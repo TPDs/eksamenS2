@@ -3,8 +3,8 @@ package com.example.eksamenS2.models;
 public class TypesByModel {
 
    private String typer;
-   private String status, MhID,Model,TotalKm,NumberPlate;
-   private int Ready, Cleaning, Repair, CleanAndRepair, Booked, OutOfOrder, TempBooked;
+   private String status,Model,TotalKm,NumberPlate;
+   private int Ready, Cleaning, Repair, CleanAndRepair, Booked, OutOfOrder, TempBooked, MhID;
 
     public TypesByModel(String typer, String status) {
         this.typer = typer;
@@ -28,7 +28,7 @@ public class TypesByModel {
     }
 
     // con lavet til joined table Detail objekt
-    public TypesByModel(String typer, String status, String MhID, String model, String totalKm,String numberPlate) {
+    public TypesByModel(String typer, String status, int MhID, String model, String totalKm,String numberPlate) {
         this.typer = typer;
         this.status = status;
         this.MhID = MhID;
@@ -45,11 +45,11 @@ public class TypesByModel {
         NumberPlate = numberPlate;
     }
 
-    public String getMhID() {
+    public int getMhID() {
         return MhID;
     }
 
-    public void setMhID(String mhID) {
+    public void setMhID(int mhID) {
         this.MhID = mhID;
     }
 

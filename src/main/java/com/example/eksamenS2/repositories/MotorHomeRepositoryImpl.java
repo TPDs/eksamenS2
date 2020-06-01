@@ -1,6 +1,5 @@
 package com.example.eksamenS2.repositories;
 
-import com.example.eksamenS2.models.BookingID;
 import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
@@ -93,18 +92,18 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
     public boolean update(MotorHome motorHome) {
         String sql = "UPDATE motorhomes SET NumberPlate=?, Models_Model_number=?, Total_Km=?, Status=? WHERE MotorHomesID=" + motorHome.getMotorHomesID();
 
-        try{
+        try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, motorHome.getNumberPlate());
             statement.setString(2, motorHome.getModels_Model_number());
-            statement.setInt(3,motorHome.getTotal_Km());
+            statement.setInt(3, motorHome.getTotal_Km());
             statement.setString(4, motorHome.getStatus());
 
             int rowsUpdated = statement.executeUpdate();
-            if(rowsUpdated > 0){
+            if (rowsUpdated > 0) {
                 System.out.println("An existing motorhome was updated successfully!");
             }
-        } catch(SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
@@ -137,24 +136,45 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
 
     //Lavet af Christian
 
-    public boolean updateStatus(MotorHome motorHome){
+    public boolean updateStatus(MotorHome motorHome) {
         String sql = "UPDATE motorhomes SET Status=? WHERE MotorHomesID=" + motorHome.getMotorHomesID();
 
-        try{
+        try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, motorHome.getStatus());
 
             int rowsUpdated = statement.executeUpdate();
-            if(rowsUpdated > 0){
+            if (rowsUpdated > 0) {
                 System.out.println("An existing motorhome was updated successfully!");
             }
 
-        } catch (SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.printf("Pernis");
         }
         return false;
     }
+
+
+    public int motorhomePriceByMhId(int id) {
+        int price = 0;
+        try {
+            String sql = "SELECT Price FROM models INNER Join motorhomes ON Model_number = Models_Model_number WHERE MotorHomesID =" + id;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                price = (rs.getInt(1));
+                System.out.println("price added");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+
+        }
+        return price;
+    }
+
+
 }
 
 

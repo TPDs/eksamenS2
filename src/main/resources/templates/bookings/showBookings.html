@@ -50,7 +50,8 @@
             <td th:text="${showCurrentBooking.getEndDate()}"></td>
             <td th:text="${showCurrentBooking.getCustomerID()}"></td>
             <td th:text="${showCurrentBooking.getStaffID()}"></td>
-            <td><a class="btn btn-success" th:href="@{/bookings/EndBooking(id=${showCurrentBooking.getBookingID()})}">Afslut</a>
+            <td><a class="btn btn-success"
+                   th:href="@{/bookings/confirmBooking(id=${showCurrentBooking.getBookingID()})}">Afslut</a>
             </td>
             <td><a class="btn btn-warning" th:href="@{/bookings/EditBooking(id=${showCurrentBooking.getBookingID()})}">Edit</a>
             </td>

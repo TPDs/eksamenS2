@@ -3,72 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Nordic Motorhome Rental</title>
+    <title></title>
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
-
-
-<!--Lavet af Michael-->
-
-
 <body>
 <div th:insert="/template"></div>
 <div class="container">
+
+
     <br><br>
     <p>
         <b> BookingID: </b>
-    <td th:text="*{BookingID.getBookingID()}"></td>
+    <td th:text="*{id}"></td>
     </p>
 
     <p>
-        <b> Fra: </b>
-    <td th:text="*{BookingID.getFromDate()}"></td>
-    <br> <b> Til: </b>
-    <td th:text="*{BookingID.getEndDate()}"></td>
+        <b> MotorHome Model: </b>
+    <td th:text="*{BookingInfo.getModels_Model_number()}"></td>
     </p>
 
     <p>
-        <b> MotorHomeID: </b>
-    <td th:text="*{motorhome.motorHomesID}"></td>
+        <b> MotorHome ID: </b>
+    <td th:text="*{BookingInfo.getMotorHomes_MotorHomesID()}"></td>
     </p>
+
     <p>
-        <b> MotorHome Nummerplade: </b>
-    <td th:text="*{motorhome.numberPlate}"></td>
+        <b> Start dato: </b>
+    <td th:text="*{BookingInfo.getFromdate()}"></td>
     </p>
+
+    <p>
+        <b> Slut dato: </b>
+    <td th:text="*{BookingInfo.getEndDate()}"></td>
+    </p>
+
+    <p>
+        <b> Antal dage: </b>
+    <td th:text="*{days}"></td>
+    </p>
+
 
     <p>
         <b> MotorHome Pris: </b>
-    <td th:text="*{motorhomePrice}"></td>
+    <td th:text="*{BookingInfo.getPrice()}"></td>
     </p>
 
+    <p>
+        <b> Sæson faktor: </b>
+    <td th:text="*{Season}"></td>
+    </p>
 
-    <a class="btn btn-success" th:href="@{/bookings/EndBooking(id=${BookingID.getBookingID()})}">Afslut booking</a>
-    <a class="btn btn-warning" th:href="@{/bookings/EditBooking(id=${BookingID.getBookingID()})}">Rediger</a>
-    <a class="btn btn-danger" th:href="@{/bookings/CancelBooking(id=${BookingID.getBookingID()})}">Fortryd booking</a>
+    <p>
+        <b> Sæson Pris: </b>
+    <td th:text="*{Season * BookingInfo.getPrice()}"></td>
+    </p>
+
+    <p>
+        <b> Pris for afbookning: </b>
+    <td th:text="*{cancelPrice}"></td>
+    </p>
 
 
     <br><br>
     <table class="table table-striped">
         <tr>
-            <th>Tilbehør</th>
-            <th>AccItems</th>
-            <th>Antal</th>
-            <th>Pris</th>
+            <th>Fornavn</th>
+            <th>EfterNavn</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Staff-id</th>
         </tr>
-        <tr th:each="AccItems: ${AccList}">
-            <td th:text="*{AccItems.name}"></td>
-            <td th:text="*{AccItems.accItemsID}"></td>
-            <td th:text="*{AccItems.amount}"></td>
-            <td th:text="*{AccItems.price}"></td>
+        <tr>
+            <td th:text="*{BookingInfo.getFirstName()}"> s/td>
+            <td th:text="*{BookingInfo.getLastName()}"></td>
+            <td th:text="*{BookingInfo.getEmail()}"></td>
+            <td th:text="*{BookingInfo.getPhone()}"></td>
+            <td th:text="*{BookingInfo.getUsers_UserID()}"></td>
         </tr>
     </table>
 
-
 </div>
+
+<a class="btn btn-success" th:href="@{/bookings/EndBooking(id=${BookingID.getBookingID()})}">Afslut booking</a>
+
+
 <div th:insert="/templateFooter"></div>
 
 <!-- Optional JavaScript -->

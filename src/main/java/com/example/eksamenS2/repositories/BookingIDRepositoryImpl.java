@@ -1,6 +1,7 @@
 package com.example.eksamenS2.repositories;
 
 import com.example.eksamenS2.models.BookingID;
+import com.example.eksamenS2.models.CancelBooking;
 import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.models.MotorhomeBooking;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
@@ -176,6 +177,45 @@ public class BookingIDRepositoryImpl {
         }
 
         return false;
+    }
+
+
+    public CancelBooking cencelBooking(int id) {
+        CancelBooking cancelBooking = new CancelBooking();
+
+        String sql = "SELECT FromDate,EndDate,CustomerID,FirstName,LastName, Users_UserID,Email,Phone, MotorHomes_MotorHomesID,Models_Model_number,Price " +
+                "FROM bookingid " +
+                "INNER JOIN customer USING (CustomerID) " +
+                "INNER Join motorhome_booking on Booking_Id_BookingID=BookingID " +
+                "INNER Join motorhomes on MotorHomes_MotorHomesID= MotorHomesID " +
+                "INNER Join models on Models_Model_number= Model_number " +
+                "WHERE BookingID='" + id + "'";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                cancelBooking.setFromdate(rs.getDate(1));
+                cancelBooking.setEndDate(rs.getDate(2));
+                cancelBooking.setCustomerID(rs.getInt(3));
+                cancelBooking.setFirstName(rs.getString(4));
+                cancelBooking.setLastName(rs.getString(5));
+                cancelBooking.setUsers_UserID(rs.getString(6));
+                cancelBooking.setEmail(rs.getString(7));
+                cancelBooking.setPhone(rs.getString(8));
+                cancelBooking.setMotorHomes_MotorHomesID(rs.getInt(9));
+                cancelBooking.setModels_Model_number(rs.getString(10));
+                cancelBooking.setPrice(rs.getInt(11));
+
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        System.out.println(cancelBooking.getFirstName());
+        return cancelBooking;
     }
 
 

@@ -92,7 +92,7 @@ public class BookingsController {
 
     //Lavet af Christian
     @GetMapping("/bookings/deleteBooking")
-    public String getDeleteBooking(@RequestParam int id, Model model){
+    public String getDeleteBooking(@RequestParam int id, Model model) {
         model.addAttribute("deleteBooking", BookingIDRep.BookingIdByInt(id));
         return "/bookings/deleteBooking";
 
@@ -101,7 +101,7 @@ public class BookingsController {
 
     //Lavet af Christian
     @PostMapping("/bookings/deleteBooking")
-    public String postDeleteBooking(BookingID bookingID){
+    public String postDeleteBooking(BookingID bookingID) {
         BookingIDRep.deleteBooking(bookingID);
         return "redirect:/";
     }
@@ -183,13 +183,48 @@ public class BookingsController {
 //    }
 
 
-    @GetMapping("bookings/EndBooking")
+    @GetMapping("bookings/confirmBooking")
     public String EndedBooking(@RequestParam int id, Model model) {
         int ids = BookingIDRep.MotorhomeByBookingID(id);
+        model.addAttribute("motorhomePrice", Motorhomerep.motorhomePriceByMhId(id));
         model.addAttribute("AccList", AccItemsRep.readAllByBooking(id));
         model.addAttribute("motorhome", Motorhomerep.read(ids));
         model.addAttribute("BookingID", BookingIDRep.BookingIdByInt(id));
         return "bookings/confirmBooking";
+    }
+
+    @GetMapping("bookings/CancelBooking")
+    public String CancelBooking(@RequestParam int id, Model model) {
+        CancelBooking cancelInfo;
+        cancelInfo = BookingIDRep.cencelBooking(id);
+        double cancelInfoSeason = SeasonCheck(cancelInfo.getFromdate());
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        int days = daysBetween(cancelInfo.getFromdate(), date);
+        double cancelprice = 1.0;
+        if (days >= 50) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.2);
+            if (cancelprice < 200) {
+                cancelprice = 200;
+            }
+        } else if (days < 49 && days >= 15) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.5);
+        } else if (days >= 14) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.8);
+        } else if (days <= 1) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.95);
+        } else {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 1);
+        }
+
+        int totaldays = daysBetween(cancelInfo.getFromdate(), cancelInfo.getEndDate());
+        model.addAttribute("cancelPrice", cancelprice);
+        model.addAttribute("BookingInfo", cancelInfo);
+        model.addAttribute("id", id);
+        model.addAttribute("Season", cancelInfoSeason);
+        model.addAttribute("days", totaldays);
+
+        return "/bookings/CancelBooking";
     }
 
 
@@ -217,10 +252,12 @@ public class BookingsController {
         return (int) ((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
     }
 
+
     public double SeasonCheck(Date startdate) {
-        Double SeasonPrice = null;
+        double SeasonPrice = 1.1;
 
         // Disse Datoer burde kunne ændres over tiden, men de desværre er blevet hardcoded pga tidspress, Ville evt have lavet et sql table til dette og/eller en fucktion der retter år for hver season ..Michael
+
         Date LowA = new Date(2020 - 1 - 15);
         Date LowB = new Date(2020 - 5 - 15);
 
@@ -230,15 +267,13 @@ public class BookingsController {
         Date MidA = new Date(2020 - 10 - 16);
         Date MidB = new Date(2021 - 1 - 14);
 
-
-        if (LowA.compareTo(startdate) * startdate.compareTo(LowB) > 0) {
+        if (!(startdate.before(LowA)) && !(startdate.after(LowB))) {
             SeasonPrice = 1.0;
-        } else if (MidA.compareTo(startdate) * startdate.compareTo(MidB) > 0) {
-            SeasonPrice = 1.3;
-        } else if (HighA.compareTo(startdate) * startdate.compareTo(HighB) > 0) {
+        } else if (!(startdate.before(HighA)) && !(startdate.before(HighB))) {
             SeasonPrice = 1.6;
+        } else if (!(startdate.before(MidA)) && !(startdate.before(MidB))) {
+            SeasonPrice = 1.3;
         }
-
 
         return SeasonPrice;
     }

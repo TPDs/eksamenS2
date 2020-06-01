@@ -2,17 +2,16 @@ package com.example.eksamenS2.models;
 
 public class TypesByModel {
 
-   private String typer;
-   private String status,Model,TotalKm,NumberPlate;
-   private int Ready, Cleaning, Repair, CleanAndRepair, Booked, OutOfOrder, TempBooked, MhID;
+    private String typer;
+    private String status, Model, TotalKm, NumberPlate;
+    private int Ready, Cleaning, Repair, CleanAndRepair, Booked, OutOfOrder, TempBooked, MhID, Price;
 
     public TypesByModel(String typer, String status) {
         this.typer = typer;
         this.status = status;
     }
 
-    public TypesByModel()
-    {
+    public TypesByModel() {
         status = "";
     }
 
@@ -28,13 +27,22 @@ public class TypesByModel {
     }
 
     // con lavet til joined table Detail objekt
-    public TypesByModel(String typer, String status, int MhID, String model, String totalKm,String numberPlate) {
+    public TypesByModel(String typer, String status, int MhID, String model, String totalKm, String numberPlate, int price) {
         this.typer = typer;
         this.status = status;
         this.MhID = MhID;
         Model = model;
         TotalKm = totalKm;
         NumberPlate = numberPlate;
+        Price = price;
+    }
+
+    public int getPrice() {
+        return Price;
+    }
+
+    public void setPrice(int price) {
+        Price = price;
     }
 
     public String getNumberPlate() {

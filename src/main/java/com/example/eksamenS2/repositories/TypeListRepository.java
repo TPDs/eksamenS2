@@ -1,11 +1,12 @@
 package com.example.eksamenS2.repositories;
 import com.example.eksamenS2.models.Models;
-import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.models.TypesByModel;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
-import org.springframework.ui.Model;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,22 +20,19 @@ public class TypeListRepository {
         PreparedStatement ps = null;
         List<TypesByModel> MotorHomeModelDetail = new ArrayList<>();
         try {
-            ps = conn.prepareStatement("SELECT mh.MotorHomesID , mh.Models_Model_number, NumberPlate, mh.Status ,Total_Km FROM motorhomes mh\n" +
-                    "INNER JOIN models m WHERE m.Type='"+Type+"' AND mh.Models_Model_Number = m.Model_number ;");
+            ps = conn.prepareStatement("SELECT mh.MotorHomesID, mh.Models_Model_number, NumberPlate, mh.Status ,Total_Km, mh.Price FROM motorhomes mh\n" +
+                    "INNER JOIN models m WHERE m.Type='" + Type + "' AND mh.Models_Model_Number = m.Model_number ;");
 
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
                 TypesByModel tempModel = new TypesByModel();
-
-
                 tempModel.setMhID(rs.getInt(1));
                 tempModel.setModel(rs.getString(2));
                 tempModel.setNumberPlate(rs.getString(3));
                 tempModel.setStatus(rs.getString(4));
                 tempModel.setTotalKm(rs.getString(5));
-
-
+                tempModel.setPrice(rs.getInt(6));
 
             MotorHomeModelDetail.add(tempModel);
 

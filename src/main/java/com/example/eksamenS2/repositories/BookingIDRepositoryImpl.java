@@ -67,6 +67,8 @@ public class BookingIDRepositoryImpl {
         return AllMotorHomesByModel;
     }
 
+    //Lavet af Christian
+
     public List<BookingID> showCurrentBookings() {
         List<BookingID> AllBookingsBK = new ArrayList<>();
         try {
@@ -90,6 +92,8 @@ public class BookingIDRepositoryImpl {
         return AllBookingsBK;
     }
 
+
+    //Lavet af Christian
 
     public List<MotorhomeBooking> AllBookingsbyMotorHome(int motorHome) {
         List<MotorhomeBooking> AllBookingsByMotorhome = new ArrayList<>();
@@ -152,6 +156,8 @@ public class BookingIDRepositoryImpl {
         System.out.println("test");
         return MotorHomeid;
     }
+
+    //Lavet af Christian
 
     public boolean deleteBooking(BookingID bookingID) {
 

@@ -89,7 +89,7 @@ public class CustomerRepositoryImpl {
 
 
     public boolean update(Customer customer) {
-        String sql = "UPDATE customer SET FirstName=?, LastName=?, Email=?, Phone=?, DriverLicens=? WHERE CustomerID=,"+ customer.getID();
+        String sql = "UPDATE customer SET FirstName=?, LastName=?, Email=?, Phone=?, DriverLicens=? WHERE CustomerID="+ customer.getID();
 
         try {
             PreparedStatement statement = conn.prepareStatement(sql);

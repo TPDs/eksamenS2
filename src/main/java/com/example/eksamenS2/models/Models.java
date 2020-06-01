@@ -5,7 +5,7 @@ public class Models {
     private String Brand, Type, Engine, About, Model_number;
     private double Length;
     private boolean GearType, Aircon;
-    private int km_L, year;
+    private int km_L, year, price;
 
     public Models(String type, String model_number) {
         Type = type;
@@ -39,6 +39,20 @@ public class Models {
         Aircon = aircon;
         this.km_L = km_L;
         this.year = year;
+    }
+
+    public Models(String brand, String type, String engine, String about, String model_number, double length, boolean gearType, boolean aircon, int km_L, int year, int price) {
+        Brand = brand;
+        Type = type;
+        Engine = engine;
+        About = about;
+        Model_number = model_number;
+        Length = length;
+        GearType = gearType;
+        Aircon = aircon;
+        this.km_L = km_L;
+        this.year = year;
+        this.price = price;
     }
 
     public String getModel_number() { return Model_number; }
@@ -117,6 +131,14 @@ public class Models {
         this.year = year;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Models{" +
@@ -130,6 +152,7 @@ public class Models {
                 ", Aircon=" + Aircon +
                 ", km_L=" + km_L +
                 ", year=" + year +
+                ", price" + price +
                 '}';
     }
 }

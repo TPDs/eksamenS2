@@ -14,12 +14,16 @@ public class MotorHomeController {
     private MotorHomeRepositoryImpl motorhomeRep;
     public MotorHomeController(){motorhomeRep = new MotorHomeRepositoryImpl();}
 
+
+    //Lavet af Christian
     @GetMapping("/motorhomes/detailMotorhome")
     public String getDetailMotorhome(@RequestParam int id, Model model, MotorHome motorHome){
         model.addAttribute("detailMotorhome", motorhomeRep.read(id));
         return "/motorhomes/detailMotorhome";
     }
 
+
+    //Lavet af Christian
     @PostMapping("/motorhomes/detailMotorhome")
     public String updateMotorhomeStatus(MotorHome detailMotorhome){
         motorhomeRep.updateStatus(detailMotorhome);
@@ -33,6 +37,8 @@ public class MotorHomeController {
         return "redirect:/";
     }
 
+
+    //Lavet af Christian
     @GetMapping("/motorhomes/updateMotorhome")
     public String getUpdateMotorhome(@RequestParam int id, Model model){
         model.addAttribute("updateMotorHome", motorhomeRep.read(id));
@@ -46,11 +52,17 @@ public class MotorHomeController {
         return "redirect:/";
     }
 
+
+    //Lavet af Christian
+
     @GetMapping("/motorhomes/deleteMotorhome")
     public String getDeleteMotorhome(@RequestParam int id, Model model){
         model.addAttribute("deleteMotorhome", motorhomeRep.read(id));
         return "/motorhomes/deleteMotorhome";
     }
+
+
+    //Lavet af Christian
 
     @PostMapping("/motorhomes/deleteMotorhome")
     public String postDeleteMotorhome(MotorHome motorhome){

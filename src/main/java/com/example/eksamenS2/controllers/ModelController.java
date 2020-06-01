@@ -37,18 +37,23 @@ public class ModelController {
         return "/motorhomes/addMotorhome";
     }
 
+
+    //Lavet af Christian
     @GetMapping("/models/detailModels")
     public String getDetailModel(@RequestParam String id, Model model){
         model.addAttribute("detailModel", modelRepository.read(id));
         return "/models/detailModels";
     }
 
+
+    //Lavet af Christian
     @GetMapping("/models/updateModels")
     public String getUpdateModel(@RequestParam String id, Model model){
         model.addAttribute("updateModel", modelRepository.read(id));
         return "/models/updateModels";
     }
 
+    //Lavet af Christian
     @PostMapping("/models/updateModels")
     public String postUpdateModel(Models models){
         modelRepository.update(models);

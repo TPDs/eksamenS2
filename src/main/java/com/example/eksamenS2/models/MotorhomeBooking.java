@@ -2,6 +2,9 @@ package com.example.eksamenS2.models;
 
 import java.util.Date;
 
+
+//Lavet af Christian
+
 public class MotorhomeBooking {
 
     private int motorhomeID, bookingID;

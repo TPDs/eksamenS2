@@ -10,6 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//Lavet af Daniel
+
+
+
 public class TypeListRepository {
     private Connection conn;
     public TypeListRepository() {this.conn = DatabaseConnectionManager.getDatabaseConnection(); }
@@ -20,7 +25,7 @@ public class TypeListRepository {
         PreparedStatement ps = null;
         List<TypesByModel> MotorHomeModelDetail = new ArrayList<>();
         try {
-            ps = conn.prepareStatement("SELECT mh.MotorHomesID, mh.Models_Model_number, NumberPlate, mh.Status ,Total_Km, mh.Price FROM motorhomes mh\n" +
+            ps = conn.prepareStatement("SELECT mh.MotorHomesID, mh.Models_Model_number, NumberPlate, mh.Status ,Total_Km, m.Price FROM motorhomes mh\n" +
                     "INNER JOIN models m WHERE m.Type='" + Type + "' AND mh.Models_Model_Number = m.Model_number ;");
 
             ResultSet rs = ps.executeQuery();

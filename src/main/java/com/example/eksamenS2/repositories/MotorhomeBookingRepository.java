@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//Lavet af Christian
+
 public class MotorhomeBookingRepository {
     private Connection conn;
     public MotorhomeBookingRepository() {this.conn= DatabaseConnectionManager.getDatabaseConnection(); }

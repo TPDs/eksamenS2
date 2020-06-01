@@ -40,11 +40,12 @@ public class BookingsController {
     }
 
     @GetMapping("/bookings/addBooking")
-    public String createBookings(BookingID bookingID) {
-
+    public String createBookings(Model model, BookingID bookingID) {
+        //model.addAttribute("booking", BookingIDRep.showCurrentBookings());
         return "bookings/addBooking";
     }
 
+    //Lavet af Christian
     @GetMapping("/bookings/BookMotorHome")
     public String bookMotorHome(@RequestParam MotorHome motorHome, Model model) {
         model.addAttribute("MotorHomeList", BookingIDRep.readAllbyModel(motorHome.getModels_Model_number()));
@@ -52,12 +53,13 @@ public class BookingsController {
     }
 
 
+    //Lavet af Christian
     @PostMapping("/bookings/addBooking")
     public String addBookings(Model model, BookingID bookingID) {
         MotorhomeBookingRep = new MotorhomeBookingRepository();
         model.addAttribute("ModelBooking", BookingIDRep.create(bookingID));
         model.addAttribute("SingleMotorHomeBookings", MotorhomeBookingRep.showCurrentBookings());
-        return "bookings/addBooking";
+        return "redirect:/";
     }
 
 
@@ -87,6 +89,8 @@ public class BookingsController {
         return "/bookings/showBookings";
     }
 
+
+    //Lavet af Christian
     @GetMapping("/bookings/deleteBooking")
     public String getDeleteBooking(@RequestParam int id, Model model){
         model.addAttribute("deleteBooking", BookingIDRep.BookingIdByInt(id));
@@ -94,6 +98,8 @@ public class BookingsController {
 
     }
 
+
+    //Lavet af Christian
     @PostMapping("/bookings/deleteBooking")
     public String postDeleteBooking(BookingID bookingID){
         BookingIDRep.deleteBooking(bookingID);

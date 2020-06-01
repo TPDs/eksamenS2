@@ -110,6 +110,10 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
 
         return false;
     }
+
+
+    //Lavet af Christian
+
     @Override
     public boolean delete(MotorHome motorhome) {
 
@@ -130,6 +134,8 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         return false;
     }
 
+
+    //Lavet af Christian
 
     public boolean updateStatus(MotorHome motorHome){
         String sql = "UPDATE motorhomes SET Status=? WHERE MotorHomesID=" + motorHome.getMotorHomesID();

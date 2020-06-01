@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
+
+
+<!--Lavet af Daniel-->
+
+
 <body>
 <div th:insert="/template"></div>
 <div class="container">
@@ -26,6 +31,7 @@
             <th scope="col">Nummerplade</th>
             <th scope="col">Status</th>
             <th scope="col">Total Km</th>
+            <th scope="col">Pris</th>
             <th></th>
             <th></th>
             <th></th>
@@ -38,6 +44,7 @@
             <td th:text="${Details.getNumberPlate()}"> </td>
             <td th:text="${Details.getStatus()}"> </td>
             <td th:text="${Details.getTotalKm()}"> </td>
+            <td th:text="${Details.getPrice()}"> </td>
 
               <!-- Denne knap skal vise Christians super detail side med ukendt videresendt parameter           -->
             <td><a class="btn btn-warning" th:href="@{/motorhomes/detailMotorhome(id=${Details.getMhID()})}">Detaljer</a>

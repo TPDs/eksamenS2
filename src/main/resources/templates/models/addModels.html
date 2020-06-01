@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+
+    <!--Lavet af Christian-->
+
+
+
 </head>
 <body>
 <div th:insert="/template"></div>
@@ -84,6 +89,12 @@
                 <option value="1">Nej</option>
             </select>
         </div>
+        </div>
+        <div class="form-row">
+            <div class="form group col-md-7">
+                <label>Pris</label>
+                <input type="number" class="form-control" th:field="*{price}" style="margin-bottom: 20px;">
+            </div>
         </div>
         <div class="form-row">
         <div class="form group col-md-7">

@@ -33,7 +33,7 @@ public String saveIteratedModelNr(int indexPos)
 }
 
     public boolean create(Models model){
-        String sql = "INSERT INTO models(Model_number, Brand, Type, Engine, About, Length, GearType, Aircon, Km_L, year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO models(Model_number, Brand, Type, Engine, About, Length, GearType, Aircon, Km_L, year, Price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -49,6 +49,7 @@ public String saveIteratedModelNr(int indexPos)
             ps.setString(4,model.getEngine());
             ps.setBoolean(8, model.isAircon());
             ps.setString(5,model.getAbout());
+            ps.setInt(11,model.getPrice());
 
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
@@ -67,7 +68,7 @@ public String saveIteratedModelNr(int indexPos)
     public Models read(String Model_number){
         Models modelToReturn = new Models();
         try {
-            PreparedStatement getSingleModel = conn.prepareStatement("SELECT * FROM models WHERE Model_number=" + Model_number);
+            PreparedStatement getSingleModel = conn.prepareStatement("SELECT * FROM models WHERE Model_number='" + Model_number+"'");
             ResultSet rs = getSingleModel.executeQuery();
             while(rs.next()){
                 modelToReturn.setModel_number(rs.getString(1));
@@ -80,6 +81,7 @@ public String saveIteratedModelNr(int indexPos)
                 modelToReturn.setEngine(rs.getString(8));
                 modelToReturn.setAircon(rs.getBoolean(9));
                 modelToReturn.setAbout(rs.getString(10));
+                modelToReturn.setPrice(rs.getInt(11));
 
             }
         } catch (SQLException e) {
@@ -107,6 +109,7 @@ public String saveIteratedModelNr(int indexPos)
                 tempModel.setEngine(rs.getString(8));
                 tempModel.setAircon(rs.getBoolean(9));
                 tempModel.setAbout(rs.getString(10));
+                tempModel.setPrice(rs.getInt(11));
                 allModels.add(tempModel);
             }
 
@@ -120,7 +123,7 @@ public String saveIteratedModelNr(int indexPos)
 
 
     public boolean update(Models model) {
-        String sql = "UPDATE models SET Model_number=?, Brand=?, Type=?, Length=?, Km_L=?, Year=?, GearType=?, Engine=?, Aircon=?, About=? WHERE Model_number=" + model.getModel_number();
+        String sql = "UPDATE models SET Model_number=?, Brand=?, Type=?, Length=?, Km_L=?, Year=?, GearType=?, Engine=?, Aircon=?, About=?, Price=? WHERE Model_number='" + model.getModel_number()+"'";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -135,6 +138,7 @@ public String saveIteratedModelNr(int indexPos)
             ps.setString(8,model.getEngine());
             ps.setBoolean(9,model.isAircon());
             ps.setString(10,model.getAbout());
+            ps.setInt(11,model.getPrice());
 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {

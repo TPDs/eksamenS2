@@ -201,7 +201,7 @@ public class BookingsController {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         int days = daysBetween(cancelInfo.getFromdate(), date);
-        double cancelprice = 1.0;
+        double cancelprice;
         if (days >= 50) {
             cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.2);
             if (cancelprice < 200) {
@@ -227,6 +227,50 @@ public class BookingsController {
         return "/bookings/CancelBooking";
     }
 
+    @GetMapping("bookings/CancelBookingen")
+    public String CompleteCancelBooking(@RequestParam int id, Model model) {
+        CancelBooking cancelInfo;
+        cancelInfo = BookingIDRep.cencelBooking(id);
+        double cancelInfoSeason = SeasonCheck(cancelInfo.getFromdate());
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        int days = daysBetween(cancelInfo.getFromdate(), date);
+        double cancelprice;
+        if (days >= 50) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.2);
+            if (cancelprice < 200) {
+                cancelprice = 200;
+            }
+        } else if (days < 49 && days >= 15) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.5);
+        } else if (days >= 14) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.8);
+        } else if (days <= 1) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.95);
+        } else {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 1);
+        }
+        String SeasonByEnum = "Low";
+        if (cancelInfoSeason == 1.6) {
+            SeasonByEnum = "Peak";
+        } else if (cancelInfoSeason == 1.3) {
+            SeasonByEnum = "Middle";
+        }
+
+        int totaldays = daysBetween(cancelInfo.getFromdate(), cancelInfo.getEndDate());
+        model.addAttribute("cancelPrice", cancelprice);
+        model.addAttribute("BookingInfo", cancelInfo);
+        model.addAttribute("id", id);
+        model.addAttribute("Season", cancelInfoSeason);
+        model.addAttribute("days", totaldays);
+        int totalKM = Motorhomerep.read(id).getTotal_Km();
+        CompletedBookings completedBookings = new CompletedBookings(totalKM, 100, 0, days, totalKM, id, cancelInfo.getMotorHomes_MotorHomesID(), cancelprice, cancelInfo.getFromdate(), cancelInfo.getEndDate(), SeasonByEnum);
+        Motorhomerep.BookingToCompletedBooking(completedBookings);
+        System.out.println("In rick and Morty E10, someone dies!");
+
+        return "/index";
+    }
+
 
     @PostMapping("bookings/EndBooking")
     public String endbooking(EndBooking endBooking, MotorHome motorHome, BookingID bookingID, Model model) {
@@ -234,11 +278,11 @@ public class BookingsController {
         int EndGas = 100 - endBooking.getEndgas();
         int PickUpKm = endBooking.getPickUpKm();
         int MhId = motorHome.getMotorHomesID();
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Calendar cal1 = new GregorianCalendar();
         Calendar cal2 = new GregorianCalendar();
         cal1.setTime(bookingID.getFromDate());
         cal2.setTime(bookingID.getEndDate());
+
         int days = daysBetween(bookingID.getFromDate(), bookingID.getEndDate());
         int KmPerDay = Total_km / days;
         double SeasonPrice = SeasonCheck(bookingID.getFromDate());

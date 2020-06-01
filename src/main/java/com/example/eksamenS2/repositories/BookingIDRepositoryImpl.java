@@ -214,7 +214,7 @@ public class BookingIDRepositoryImpl {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        System.out.println(cancelBooking.getFirstName());
+
         return cancelBooking;
     }
 

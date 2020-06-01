@@ -1,5 +1,6 @@
 package com.example.eksamenS2.repositories;
 
+import com.example.eksamenS2.models.CompletedBookings;
 import com.example.eksamenS2.models.MotorHome;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
@@ -172,6 +173,36 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
 
         }
         return price;
+    }
+
+
+    public boolean BookingToCompletedBooking(CompletedBookings completedBookings) {
+        // MotorHome motorHomeToCreate = new MotorHome();
+        String sql = "INSERT INTO completed_motorhome_booking(" +
+                "Booking_Id_BookingID, MotorHomes_MotorHomesID, PickupDropoffKm, GasStatus,Season,Start_Km,End_Km,MotorHome_Price)" +
+                " VALUES (?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement Booking = conn.prepareStatement(sql);
+            Booking.setInt(1, completedBookings.getBookingID());
+            Booking.setInt(2, completedBookings.getMhId());
+            Booking.setInt(3, completedBookings.getPickUpkm());
+            Booking.setInt(4, completedBookings.getGasStatus());
+            Booking.setString(5, completedBookings.getSeason());
+            Booking.setInt(6, completedBookings.getStart_Km());
+            Booking.setInt(7, completedBookings.getEnd_Km());
+            Booking.setDouble(8, completedBookings.getMotorHomeprice());
+            int rowsInserted = Booking.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Successfully!");
+            }
+
+            return true;
+        } catch (
+                SQLException s) {
+            s.printStackTrace();
+            System.out.println("Fejlet");
+        }
+        return false;
     }
 
 

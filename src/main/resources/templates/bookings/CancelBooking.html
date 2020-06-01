@@ -85,10 +85,8 @@
             <td th:text="*{BookingInfo.getUsers_UserID()}"></td>
         </tr>
     </table>
-
+    <a class="btn btn-danger" th:href="@{/bookings/CancelBookingen(id=${id})}">Afslut booking</a>
 </div>
-
-<a class="btn btn-success" th:href="@{/bookings/EndBooking(id=${BookingID.getBookingID()})}">Afslut booking</a>
 
 
 <div th:insert="/templateFooter"></div>

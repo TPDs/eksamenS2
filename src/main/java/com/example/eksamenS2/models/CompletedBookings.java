@@ -2,25 +2,51 @@ package com.example.eksamenS2.models;
 
 import java.util.Date;
 
+
+enum Season {
+    Peak, Middle, Low
+
+}
+
+
 public class CompletedBookings {
 
 
-    private int Total_km, EndGas, PickUpkm, days, Kmperday, BookingID, MhId;
-    private double SeasonPrice;
+    private int Start_Km, GasStatus, PickUpkm, days, End_Km, BookingID, MhId;
+    private double MotorHomeprice;
     private Date FromDate, EndDate;
+    private Season season;
 
-    public CompletedBookings(int total_km, int endGas, int pickUpkm, int days, int kmperday, int bookingID, int MhId, double seasonPrice, Date fromDate, Date endDate) {
-        Total_km = total_km;
-        EndGas = endGas;
+    public CompletedBookings() {
+    }
+
+    public CompletedBookings(int startKm, int gasStatus, int pickUpkm, int days, int end_Km, int bookingID, int mhId, double motorHomeprice, Date fromDate, Date endDate) {
+        Start_Km = startKm;
+        GasStatus = gasStatus;
         PickUpkm = pickUpkm;
         this.days = days;
-        Kmperday = kmperday;
+        End_Km = end_Km;
         BookingID = bookingID;
-        SeasonPrice = seasonPrice;
+        MhId = mhId;
+        MotorHomeprice = motorHomeprice;
         FromDate = fromDate;
         EndDate = endDate;
-        this.MhId = MhId;
     }
+
+    public CompletedBookings(int start_Km, int gasStatus, int pickUpkm, int days, int end_Km, int bookingID, int mhId, double motorHomeprice, Date fromDate, Date endDate, String season) {
+        Start_Km = start_Km;
+        GasStatus = gasStatus;
+        PickUpkm = pickUpkm;
+        this.days = days;
+        End_Km = end_Km;
+        BookingID = bookingID;
+        MhId = mhId;
+        MotorHomeprice = motorHomeprice;
+        FromDate = fromDate;
+        EndDate = endDate;
+        setSeason(season);
+    }
+
 
     public int getMhId() {
         return MhId;
@@ -30,20 +56,20 @@ public class CompletedBookings {
         MhId = mhId;
     }
 
-    public int getTotal_km() {
-        return Total_km;
+    public int getStart_Km() {
+        return Start_Km;
     }
 
-    public void setTotal_km(int total_km) {
-        Total_km = total_km;
+    public void setStart_Km(int start_Km) {
+        Start_Km = start_Km;
     }
 
-    public int getEndGas() {
-        return EndGas;
+    public int getGasStatus() {
+        return GasStatus;
     }
 
-    public void setEndGas(int endGas) {
-        EndGas = endGas;
+    public void setGasStatus(int endGas) {
+        GasStatus = endGas;
     }
 
     public int getPickUpkm() {
@@ -62,12 +88,25 @@ public class CompletedBookings {
         this.days = days;
     }
 
-    public int getKmperday() {
-        return Kmperday;
+    public void setSeason(String season) {
+        this.season = Season.valueOf(season);
     }
 
-    public void setKmperday(int kmperday) {
-        Kmperday = kmperday;
+    public String getSeason() {
+        if (this.season != null) {
+
+            return this.season.name();
+        }
+        return "Middle";
+    }
+
+
+    public int getEnd_Km() {
+        return End_Km;
+    }
+
+    public void setEnd_Km(int end_Km) {
+        End_Km = end_Km;
     }
 
     public int getBookingID() {
@@ -78,12 +117,12 @@ public class CompletedBookings {
         BookingID = bookingID;
     }
 
-    public double getSeasonPrice() {
-        return SeasonPrice;
+    public double getMotorHomeprice() {
+        return MotorHomeprice;
     }
 
-    public void setSeasonPrice(double seasonPrice) {
-        SeasonPrice = seasonPrice;
+    public void setMotorHomeprice(double motorHomeprice) {
+        MotorHomeprice = motorHomeprice;
     }
 
     public Date getFromDate() {
@@ -101,6 +140,5 @@ public class CompletedBookings {
     public void setEndDate(Date endDate) {
         EndDate = endDate;
     }
-
 
 }

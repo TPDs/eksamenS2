@@ -85,7 +85,8 @@
             <td th:text="*{BookingInfo.getUsers_UserID()}"></td>
         </tr>
     </table>
-    <a class="btn btn-danger" th:href="@{/bookings/CancelBookingen(id=${id})}">Afslut booking</a>
+    <a class="btn btn-danger" th:href="@{/bookings/CancelBookingen(id=${id},gasstatus=100, pickUp=0,endKm=0)}">Afslut
+        booking</a>
 </div>
 
 

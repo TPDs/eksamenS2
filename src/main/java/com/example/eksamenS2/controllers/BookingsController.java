@@ -68,7 +68,7 @@ public class BookingsController {
         return "bookings/completedbookings";
     }
 
-
+    // MP
     @GetMapping("/bookings/showBookings")
     public String readAllBookings(Model model) {
         MotorhomeBookingRep = new MotorhomeBookingRepository();
@@ -77,11 +77,14 @@ public class BookingsController {
         // Loader disse 2 Arraylister ind i 2 nye arrays for ikke at kalde SQL serveren ved hvert loop
         ArrayList<BookingID> Blist = new ArrayList<>(BookingIDRep.showCurrentBookings());
         ArrayList<MotorhomeBooking> Alist = new ArrayList<>(MotorhomeBookingRep.showCurrentBookings());
-
-        for (int i = 0; i < Blist.size(); ) {
-            BookingID book = new BookingID(Blist.get(i).getFromDate(), Blist.get(i).getEndDate(), Blist.get(i).getStaffID(), Blist.get(i).getCustomerID(), Blist.get(i).getBookingID(), Alist.get(i).getMotorhomeID());
-            bookingArr.add(book);
-            i++;
+        for (int j = 0; j < Alist.size(); j++) {
+            for (int i = 0; i < Blist.size(); ) {
+                if (Blist.get(i).getBookingID() == Alist.get(j).getBookingID()) {
+                    BookingID book = new BookingID(Blist.get(i).getFromDate(), Blist.get(i).getEndDate(), Blist.get(i).getStaffID(), Blist.get(i).getCustomerID(), Blist.get(i).getBookingID(), Alist.get(j).getMotorhomeID());
+                    bookingArr.add(book);
+                }
+                i++;
+            }
         }
 
         model.addAttribute("showCurrentBookings", bookingArr);
@@ -228,7 +231,7 @@ public class BookingsController {
     }
 
     @GetMapping("bookings/CancelBookingen")
-    public String CompleteCancelBooking(@RequestParam int id, Model model) {
+    public String CompleteCancelBooking(@RequestParam int id, @RequestParam int gasstatus, @RequestParam int pickUp, @RequestParam int endKm, Model model) {
         CancelBooking cancelInfo;
         cancelInfo = BookingIDRep.cencelBooking(id);
         double cancelInfoSeason = SeasonCheck(cancelInfo.getFromdate());
@@ -263,29 +266,57 @@ public class BookingsController {
         model.addAttribute("Season", cancelInfoSeason);
         model.addAttribute("days", totaldays);
         int totalKM = Motorhomerep.read(id).getTotal_Km();
-        CompletedBookings completedBookings = new CompletedBookings(totalKM, 100, 0, days, totalKM, id, cancelInfo.getMotorHomes_MotorHomesID(), cancelprice, cancelInfo.getFromdate(), cancelInfo.getEndDate(), SeasonByEnum);
+        if (endKm == 0) {
+            endKm = totalKM;
+        }
+        CompletedBookings completedBookings = new CompletedBookings(totalKM, gasstatus, pickUp, days, endKm, id, cancelInfo.getMotorHomes_MotorHomesID(), cancelprice, cancelInfo.getFromdate(), cancelInfo.getEndDate(), SeasonByEnum);
         Motorhomerep.BookingToCompletedBooking(completedBookings);
-
         return "redirect:/";
     }
 
 
     @GetMapping("/bookings/EndBooking")
     public String endbooking(@RequestParam int id, Model model) {
-        System.out.println("End booking");
+        CancelBooking cancelInfo;
+        cancelInfo = BookingIDRep.cencelBooking(id);
+        double cancelInfoSeason = SeasonCheck(cancelInfo.getFromdate());
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        int days = daysBetween(cancelInfo.getFromdate(), date);
+        double cancelprice;
+        if (days >= 50) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.2);
+            if (cancelprice < 200) {
+                cancelprice = 200;
+            }
+        } else if (days < 49 && days >= 15) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.5);
+        } else if (days >= 14) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.8);
+        } else if (days <= 1) {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 0.95);
+        } else {
+            cancelprice = (cancelInfoSeason * cancelInfo.getPrice() * 1);
+        }
+        int GasStatus = 0;
+        int PickUp = 0;
+        int EndKm = 0;
+        int totaldays = daysBetween(cancelInfo.getFromdate(), cancelInfo.getEndDate());
+        model.addAttribute("cancelPrice", cancelprice);
+        model.addAttribute("BookingInfo", cancelInfo);
+        model.addAttribute("id", id);
+        model.addAttribute("Season", cancelInfoSeason);
+        model.addAttribute("days", totaldays);
+        model.addAttribute("AccList", AccItemsRep.readAllByBooking(id));
+        model.addAttribute("GasStatus", GasStatus);
+        model.addAttribute("PickUp", PickUp);
+        model.addAttribute("EndKm", EndKm);
         return "/bookings/EndBooking";
     }
 
     @GetMapping("/bookings/EditBooking")
     public String editbooking(@RequestParam int id, Model model) {
-        BookingIDRep.BookingIdByInt(id).getStaffID();
         model.addAttribute("BookingID", BookingIDRep.BookingIdByInt(id));
-        System.out.println(BookingIDRep.BookingIdByInt(id).getCustomerID());
-        System.out.println(BookingIDRep.BookingIdByInt(id).getStaffID());
-        System.out.println(BookingIDRep.BookingIdByInt(id).getFromDate());
-        System.out.println(BookingIDRep.BookingIdByInt(id).getEndDate());
-        System.out.println(BookingIDRep.BookingIdByInt(id).getBookingID());
-
         return "/bookings/EditBooking";
     }
 

@@ -43,6 +43,11 @@ public class MotorhomeBooking {
         return motorhomeID;
     }
 
+    @Override
+    public String toString() {
+        return "" + motorhomeID;
+    }
+
     public void setMotorhomeID(int motorhomeID) {
         this.motorhomeID = motorhomeID;
     }

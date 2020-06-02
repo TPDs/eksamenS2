@@ -156,7 +156,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         return false;
     }
 
-
+//MP
     public int motorhomePriceByMhId(int id) {
         int price = 0;
         try {
@@ -175,7 +175,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         return price;
     }
 
-
+    //MP
     public boolean BookingToCompletedBooking(CompletedBookings completedBookings) {
         // MotorHome motorHomeToCreate = new MotorHome();
         String sql = "INSERT INTO completed_motorhome_booking(" +
@@ -194,15 +194,35 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
             int rowsInserted = Booking.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Successfully!");
+                DeleteAfterCopy(completedBookings);
             }
 
-            return true;
         } catch (
                 SQLException s) {
             s.printStackTrace();
             System.out.println("Fejlet");
         }
+
         return false;
+    }
+
+    //MP
+    public boolean DeleteAfterCopy(CompletedBookings completedBookings) {
+
+        String sql = "DELETE FROM motorhome_booking WHERE Booking_Id_BookingID=?";
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, completedBookings.getBookingID());
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Booking slettet");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        System.out.println("Slettet");
+        return true;
     }
 
 

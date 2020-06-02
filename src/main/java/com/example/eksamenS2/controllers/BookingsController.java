@@ -109,7 +109,7 @@ public class BookingsController {
         return "redirect:/";
     }
 
-
+    //Lavet af Michael
     @GetMapping("/")
     public String index(Model model) {
         try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\test\\"))) {

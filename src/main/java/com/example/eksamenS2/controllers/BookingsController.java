@@ -277,17 +277,23 @@ public class BookingsController {
     }
 
     @GetMapping("/bookings/EditBooking")
-    public String editbooking(@RequestParam int id, Model model, BookingID bookingID) {
+    public String editbooking(@RequestParam int id, Model model) {
+        BookingIDRep.BookingIdByInt(id).getStaffID();
         model.addAttribute("BookingID", BookingIDRep.BookingIdByInt(id));
-        System.out.println("testen");
+        System.out.println(BookingIDRep.BookingIdByInt(id).getCustomerID());
+        System.out.println(BookingIDRep.BookingIdByInt(id).getStaffID());
+        System.out.println(BookingIDRep.BookingIdByInt(id).getFromDate());
+        System.out.println(BookingIDRep.BookingIdByInt(id).getEndDate());
+        System.out.println(BookingIDRep.BookingIdByInt(id).getBookingID());
+
         return "/bookings/EditBooking";
     }
 
 
-    @PostMapping("bookings/EditBooking")
+    @PostMapping("/bookings/EditBooking")
     public String editbookingen(BookingID BookingID) {
         BookingIDRep.updateBooking(BookingID);
-        return "bookings/EditBooking";
+        return "redirect:/";
     }
 
 

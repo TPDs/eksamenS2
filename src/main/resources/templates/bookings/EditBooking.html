@@ -19,7 +19,33 @@
 <div th:insert="/template"></div>
 <div class="container">
 
-
+    <br>
+    <h1>Opdater Booking informationer</h1>
+    <br>
+    <form action="#" th:action="@{/bookings/EditBooking}" th:object="${BookingID}" method="POST">
+        <div class="form-group">
+            <label>Fra Dato:</label>
+            <input class="form-control" type="text" th:field="*{fromDate}">
+        </div>
+        <div class="form-group">
+            <label>Slut Dato:</label>
+            <input class="form-control" type="text" th: th:field="*{endDate}">
+        </div>
+        <div class="form-group">
+            <label>KundeID:</label>
+            <input class="form-control" type="number" th:field="*{customerID}">
+        </div>
+        <div class="form-group">
+            <label>StaffID:</label>
+            <input class="form-control" type="text" th:field="*{staffID}">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="hidden" th:field="*{bookingID}">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Opdater</button>
+    </form>
+    <br>
 
 </div>
 

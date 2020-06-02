@@ -179,6 +179,34 @@ public class BookingIDRepositoryImpl {
         return false;
     }
 
+    //Mp
+
+    public boolean updateBooking(BookingID bookingID) {
+
+
+        String sql = "UPDATE bookingid SET FromDate=?, EndDate=?, CustomerID=?, Users_UserID=? WHERE BookingID=" + bookingID.getBookingID();
+
+        try {
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setDate(1, bookingID.getFromDate());
+            statement.setDate(2, bookingID.getEndDate());
+            statement.setInt(3, bookingID.getCustomerID());
+            statement.setString(4, bookingID.getStaffID());
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("updateBooking successfully!");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        return false;
+    }
+
+
+//mp
 
     public CancelBooking cencelBooking(int id) {
         CancelBooking cancelBooking = new CancelBooking();

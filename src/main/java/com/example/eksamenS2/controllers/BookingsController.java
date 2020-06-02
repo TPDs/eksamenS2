@@ -256,7 +256,6 @@ public class BookingsController {
         } else if (cancelInfoSeason == 1.3) {
             SeasonByEnum = "Middle";
         }
-
         int totaldays = daysBetween(cancelInfo.getFromdate(), cancelInfo.getEndDate());
         model.addAttribute("cancelPrice", cancelprice);
         model.addAttribute("BookingInfo", cancelInfo);
@@ -266,9 +265,29 @@ public class BookingsController {
         int totalKM = Motorhomerep.read(id).getTotal_Km();
         CompletedBookings completedBookings = new CompletedBookings(totalKM, 100, 0, days, totalKM, id, cancelInfo.getMotorHomes_MotorHomesID(), cancelprice, cancelInfo.getFromdate(), cancelInfo.getEndDate(), SeasonByEnum);
         Motorhomerep.BookingToCompletedBooking(completedBookings);
-        System.out.println("In rick and Morty E10, someone dies!");
 
-        return "/index";
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/bookings/EndBooking")
+    public String endbooking(@RequestParam int id, Model model) {
+        System.out.println("End booking");
+        return "/bookings/EndBooking";
+    }
+
+    @GetMapping("/bookings/EditBooking")
+    public String editbooking(@RequestParam int id, Model model, BookingID bookingID) {
+        model.addAttribute("BookingID", BookingIDRep.BookingIdByInt(id));
+        System.out.println("testen");
+        return "/bookings/EditBooking";
+    }
+
+
+    @PostMapping("bookings/EditBooking")
+    public String editbookingen(BookingID BookingID) {
+        BookingIDRep.updateBooking(BookingID);
+        return "bookings/EditBooking";
     }
 
 
@@ -289,7 +308,7 @@ public class BookingsController {
         CompletedBookings BookingData = new CompletedBookings(Total_km, EndGas, PickUpKm, days, KmPerDay, bookingID.getBookingID(), MhId, SeasonPrice, bookingID.getFromDate(), bookingID.getEndDate());
         model.addAttribute("CompletedMotorHomeBooking", BookingData);
         model.addAttribute("AccBookings", AccItemsRep.readAllByBooking(bookingID.getBookingID()));
-        return "bookings/confirmBooking"; // ændres til et completed?
+        return "bookings/confirmBooking"; //
     }
 
     public int daysBetween(Date d1, Date d2) {

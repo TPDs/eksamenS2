@@ -11,7 +11,7 @@ public class CustomerController {
 
 private CustomerRepositoryImpl customerRep;
     public CustomerController(){customerRep = new CustomerRepositoryImpl();}
-
+// DP + Christian
     @GetMapping("/customers/addCustomer")
     public String getCustomer(Customer customer){
         return "/customers/addCustomer";

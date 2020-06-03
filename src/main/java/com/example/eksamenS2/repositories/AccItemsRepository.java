@@ -88,7 +88,7 @@ public class AccItemsRepository {
         return allAccItems;
     }
 
-
+// MP
     public List<BookingAccItems> readAllByBooking(int id) {
         List<BookingAccItems> allAccItemsByBooking = new ArrayList<>();
         try {
@@ -109,7 +109,7 @@ public class AccItemsRepository {
         return allAccItemsByBooking;
     }
 
-
+    // DP, bruges ikke i denne iteration
     public boolean update(AccItems accItems) {
         String sql = "UPDATE accitems SET Name=?, Price=? WHERE ItemsID=" + accItems.getItemsID();
 

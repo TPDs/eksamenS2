@@ -14,10 +14,10 @@ public class UsersRepository {
     public UsersRepository() {
         this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }
-
+//MP, bruges til login menu (se login.html), dog bruges Spring boot Security pt
     public Users read(Users users) {
         Users UsersToReturn = new Users();
-        System.out.println(users.getUserID() + " " + users.getPassword());
+        //System.out.println(users.getUserID() + " " + users.getPassword()); // Til test af login
         try {
             String sql = "SELECT * FROM users WHERE UserID= ? AND Password= ?";
             PreparedStatement rs = conn.prepareStatement(sql);

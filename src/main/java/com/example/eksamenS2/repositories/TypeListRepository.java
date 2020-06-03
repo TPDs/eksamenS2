@@ -19,7 +19,6 @@ public class TypeListRepository {
     private Connection conn;
     public TypeListRepository() {this.conn = DatabaseConnectionManager.getDatabaseConnection(); }
 
-//    metode der skal
 
     public List<TypesByModel> ModelsFromType(String Type){
         PreparedStatement ps = null;

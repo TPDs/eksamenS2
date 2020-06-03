@@ -3,7 +3,10 @@ package com.example.eksamenS2.repositories;
 import com.example.eksamenS2.models.Models;
 import com.example.eksamenS2.util.DatabaseConnectionManager;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,7 +155,7 @@ public String saveIteratedModelNr(int indexPos)
         return false;
     }
 
-
+    // vi sletter pt ikke models i systemet, men det vil være muligt senere i systemets udvikling
     public boolean delete(String Model_number){
 
         String sql = "DELETE FROM models WHERE Model_number=?";

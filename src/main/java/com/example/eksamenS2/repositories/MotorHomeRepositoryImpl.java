@@ -225,9 +225,4 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
         return true;
     }
 
-
 }
-
-
-
-

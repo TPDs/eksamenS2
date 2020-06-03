@@ -185,7 +185,7 @@ public class BookingsController {
 //        return "";
 //    }
 
-
+//mp
     @GetMapping("bookings/confirmBooking")
     public String EndedBooking(@RequestParam int id, Model model) {
         int ids = BookingIDRep.MotorhomeByBookingID(id);
@@ -196,6 +196,7 @@ public class BookingsController {
         return "bookings/confirmBooking";
     }
 
+    //MP
     @GetMapping("bookings/CancelBooking")
     public String CancelBooking(@RequestParam int id, Model model) {
         CancelBooking cancelInfo;
@@ -230,6 +231,7 @@ public class BookingsController {
         return "/bookings/CancelBooking";
     }
 
+    //MP
     @GetMapping("bookings/CancelBookingen")
     public String CompleteCancelBooking(@RequestParam int id, @RequestParam int gasstatus, @RequestParam int pickUp, @RequestParam int endKm, Model model) {
         CancelBooking cancelInfo;
@@ -274,7 +276,7 @@ public class BookingsController {
         return "redirect:/";
     }
 
-
+    //MP
     @GetMapping("/bookings/EndBooking")
     public String endbooking(@RequestParam int id, Model model) {
         CancelBooking cancelInfo;
@@ -327,7 +329,7 @@ public class BookingsController {
         return "redirect:/";
     }
 
-
+    //MP
     @PostMapping("bookings/EndBooking")
     public String endbooking(EndBooking endBooking, MotorHome motorHome, BookingID bookingID, Model model) {
         int Total_km = motorHome.getTotal_Km() - endBooking.getEndKm();

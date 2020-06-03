@@ -16,7 +16,7 @@ public class CustomerRepositoryImpl {
     public CustomerRepositoryImpl() { this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }
 
-
+// DP
     public boolean create(Customer customer) {
         String sql = "INSERT INTO customer(FirstName, LastName, Email, Phone, DriverLicens) VALUES (?,?,?,?,?)";
 
@@ -42,7 +42,7 @@ public class CustomerRepositoryImpl {
         return false;
     }
 
-
+    // DP, bruges ikke
     public Customer read(int id) {
         Customer customerToReturn = new Customer();
 

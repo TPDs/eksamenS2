@@ -29,7 +29,7 @@ public class UserController {
         return "redirect:/";
     }
 
-
+// MP , Denne bliver dog ikke kørt da Spring Boot security overtager Login
     @PostMapping("/login")
     public String Login(String username, String password, Model model) {
         Users users = new Users(username, password);

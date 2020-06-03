@@ -143,7 +143,7 @@ public class BookingIDRepositoryImpl {
     public int MotorhomeByBookingID(int id) {
         int MotorHomeid = 1;
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM motorhome_booking WHERE Booking_Id_BookingID=" + id);
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM motorhome_booking WHERE BookingId_BookingID=" + id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -214,7 +214,7 @@ public class BookingIDRepositoryImpl {
         String sql = "SELECT FromDate,EndDate,CustomerID,FirstName,LastName, Users_UserID,Email,Phone, MotorHomes_MotorHomesID,Models_Model_number,Price " +
                 "FROM bookingid " +
                 "INNER JOIN customer USING (CustomerID) " +
-                "INNER Join motorhome_booking on Booking_Id_BookingID=BookingID " +
+                "INNER Join motorhome_booking on BookingId_BookingID=BookingID " +
                 "INNER Join motorhomes on MotorHomes_MotorHomesID= MotorHomesID " +
                 "INNER Join models on Models_Model_number= Model_number " +
                 "WHERE BookingID='" + id + "'";

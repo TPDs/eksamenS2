@@ -1,22 +1,18 @@
 package com.example.eksamenS2.controllers;
-import com.example.eksamenS2.models.TypesByModel;
 import com.example.eksamenS2.models.Models;
 import com.example.eksamenS2.models.MotorHome;
+import com.example.eksamenS2.models.TypesByModel;
 import com.example.eksamenS2.repositories.ModelRepository;
 import com.example.eksamenS2.repositories.MotorHomeRepositoryImpl;
-import com.example.eksamenS2.repositories.MotorhomeBookingRepository;
 import com.example.eksamenS2.repositories.TypeListRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-import java.sql.PreparedStatement;
-import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Objects;
 
+// Lavet af Daniel
 @Controller
 public class TypeListController {
 private MotorHomeRepositoryImpl MotorhomeRep;
@@ -190,21 +186,4 @@ private TypeListRepository TypeRep;
     }
 }
 
-//        @GetMapping("/motorhomes/chooseType")
-//    public String GetStatuses(Model model){
-//        model.addAttribute("readStatusAmount",typesRepository.readStatusAmount());
-//        return "/motorhomes/chooseType";
-//    }
 
-//}for(int i =0;i<ModelsList.size();i++){
-//
-//                for(int h=0;h<MotorhomeStatus.size();h++){
-//
-//                    if(ModelsList.get(i).getModel_number().equals(MotorhomeStatus.get(h).getModels_Model_number())){
-//                        TypesByModel temp = new TypesByModel(ModelsList.get(i).getType(), MotorhomeStatus.get(h).getStatus());
-//                        StatusByTypes.add(temp);
-//
-//                    }
-//                    System.out.println(StatusByTypes.size());
-//                }
-//            }

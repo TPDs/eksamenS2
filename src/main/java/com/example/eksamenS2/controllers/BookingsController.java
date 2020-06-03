@@ -109,7 +109,7 @@ public class BookingsController {
         return "redirect:/";
     }
 
-
+//MP
     @GetMapping("/")
     public String index(Model model) {
         try (Stream<Path> walk = Files.walk(Paths.get("src\\main\\resources\\static\\img\\test\\"))) {
@@ -117,7 +117,7 @@ public class BookingsController {
             List<String> result = walk.filter(Files::isRegularFile)
                     .map(Path::toString).collect(Collectors.toList());
 
-            result.forEach(System.out::println);
+            //result.forEach(System.out::println);
 
             String rep = "src\\main\\resources\\static";
             List<String> result2 = new ArrayList<>();
@@ -135,7 +135,7 @@ public class BookingsController {
             p = p.replace(rep, "..");
             p = p.replace("\\", "/");
 
-            result2.forEach(System.out::println);
+            //result2.forEach(System.out::println);
 
             model.addAttribute("First", p);
             model.addAttribute("ModelsImg", result2);

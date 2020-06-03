@@ -179,7 +179,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
     public boolean BookingToCompletedBooking(CompletedBookings completedBookings) {
         // MotorHome motorHomeToCreate = new MotorHome();
         String sql = "INSERT INTO completed_motorhome_booking(" +
-                "Booking_Id_BookingID, MotorHomes_MotorHomesID, PickupDropoffKm, GasStatus,Season,Start_Km,End_Km,MotorHome_Price)" +
+                "BookingId_BookingID, MotorHomes_MotorHomesID, PickupDropoffKm, GasStatus,Season,Start_Km,End_Km,MotorHome_Price)" +
                 " VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement Booking = conn.prepareStatement(sql);
@@ -209,7 +209,7 @@ public class MotorHomeRepositoryImpl implements IMotorHomeRepository {
     //MP
     public boolean DeleteAfterCopy(CompletedBookings completedBookings) {
 
-        String sql = "DELETE FROM motorhome_booking WHERE Booking_Id_BookingID=?";
+        String sql = "DELETE FROM motorhome_booking WHERE BookingId_BookingID=?";
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, completedBookings.getBookingID());

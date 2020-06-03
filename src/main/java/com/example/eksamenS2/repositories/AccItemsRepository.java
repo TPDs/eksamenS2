@@ -92,7 +92,7 @@ public class AccItemsRepository {
     public List<BookingAccItems> readAllByBooking(int id) {
         List<BookingAccItems> allAccItemsByBooking = new ArrayList<>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT ItemsID,Name,Price,amount FROM accitems INNER Join booking_accitems ON ItemsID = Acc_Items_ItemsID WHERE Booking_Id_BookingID =" + id);
+            PreparedStatement ps = conn.prepareStatement("SELECT ItemsID,Name,Price,amount FROM accitems INNER Join booking_accitems ON ItemsID = AccItems_ItemsID WHERE BookingId_BookingID =" + id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 BookingAccItems tempAccItem = new BookingAccItems();

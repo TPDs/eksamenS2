@@ -354,7 +354,7 @@ public class BookingsController {
 
 
     public double SeasonCheck(Date startdate) {
-        double SeasonPrice = 1.1;
+        double SeasonPrice = 1.0;
 
         // Disse Datoer burde kunne ændres over tiden, men de desværre er blevet hardcoded pga tidspress, Ville evt have lavet et sql table til dette og/eller en fucktion der retter år for hver season ..Michael
 

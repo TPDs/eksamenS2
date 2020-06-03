@@ -23,6 +23,12 @@ public class UserController {
         return "/login";
     }
 
+    @GetMapping("/index")
+    public String index() {
+
+        return "redirect:/";
+    }
+
 
     @PostMapping("/login")
     public String Login(String username, String password, Model model) {

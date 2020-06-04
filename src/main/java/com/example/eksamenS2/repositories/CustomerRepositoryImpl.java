@@ -16,7 +16,7 @@ public class CustomerRepositoryImpl {
     public CustomerRepositoryImpl() { this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }
 
-// DP
+    // Lavet af Daniel P
     public boolean create(Customer customer) {
         String sql = "INSERT INTO customer(FirstName, LastName, Email, Phone, DriverLicens) VALUES (?,?,?,?,?)";
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class ModelRepository {
     private Connection conn;
     public ModelRepository() {this.conn= DatabaseConnectionManager.getDatabaseConnection(); }
-
+// Lavet af Daniel P
 
     // skal lave en metode der kan iterere igennem model numre til visning på "opret motorhome" siden
 public String saveIteratedModelNr(int indexPos)

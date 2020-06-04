@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AccItemsRepository {
     private Connection conn;
-
+    // Lavet af Daniel P
     public AccItemsRepository() {
         this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }

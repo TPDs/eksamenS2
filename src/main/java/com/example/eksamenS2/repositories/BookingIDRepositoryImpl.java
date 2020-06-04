@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+// Lavet af Daniel P
 public class BookingIDRepositoryImpl {
     private Connection conn;
 
@@ -235,7 +235,6 @@ public class BookingIDRepositoryImpl {
                 cancelBooking.setMotorHomes_MotorHomesID(rs.getInt(9));
                 cancelBooking.setModels_Model_number(rs.getString(10));
                 cancelBooking.setPrice(rs.getInt(11));
-
 
             }
 
